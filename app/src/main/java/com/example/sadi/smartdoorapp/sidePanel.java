@@ -107,9 +107,11 @@ public class sidePanel extends AppCompatActivity
         if (id == R.id.nav_manage) {
 
         }
-      // else if (id == R.id.nav_share) {
+       else if (id == R.id.nav_logout) {
 
-        //} else if (id == R.id.nav_send) {
+            finish();
+        }
+        //else if (id == R.id.nav_send) {
 
 //        }
 
