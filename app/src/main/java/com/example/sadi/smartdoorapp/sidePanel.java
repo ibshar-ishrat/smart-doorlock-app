@@ -1,5 +1,6 @@
 package com.example.sadi.smartdoorapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -105,6 +106,8 @@ public class sidePanel extends AppCompatActivity
 
         }
         if (id == R.id.nav_manage) {
+
+            startActivity(new Intent(this, Manage_Locks.class));
 
         }
        else if (id == R.id.nav_logout) {

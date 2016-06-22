@@ -23,4 +23,8 @@
     <string name="activity">I am in the activity page!</string>
     <string name="action">I am in the action page!</string>
     <string name="settings">I am in the door settings page!</string>
+    <string name="insert">I am in the insert lock page!</string>
+    <string name="delete">I am in the delete lock page!</string>
+    <string name="title_activity_manage_lock">Manage Lock</string>
+
 </resources>

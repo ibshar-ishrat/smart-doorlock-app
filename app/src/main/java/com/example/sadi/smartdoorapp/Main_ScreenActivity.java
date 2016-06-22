@@ -65,6 +65,8 @@ public class Main_ScreenActivity extends AppCompatActivity {
                             //creating instance of intent for redirecting to second screen
                             Intent i = new Intent("com.example.sadi.smartdoorapp.sidePanel");
                             startActivity(i);
+                            EditText text = (EditText) findViewById(R.id.editText_passreg);
+                            text.setText("");
                         }
                         else
                         {
