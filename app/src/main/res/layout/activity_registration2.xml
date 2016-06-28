@@ -2,12 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText_userreg2"
         android:layout_alignParentTop="true"
-        android:text="User Registration( 2 of 4)"
+        android:text="Account Settings"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -23,6 +24,7 @@
         android:layout_toLeftOf="@+id/button_next2"
         android:layout_toStartOf="@+id/button_next2" />
 
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,15 +35,79 @@
         android:layout_alignLeft="@+id/textview_email"
         android:layout_alignStart="@+id/textview_email" />
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Username"
+        android:id="@+id/textView_username"
+        android:layout_below="@+id/editText_email"
+        android:layout_alignLeft="@+id/editText_email"
+        android:layout_alignStart="@+id/editText_email" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:id="@+id/editText_uname"
+        android:layout_below="@+id/textView_username"
+        android:layout_alignLeft="@+id/textView_username"
+        android:layout_alignStart="@+id/textView_username" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Phone Number"
+        android:id="@+id/textView_pnum"
+        android:layout_below="@+id/editText_uname"
+        android:layout_alignLeft="@+id/editText_uname"
+        android:layout_alignStart="@+id/editText_uname" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/editText_pnum"
+        android:layout_below="@+id/textView_pnum"
+        android:layout_alignLeft="@+id/textView_pnum"
+        android:layout_alignStart="@+id/textView_pnum" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Alternate Email"
+        android:id="@+id/textView_altEmail"
+        android:layout_below="@+id/editText_pnum"
+        android:layout_alignLeft="@+id/editText_pnum"
+        android:layout_alignStart="@+id/editText_pnum" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:id="@+id/editText_AltEmail"
+        android:layout_below="@+id/textView_altEmail"
+        android:layout_alignLeft="@+id/textView_altEmail"
+        android:layout_alignStart="@+id/textView_altEmail" />
+
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Password"
         android:id="@+id/textView_pass"
-        android:layout_below="@+id/editText_email"
-        android:layout_alignLeft="@+id/editText_email"
-        android:layout_alignStart="@+id/editText_email" />
+        android:layout_below="@+id/editText_AltEmail"
+        android:layout_alignLeft="@+id/editText_AltEmail"
+        android:layout_alignStart="@+id/editText_AltEmail" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -53,21 +119,14 @@
         android:layout_alignLeft="@+id/textView_pass"
         android:layout_alignStart="@+id/textView_pass" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next Step"
-        android:id="@+id/button_next2"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="64dp" />
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Secret Question 1"
-        android:id="@+id/textView_secQ1"
+        android:text="Confirm Password"
+        android:id="@+id/textView_confirmpas"
         android:layout_below="@+id/editText_pass"
         android:layout_alignLeft="@+id/editText_pass"
         android:layout_alignStart="@+id/editText_pass" />
@@ -75,33 +134,24 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText_secQ1"
+        android:ems="10"
         android:inputType="text"
-        android:layout_below="@+id/textView_secQ1"
-        android:layout_alignLeft="@+id/textView_secQ1"
-        android:layout_alignStart="@+id/textView_secQ1"
-        android:layout_alignRight="@+id/editText_pass"
-        android:layout_alignEnd="@+id/editText_pass" />
+        android:id="@+id/editText_confirmpas"
+        android:layout_below="@+id/textView_confirmpas"
+        android:layout_alignLeft="@+id/textView_confirmpas"
+        android:layout_alignStart="@+id/textView_confirmpas" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Secret Answer 1"
-        android:id="@+id/textView_secAns1"
-        android:layout_below="@+id/editText_secQ1"
-        android:layout_alignLeft="@+id/editText_secQ1"
-        android:layout_alignStart="@+id/editText_secQ1" />
+        android:text="Next Step"
+        android:id="@+id/button_next2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_secAns1"
-        android:inputType="text"
-        android:layout_below="@+id/textView_secAns1"
-        android:layout_alignLeft="@+id/textView_secAns1"
-        android:layout_alignStart="@+id/textView_secAns1"
-        android:layout_alignRight="@+id/editText_secQ1"
-        android:layout_alignEnd="@+id/editText_secQ1" />
+
+
+
 
 </RelativeLayout>
