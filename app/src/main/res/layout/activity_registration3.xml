@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Secret Answer 2"
+        android:text="Security Answer 2"
         android:id="@+id/textView_secAns2"
         android:layout_below="@+id/editText_secQ2"
         android:layout_alignLeft="@+id/editText_secQ2"
