@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_userreg4"
+        android:layout_alignParentTop="true"
+        android:text="Door Settings"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Select Door Type"
+        android:id="@+id/textview_sec_Door_type"
+        android:layout_below="@+id/editText_userreg4"
+        android:layout_alignRight="@+id/button_done"
+        android:layout_alignEnd="@+id/button_done" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText_sec_Door_type"
+        android:layout_below="@+id/textview_sec_Door_type"
+        android:layout_alignLeft="@+id/textview_sec_Door_type"
+        android:layout_alignStart="@+id/textview_sec_Door_type" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Enter Pin Code"
+        android:id="@+id/textView_pin"
+        android:layout_below="@+id/editText_sec_Door_type"
+        android:layout_alignLeft="@+id/editText_sec_Door_type"
+        android:layout_alignStart="@+id/editText_sec_Door_type" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editText_pin"
+        android:layout_below="@+id/textView_pin"
+        android:layout_alignLeft="@+id/textView_pin"
+        android:layout_alignStart="@+id/textView_pin" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Confirm Pin Code"
+        android:id="@+id/textview_confirmpin"
+        android:layout_below="@+id/editText_pin"
+        android:layout_alignRight="@+id/button_done"
+        android:layout_alignEnd="@+id/button_done" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText_confirmpin"
+        android:layout_below="@+id/textview_confirmpin"
+        android:layout_alignLeft="@+id/textview_confirmpin"
+        android:layout_alignStart="@+id/textview_confirmpin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Name Door"
+        android:id="@+id/textView_nameDoor"
+        android:layout_below="@+id/editText_confirmpin"
+        android:layout_alignLeft="@+id/editText_confirmpin"
+        android:layout_alignStart="@+id/editText_confirmpin" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/editText_nameDoor"
+        android:layout_below="@+id/textView_nameDoor"
+        android:layout_alignLeft="@+id/textView_nameDoor"
+        android:layout_alignStart="@+id/textView_nameDoor" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Description of Door (optional)"
+        android:id="@+id/textView_desc_Door"
+        android:layout_below="@+id/editText_nameDoor"
+        android:layout_alignLeft="@+id/editText_nameDoor"
+        android:layout_alignStart="@+id/editText_nameDoor" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/editText_desc_Door"
+        android:layout_below="@+id/textView_desc_Door"
+        android:layout_alignLeft="@+id/textView_desc_Door"
+        android:layout_alignStart="@+id/textView_desc_Door" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/button_done"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="66dp" />
+
+
+</RelativeLayout>
