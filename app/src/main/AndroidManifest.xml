@@ -58,6 +58,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".User_Registration4"
+            android:label="User Registration 4 of 4"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sadi.smartdoorapp.activity_registration4" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".sidePanel"
             android:label="@string/title_activity_side_panel"
