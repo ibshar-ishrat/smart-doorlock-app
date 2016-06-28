@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
+
+
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText_userreg"
-        android:text="User Registration (1 of 4)"
+        android:text="Profile Settings"
         android:layout_weight="0.30" />
 
     <TextView
@@ -61,7 +63,7 @@
         android:inputType="text|date"
         android:ems="10"
         android:id="@+id/editText_dob"
-        android:layout_above="@+id/textView_contactNum"
+        android:layout_above="@+id/textView_city"
         android:layout_alignLeft="@+id/textview_dob"
         android:layout_alignStart="@+id/textview_dob" />
     <Button
@@ -69,16 +71,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/button_next1"
         android:text="Next Step"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="72dp" />
+        android:layout_below="@+id/imageToUpload"
+        android:layout_toRightOf="@+id/textView_upload_image"
+        android:layout_toEndOf="@+id/textView_upload_image" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Contact Number"
-        android:id="@+id/textView_contactNum"
+        android:text="City"
+        android:id="@+id/textView_city"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/editText_dob"
         android:layout_alignStart="@+id/editText_dob" />
@@ -86,13 +88,40 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText_contactNum"
+        android:id="@+id/editText_city"
         android:inputType="number"
-        android:layout_below="@+id/textView_contactNum"
-        android:layout_alignLeft="@+id/textView_contactNum"
-        android:layout_alignStart="@+id/textView_contactNum"
+        android:layout_below="@+id/textView_city"
+        android:layout_alignLeft="@+id/textView_city"
+        android:layout_alignStart="@+id/textView_city"
         android:layout_alignRight="@+id/editText_lastname"
         android:layout_alignEnd="@+id/editText_lastname" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Upload Image"
+        android:id="@+id/textView_upload_image"
+        android:layout_below="@+id/editText_city"
+        android:layout_alignLeft="@+id/editText_city"
+        android:layout_alignStart="@+id/editText_city" />
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/imageToUpload"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/textView_upload_image"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bUploadImage"
+        android:text="Upload"
+        android:layout_below="@+id/imageToUpload"
+        android:layout_alignLeft="@+id/textView_upload_image"
+        android:layout_alignStart="@+id/textView_upload_image" />
+
+
+    </RelativeLayout>
