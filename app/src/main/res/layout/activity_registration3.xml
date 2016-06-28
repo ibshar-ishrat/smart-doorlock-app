@@ -7,19 +7,61 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText_userreg3"
         android:layout_alignParentTop="true"
-        android:text="User Registration(3 of 4)"
+        android:text="Security Questions"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Secret Question 2"
-        android:id="@+id/textview_secQ2"
+        android:text="Security Question 1"
+        android:id="@+id/textview_secQ1"
         android:layout_below="@+id/editText_userreg3"
+        android:layout_alignRight="@+id/button_next3"
+        android:layout_alignEnd="@+id/button_next3" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText_secQ1"
+        android:layout_below="@+id/textview_secQ1"
+        android:layout_alignLeft="@+id/textview_secQ1"
+        android:layout_alignStart="@+id/textview_secQ1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Security Answer 1"
+        android:id="@+id/textView_secAns1"
+        android:layout_below="@+id/editText_secQ1"
+        android:layout_alignLeft="@+id/editText_secQ1"
+        android:layout_alignStart="@+id/editText_secQ1" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editText_secAns1"
+        android:layout_below="@+id/textView_secAns1"
+        android:layout_alignLeft="@+id/textView_secAns1"
+        android:layout_alignStart="@+id/textView_secAns1" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Security Question 2"
+        android:id="@+id/textview_secQ2"
+        android:layout_below="@+id/editText_secAns1"
         android:layout_alignRight="@+id/button_next3"
         android:layout_alignEnd="@+id/button_next3" />
 
@@ -62,45 +104,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="66dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="City"
-        android:id="@+id/textView_city"
-        android:layout_below="@+id/editText_secAns2"
-        android:layout_alignLeft="@+id/editText_secAns2"
-        android:layout_alignStart="@+id/editText_secAns2" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_city"
-        android:inputType="text"
-        android:layout_below="@+id/textView_city"
-        android:layout_alignLeft="@+id/textView_city"
-        android:layout_alignStart="@+id/textView_city"
-        android:layout_alignRight="@+id/editText_secAns2"
-        android:layout_alignEnd="@+id/editText_secAns2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Door Type"
-        android:id="@+id/textView_doorType"
-        android:layout_below="@+id/editText_city"
-        android:layout_alignLeft="@+id/editText_city"
-        android:layout_alignStart="@+id/editText_city" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_doorType"
-        android:inputType="text"
-        android:layout_below="@+id/textView_doorType"
-        android:layout_alignLeft="@+id/textView_doorType"
-        android:layout_alignStart="@+id/textView_doorType"
-        android:layout_alignRight="@+id/editText_city"
-        android:layout_alignEnd="@+id/editText_city" />
 </RelativeLayout>
