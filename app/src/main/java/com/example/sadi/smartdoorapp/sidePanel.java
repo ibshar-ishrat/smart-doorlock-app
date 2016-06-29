@@ -101,13 +101,45 @@ public class sidePanel extends AppCompatActivity
 
 
         }
+        if (id == R.id.nav_app_settings) {
+
+
+        }
+        if (id == R.id.nav_exit) {
+
+
+        }
+        if (id == R.id.nav_profile) {
+
+            Intent intent = new Intent(this, User_Registration.class);
+            startActivity(intent);
+
+
+        }
+        if (id == R.id.nav_security) {
+
+            Intent intent = new Intent(this, User_Registration3.class);
+            startActivity(intent);
+
+        }
+        if (id == R.id.nav_use_app) {
+
+
+        }
+        if (id == R.id.nav_use_device) {
+
+
+        }
        if (id == R.id.nav_account) {
-           fragmentManager.beginTransaction().replace(R.id.content_frame,new Account_Settings()).commit();
+           //fragmentManager.beginTransaction().replace(R.id.content_frame,new Account_Settings()).commit();
+           Intent intent = new Intent(this, User_Registration2.class);
+           startActivity(intent);
 
         }
         if (id == R.id.nav_manage) {
 
-            startActivity(new Intent(this, Manage_Locks.class));
+            Intent intent = new Intent(this, Manage_Locks.class);
+            startActivity(intent);
 
         }
        else if (id == R.id.nav_logout) {

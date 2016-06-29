@@ -6,19 +6,62 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_store_mall_directory_black_24dp"
             android:title="Home" />
-        <item
-            android:id="@+id/nav_account"
-            android:icon="@drawable/ic_person_black_24dp"
-            android:title="@string/title_activity_account_settings" />
+
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Manage Locks" />
+            android:title="Manage Doors" />
+
+        <item
+            android:id="@+id/nav_app_settings"
+            android:icon="@drawable/perm_group_system_tools"
+            android:title="Application Settings" />
+
+        <item android:title="User Guide">
+        <menu>
+            <item
+                android:id="@+id/nav_use_app"
+                android:icon="@drawable/perm_group_display"
+                android:title="How to use App" />
+            <item
+                android:id="@+id/nav_use_device"
+                android:icon="@drawable/ic_action_device"
+                android:title="How to use Device" />
+
+        </menu>
+        </item>
+
 
     </group>
 
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:id="@+id/nav_account"
+                android:icon="@drawable/ic_person_black_24dp"
+                android:title="@string/title_activity_account_settings" />
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_menu_friendslist"
+                android:title="Profile Settings" />
+
+            <item
+                android:id="@+id/nav_security"
+                android:icon="@drawable/perm_group_screenlock"
+                android:title="Security Settings" />
+
+
+
+        </menu>
+    </item>
+
     <item android:title="Others">
         <menu>
+
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_notification_clear_all"
+                android:title="Exit" />
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_power_settings_new_black_24dp"
