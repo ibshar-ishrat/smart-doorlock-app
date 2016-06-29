@@ -3,12 +3,15 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
-    <EditText
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText_userreg"
         android:text="Profile Settings"
-        android:layout_weight="0.30" />
+        android:layout_weight="0.30"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/material_blue_grey_800" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -124,4 +127,4 @@
         android:layout_alignStart="@+id/textView_upload_image" />
 
 
-    </RelativeLayout>
+</RelativeLayout>
