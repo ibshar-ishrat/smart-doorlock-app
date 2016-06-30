@@ -4,16 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 /**
  * Created by Sami Ullah on 3/16/2016.
  */
-public class User_Registration2 extends Main_ScreenActivity {
+public class User_Registration2 extends Main_ScreenActivity
+{
     private static Button button_next2;
+    public static EditText email;
+    public static EditText userName;
+    public static EditText contactNum;
+    //EditText altEmail;
+    public static EditText password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration2);
+        email=(EditText)findViewById(R.id.editText_email);
+        userName=(EditText)findViewById(R.id.editText_uname);
+        contactNum=(EditText)findViewById(R.id.editText_pnum);
+        password=(EditText)findViewById(R.id.editText_pass);
      /*   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

@@ -6,22 +6,34 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 
 /**
  * Created by Sami Ullah on 3/16/2016.
  */
-public class User_Registration extends Main_ScreenActivity {
+public class User_Registration extends Main_ScreenActivity
+{
     private static Button button_next1;
     private static final int RESULT_LOAD_IMAGE = 1;
-    ImageView imageToUpload;
+    public static ImageView imageToUpload;
     Button bUploadImage;
+    public static EditText firstName;
+    public static EditText lastName;
+    public static EditText DOB;
+    public static EditText city;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         bUploadImage=(Button)findViewById(R.id.bUploadImage);
+        firstName = (EditText)findViewById(R.id.editText_firstname);
+        lastName = (EditText)findViewById(R.id.editText_lastname);
+        DOB = (EditText)findViewById(R.id.editText_dob);
+        city = (EditText)findViewById(R.id.editText_city);
      /*   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
