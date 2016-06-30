@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Select Door Type"
+        android:text="Enter Door Type"
         android:id="@+id/textview_sec_Door_type"
         android:layout_below="@+id/editText_userreg4"
         android:layout_alignRight="@+id/button_done"
@@ -65,8 +65,8 @@
         android:text="Confirm Pin Code"
         android:id="@+id/textview_confirmpin"
         android:layout_below="@+id/editText_pin"
-        android:layout_alignRight="@+id/button_done"
-        android:layout_alignEnd="@+id/button_done" />
+        android:layout_alignLeft="@+id/editText_pin"
+        android:layout_alignStart="@+id/editText_pin" />
 
     <EditText
         android:layout_width="wrap_content"
