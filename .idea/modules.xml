@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Smart Door App.iml" filepath="$PROJECT_DIR$/Smart Door App.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Smart_Door_App_Integrated.iml" filepath="$PROJECT_DIR$/Smart_Door_App_Integrated.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
