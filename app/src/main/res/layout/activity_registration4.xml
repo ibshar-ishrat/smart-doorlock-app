@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Enter Door Type"
+        android:text="Select Door Type"
         android:id="@+id/textview_sec_Door_type"
         android:layout_below="@+id/editText_userreg4"
         android:layout_alignRight="@+id/button_done"
@@ -27,25 +27,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/editText_sec_Door_type"
-        android:layout_below="@+id/textview_sec_Door_type"
-        android:layout_alignLeft="@+id/textview_sec_Door_type"
-        android:layout_alignStart="@+id/textview_sec_Door_type"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/material_blue_grey_800"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Enter Pin Code"
         android:id="@+id/textView_pin"
-        android:layout_below="@+id/editText_sec_Door_type"
-        android:layout_alignLeft="@+id/editText_sec_Door_type"
-        android:layout_alignStart="@+id/editText_sec_Door_type" />
+        android:layout_above="@+id/editText_pin"
+        android:layout_alignLeft="@+id/textview_sec_Door_type"
+        android:layout_alignStart="@+id/textview_sec_Door_type" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -53,7 +40,7 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/editText_pin"
-        android:layout_below="@+id/textView_pin"
+        android:layout_above="@+id/textview_confirmpin"
         android:layout_alignLeft="@+id/textView_pin"
         android:layout_alignStart="@+id/textView_pin" />
 
@@ -64,7 +51,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Confirm Pin Code"
         android:id="@+id/textview_confirmpin"
-        android:layout_below="@+id/editText_pin"
+        android:layout_above="@+id/editText_confirmpin"
         android:layout_alignLeft="@+id/editText_pin"
         android:layout_alignStart="@+id/editText_pin" />
 
@@ -74,7 +61,7 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/editText_confirmpin"
-        android:layout_below="@+id/textview_confirmpin"
+        android:layout_above="@+id/textView_nameDoor"
         android:layout_alignLeft="@+id/textview_confirmpin"
         android:layout_alignStart="@+id/textview_confirmpin" />
 
@@ -84,7 +71,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Name Door"
         android:id="@+id/textView_nameDoor"
-        android:layout_below="@+id/editText_confirmpin"
+        android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/editText_confirmpin"
         android:layout_alignStart="@+id/editText_confirmpin" />
 
@@ -126,6 +113,17 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="66dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:entries="@array/door_type"
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/textview_sec_Door_type"
+        android:layout_above="@+id/textView_pin"
+        android:layout_alignLeft="@+id/textview_sec_Door_type" />
+
 
 
 </RelativeLayout>

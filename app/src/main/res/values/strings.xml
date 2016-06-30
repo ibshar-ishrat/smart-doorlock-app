@@ -17,6 +17,10 @@
     <string name="signup_text">Sign Up</string>
     <string name="title_activity_side_panel">sidePanel</string>
     <string name="title_activity_account_settings">Account Settings</string>
+    <string-array name="door_type">
+        <item>Home</item>
+        <item>Car</item>
+    </string-array>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
