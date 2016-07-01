@@ -2,13 +2,10 @@ package com.example.sadi.smartdoorapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -52,6 +49,7 @@ public class Main_ScreenActivity extends AppCompatActivity {
         login_btn= (Button) findViewById(R.id.button_login);
         //= (TextView) findViewById(R.id.textView_createAcc);
         final TextView signup =(TextView) findViewById(R.id.textView_signup);
+        final TextView forget_password =(TextView) findViewById(R.id.textView_forgetPas);
 
        // attempts.setText(Integer.toString(attempt_counter));
 
@@ -89,6 +87,16 @@ public class Main_ScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i2 = new Intent(Main_ScreenActivity.this,User_Registration.class);
+                startActivity(i2);
+
+            }
+        });
+
+
+        forget_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i2 = new Intent(Main_ScreenActivity.this,Forget_Password.class);
                 startActivity(i2);
 
             }

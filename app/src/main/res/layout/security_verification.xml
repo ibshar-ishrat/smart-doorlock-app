@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Security Question 1"
+        android:id="@+id/textView_ver_secQ1"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_ques_ver"
+        android:layout_below="@+id/textView_ver_secQ1"
+        android:layout_alignLeft="@+id/textView_ver_secQ1"
+        android:layout_alignStart="@+id/textView_ver_secQ1"
+        android:layout_alignRight="@+id/textView_ver_secQ1"
+        android:layout_alignEnd="@+id/textView_ver_secQ1"
+        android:hint="Question from db appear here" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText_Answer_ver1"
+        android:text="Type here"
+        android:layout_below="@+id/textView_ques_ver"
+        android:layout_alignLeft="@+id/textView_ques_ver"
+        android:layout_alignStart="@+id/textView_ques_ver"
+        android:layout_marginTop="29dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Security Question 2"
+        android:id="@+id/textView_ver_secQ2"
+        android:layout_below="@+id/editText_Answer_ver1"
+        android:layout_alignLeft="@+id/editText_Answer_ver1"
+        android:layout_alignStart="@+id/editText_Answer_ver1"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_ques_ver2"
+        android:layout_below="@+id/textView_ver_secQ2"
+        android:layout_alignLeft="@+id/textView_ver_secQ2"
+        android:layout_alignStart="@+id/textView_ver_secQ2"
+        android:layout_alignRight="@+id/textView_ver_secQ2"
+        android:layout_alignEnd="@+id/textView_ver_secQ2"
+        android:hint="Question from db appears here" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText_answer_ver2"
+        android:layout_marginTop="31dp"
+        android:text="Type here"
+        android:layout_below="@+id/textView_ques_ver2"
+        android:layout_alignLeft="@+id/textView_ques_ver2"
+        android:layout_alignStart="@+id/textView_ques_ver2" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Verification"
+        android:id="@+id/button_verify"
+        android:layout_below="@+id/editText_answer_ver2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Recover your account"
+        android:id="@+id/textView_recover_acc"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="20dp" />
+
+
+</RelativeLayout>

@@ -93,17 +93,6 @@
 
 
         </activity>
-        <activity
-            android:name=".Image_Upload"
-            android:label="Upload Image"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="com.example.sadi.smartdoorapp.Image_Upload" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-
-        </activity>
 
         <activity
             android:name=".Manage_Locks"
@@ -152,6 +141,33 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.example.sadi.smartdoorapp.Security_Settings" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+
+        </activity>
+
+
+        <activity
+            android:name=".Forget_Password"
+            android:label="Forget_Password"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sadi.smartdoorapp.Forget_Password" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+
+        </activity>
+
+        <activity
+            android:name=".Reset_Password"
+            android:label="Reset_Password"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sadi.smartdoorapp.Reset_Password" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
