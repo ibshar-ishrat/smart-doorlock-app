@@ -30,10 +30,10 @@ public class User_Registration extends Main_ScreenActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         bUploadImage=(Button)findViewById(R.id.bUploadImage);
-        firstName = (EditText)findViewById(R.id.editText_firstname);
-        lastName = (EditText)findViewById(R.id.editText_lastname);
-        DOB = (EditText)findViewById(R.id.editText_dob);
-        city = (EditText)findViewById(R.id.editText_city);
+        firstName = (EditText)findViewById(R.id.editText_pfirstname);
+        lastName = (EditText)findViewById(R.id.editText_plastname);
+        DOB = (EditText)findViewById(R.id.editText_pdob);
+        city = (EditText)findViewById(R.id.editText_pcity);
      /*   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
