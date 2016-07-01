@@ -30,5 +30,6 @@
     <string name="insert">I am in the insert lock page!</string>
     <string name="delete">I am in the delete lock page!</string>
     <string name="title_activity_manage_lock">Manage Lock</string>
+    <string name="title_activity_profile_settings">Profile Settings</string>
 
 </resources>

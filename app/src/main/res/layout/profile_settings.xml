@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_profile"
+        android:text="Profile Settings"
+        android:layout_weight="0.30"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/material_blue_grey_800" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="First Name"
+        android:id="@+id/textView_pfirstname"
+        android:layout_below="@+id/textView_profile"
+        android:layout_alignLeft="@+id/editText_pfirstname"
+        android:layout_alignStart="@+id/editText_pfirstname" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText_pfirstname"
+        android:layout_below="@+id/textView_pfirstname"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Last Name"
+        android:id="@+id/textView_plastname"
+        android:layout_below="@+id/editText_pfirstname"
+        android:layout_alignLeft="@+id/editText_plastname"
+        android:layout_alignStart="@+id/editText_plastname" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText_plastname"
+        android:layout_below="@+id/textView_plastname"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_pdob"
+        android:text="Date of Birth"
+        android:layout_below="@+id/editText_plastname"
+        android:layout_alignLeft="@+id/textView_plastname"
+        android:layout_alignStart="@+id/textView_plastname" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text|date"
+        android:ems="10"
+        android:id="@+id/editText_pdob"
+        android:layout_above="@+id/textView_pcity"
+        android:layout_alignLeft="@+id/textView_pdob"
+        android:layout_alignStart="@+id/textView_pdob" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_save1"
+        android:text="Save Changes"
+        android:layout_below="@+id/imageToUploadprofile"
+        android:layout_toRightOf="@+id/textView_pupload_image"
+        android:layout_toEndOf="@+id/textView_pupload_image" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="City"
+        android:id="@+id/textView_pcity"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/editText_pdob"
+        android:layout_alignStart="@+id/editText_pdob" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_pcity"
+        android:inputType="number"
+        android:layout_below="@+id/textView_pcity"
+        android:layout_alignLeft="@+id/textView_pcity"
+        android:layout_alignStart="@+id/textView_pcity"
+        android:layout_alignRight="@+id/editText_plastname"
+        android:layout_alignEnd="@+id/editText_plastname" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Upload Image"
+        android:id="@+id/textView_pupload_image"
+        android:layout_below="@+id/editText_pcity"
+        android:layout_alignLeft="@+id/editText_pcity"
+        android:layout_alignStart="@+id/editText_pcity" />
+
+    <ImageView
+        android:id="@+id/imageToUploadprofile"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/textView_pupload_image"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bProfileUploadImage"
+        android:text="Upload"
+        android:layout_below="@+id/imageToUploadprofile"
+        android:layout_alignLeft="@+id/textView_pupload_image"
+        android:layout_alignStart="@+id/textView_pupload_image"
+        android:layout_alignRight="@+id/textView_plastname"
+        android:layout_alignEnd="@+id/textView_plastname" />
+
+
+</RelativeLayout>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_account_settings"
+        android:layout_alignParentTop="true"
+        android:text="Account Settings"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/material_blue_grey_800"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Email"
+        android:id="@+id/textView_acc_email"
+        android:layout_below="@+id/textView_account_settings"
+        android:layout_toLeftOf="@+id/button_save2"
+        android:layout_toStartOf="@+id/button_save2" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText_acc_email"
+        android:layout_below="@+id/textView_acc_email"
+        android:layout_alignLeft="@+id/textView_acc_email"
+        android:layout_alignStart="@+id/textView_acc_email" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Username"
+        android:id="@+id/textView_acc_username"
+        android:layout_below="@+id/editText_acc_email"
+        android:layout_alignLeft="@+id/editText_acc_email"
+        android:layout_alignStart="@+id/editText_acc_email" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:id="@+id/editText_acc_uname"
+        android:layout_below="@+id/textView_acc_username"
+        android:layout_alignLeft="@+id/textView_acc_username"
+        android:layout_alignStart="@+id/textView_acc_username" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Phone Number"
+        android:id="@+id/textView_acc_pnum"
+        android:layout_below="@+id/editText_acc_uname"
+        android:layout_alignLeft="@+id/editText_acc_uname"
+        android:layout_alignStart="@+id/editText_acc_uname" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/editText_acc_pnum"
+        android:layout_below="@+id/textView_acc_pnum"
+        android:layout_alignLeft="@+id/textView_acc_pnum"
+        android:layout_alignStart="@+id/textView_acc_pnum" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Alternate Email"
+        android:id="@+id/textView_acc_altEmail"
+        android:layout_below="@+id/editText_acc_pnum"
+        android:layout_alignLeft="@+id/editText_acc_pnum"
+        android:layout_alignStart="@+id/editText_acc_pnum" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:id="@+id/editText_acc_AltEmail"
+        android:layout_below="@+id/textView_acc_altEmail"
+        android:layout_alignLeft="@+id/textView_acc_altEmail"
+        android:layout_alignStart="@+id/textView_acc_altEmail" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Password"
+        android:id="@+id/textView_acc_pass"
+        android:layout_below="@+id/editText_acc_AltEmail"
+        android:layout_alignLeft="@+id/editText_acc_AltEmail"
+        android:layout_alignStart="@+id/editText_acc_AltEmail" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editText_acc_pass"
+        android:layout_below="@+id/textView_acc_pass"
+        android:layout_alignLeft="@+id/textView_acc_pass"
+        android:layout_alignStart="@+id/textView_acc_pass" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Confirm Password"
+        android:id="@+id/textView_acc_confirmpas"
+        android:layout_below="@+id/editText_acc_pass"
+        android:layout_alignLeft="@+id/editText_acc_pass"
+        android:layout_alignStart="@+id/editText_acc_pass" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:id="@+id/editText_acc_confirmpas"
+        android:layout_below="@+id/textView_acc_confirmpas"
+        android:layout_alignLeft="@+id/textView_acc_confirmpas"
+        android:layout_alignStart="@+id/textView_acc_confirmpas" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Changes"
+        android:id="@+id/button_save2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
+
+
+
+
+
+</RelativeLayout>

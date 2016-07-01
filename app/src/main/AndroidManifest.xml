@@ -118,6 +118,47 @@
 
         </activity>
 
+
+        <activity
+            android:name=".Profile_Settings"
+            android:label="@string/title_activity_manage_lock"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sadi.smartdoorapp.Profile_Settings" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+
+        </activity>
+
+        <activity
+            android:name=".Account_Settings"
+            android:label="Account Settings"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sadi.smartdoorapp.Account_Settings" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+
+        </activity>
+
+
+        <activity
+            android:name=".Security_Settings"
+            android:label="Security_Settings"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sadi.smartdoorapp.Security_Settings" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+
+        </activity>
+
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>

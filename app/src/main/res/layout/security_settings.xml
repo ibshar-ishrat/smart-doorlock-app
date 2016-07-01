@@ -24,7 +24,8 @@
         android:text="Security Question 1"
         android:id="@+id/textview_secQ1_sec"
         android:layout_below="@+id/textView_security_settings"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/textView_secAns1_sec"
+        android:layout_alignStart="@+id/textView_secAns1_sec" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -33,8 +34,8 @@
         android:ems="10"
         android:id="@+id/editText_secQ1_sec"
         android:layout_below="@+id/textview_secQ1_sec"
-        android:layout_alignLeft="@+id/textview_secQ1_sec"
-        android:layout_alignStart="@+id/textview_secQ1_sec" />
+        android:layout_alignLeft="@+id/editText_secAns1_sec"
+        android:layout_alignStart="@+id/editText_secAns1_sec" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,8 +44,8 @@
         android:text="Security Answer 1"
         android:id="@+id/textView_secAns1_sec"
         android:layout_below="@+id/editText_secQ1_sec"
-        android:layout_alignLeft="@+id/editText_secQ1_sec"
-        android:layout_alignStart="@+id/editText_secQ1_sec" />
+        android:layout_alignLeft="@+id/textview_secQ2_sec"
+        android:layout_alignStart="@+id/textview_secQ2_sec" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -53,8 +54,8 @@
         android:ems="10"
         android:id="@+id/editText_secAns1_sec"
         android:layout_below="@+id/textView_secAns1_sec"
-        android:layout_alignLeft="@+id/textView_secAns1_sec"
-        android:layout_alignStart="@+id/textView_secAns1_sec" />
+        android:layout_alignLeft="@+id/editText_secQ2_sec"
+        android:layout_alignStart="@+id/editText_secQ2_sec" />
 
 
     <TextView
@@ -64,8 +65,7 @@
         android:text="Security Question 2"
         android:id="@+id/textview_secQ2_sec"
         android:layout_below="@+id/editText_secAns1_sec"
-        android:layout_alignLeft="@+id/editText_secAns1_sec"
-        android:layout_alignStart="@+id/editText_secAns1_sec" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -74,8 +74,7 @@
         android:ems="10"
         android:id="@+id/editText_secQ2_sec"
         android:layout_below="@+id/textview_secQ2_sec"
-        android:layout_alignLeft="@+id/textview_secQ2_sec"
-        android:layout_alignStart="@+id/textview_secQ2_sec" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -84,27 +83,27 @@
         android:text="Security Answer 2"
         android:id="@+id/textView_secAns2_sec"
         android:layout_below="@+id/editText_secQ2_sec"
-        android:layout_alignLeft="@+id/editText_secQ2_sec"
-        android:layout_alignStart="@+id/editText_secQ2_sec" />
+        android:layout_alignLeft="@+id/textview_secQ2_sec"
+        android:layout_alignStart="@+id/textview_secQ2_sec" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText_secAns2"
+        android:id="@+id/editText_secAns2_sec"
         android:layout_below="@+id/textView_secAns2_sec"
-        android:layout_alignLeft="@+id/textView_secAns2_sec"
-        android:layout_alignStart="@+id/textView_secAns2_sec" />
+        android:layout_alignLeft="@+id/editText_secQ2_sec"
+        android:layout_alignStart="@+id/editText_secQ2_sec" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next Step"
+        android:text="Save Changes"
         android:id="@+id/button_save3"
-        android:layout_marginTop="66dp"
-        android:layout_below="@+id/editText_secAns2"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/editText_secAns2_sec"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="66dp" />
 
 
 </RelativeLayout>

@@ -111,14 +111,14 @@ public class sidePanel extends AppCompatActivity
         }
         if (id == R.id.nav_profile) {
 
-            Intent intent = new Intent(this, User_Registration.class);
+            Intent intent = new Intent(this, Profile_Settings.class);
             startActivity(intent);
 
 
         }
         if (id == R.id.nav_security) {
 
-            Intent intent = new Intent(this, User_Registration3.class);
+            Intent intent = new Intent(this, Security_Settings.class);
             startActivity(intent);
 
         }
@@ -132,7 +132,7 @@ public class sidePanel extends AppCompatActivity
         }
        if (id == R.id.nav_account) {
            //fragmentManager.beginTransaction().replace(R.id.content_frame,new Account_Settings()).commit();
-           Intent intent = new Intent(this, User_Registration2.class);
+           Intent intent = new Intent(this, Account_Settings.class);
            startActivity(intent);
 
         }
