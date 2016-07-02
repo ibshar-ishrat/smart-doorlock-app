@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +33,7 @@ public class User_Registration extends Main_ScreenActivity
         bUploadImage=(Button)findViewById(R.id.bUploadImage);
         firstName = (EditText)findViewById(R.id.editText_firstname);
         lastName = (EditText)findViewById(R.id.editText_lastname);
-        DOB = (EditText)findViewById(R.id.editText_dob);
+        //DOB = (EditText)findViewById(R.id.editText_dob);
         city = (EditText)findViewById(R.id.editText_city);
      /*   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -93,6 +94,11 @@ public class User_Registration extends Main_ScreenActivity
             imageToUpload.setImageURI(selectedImage);
 
         }
+    }
+
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment_Signup();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
 }

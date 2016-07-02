@@ -60,15 +60,22 @@
         android:layout_alignLeft="@+id/textView_plastname"
         android:layout_alignStart="@+id/textView_plastname" />
 
-    <EditText
+    <TextView
+        android:id="@+id/textView_PickDate"
+        android:onClick="showDatePickerDialog"
+        android:text="Click here pick date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text|date"
-        android:ems="10"
-        android:id="@+id/editText_pdob"
-        android:layout_above="@+id/textView_pcity"
+        android:layout_alignRight="@+id/editText_plastname"
+        android:layout_alignEnd="@+id/editText_plastname"
+        android:layout_below="@+id/textView_pdob"
         android:layout_alignLeft="@+id/textView_pdob"
-        android:layout_alignStart="@+id/textView_pdob" />
+        android:layout_alignStart="@+id/textView_pdob"
+        android:height="30dp"
+        android:gravity="top|bottom" />
+
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,8 +92,8 @@
         android:text="City"
         android:id="@+id/textView_pcity"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/editText_pdob"
-        android:layout_alignStart="@+id/editText_pdob" />
+        android:layout_alignLeft="@+id/textView_PickDate"
+        android:layout_alignStart="@+id/textView_PickDate" />
 
     <EditText
         android:layout_width="wrap_content"

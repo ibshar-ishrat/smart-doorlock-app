@@ -54,21 +54,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textview_dob"
+        android:id="@+id/textView_dob"
         android:text="Date of Birth"
         android:layout_below="@+id/editText_lastname"
         android:layout_alignLeft="@+id/textView_lastname"
         android:layout_alignStart="@+id/textView_lastname" />
 
-    <EditText
+    <TextView
+        android:id="@+id/textView_PickDate_registration"
+        android:onClick="showDatePickerDialog"
+        android:text="Click here pick date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text|date"
-        android:ems="10"
-        android:id="@+id/editText_dob"
-        android:layout_above="@+id/textView_city"
-        android:layout_alignLeft="@+id/textview_dob"
-        android:layout_alignStart="@+id/textview_dob" />
+        android:layout_alignRight="@+id/editText_lastname"
+        android:layout_alignEnd="@+id/editText_lastname"
+        android:layout_below="@+id/textView_dob"
+        android:layout_alignLeft="@+id/textView_dob"
+        android:layout_alignStart="@+id/textView_dob"
+        android:height="30dp"
+        android:gravity="top|bottom" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,8 +89,8 @@
         android:text="City"
         android:id="@+id/textView_city"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/editText_dob"
-        android:layout_alignStart="@+id/editText_dob" />
+        android:layout_alignLeft="@+id/textView_PickDate_registration"
+        android:layout_alignStart="@+id/textView_PickDate_registration" />
 
     <EditText
         android:layout_width="wrap_content"
