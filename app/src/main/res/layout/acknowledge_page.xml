@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ribbons"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:paddingBottom="40dp">
+
+
+    <TextView
+        android:layout_width="308dp"
+        android:layout_height="57dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Congratulations Your Account has been succesfully created!"
+        android:id="@+id/textView_ack"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="40dp"
+        android:textColor="@android:color/background_dark" />
+
+    <Button
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/button_Login_ack"
+        android:layout_gravity="bottom|center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Click for Tips"
+        android:id="@+id/textView_Tips"
+        android:layout_gravity="bottom|center_horizontal"
+        android:textColor="@color/colorAccent"
+        android:textStyle="italic" />
+</LinearLayout>

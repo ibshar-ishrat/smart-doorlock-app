@@ -175,6 +175,18 @@
 
         </activity>
 
+        <activity
+            android:name=".Acknowledgement_Page"
+            android:label="Acknowledgement_Page"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sadi.smartdoorapp.Acknowledgement_Page" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
