@@ -47,14 +47,15 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress|textPersonName"
         android:ems="10"
         android:id="@+id/editText_usereg"
         android:layout_above="@+id/textView_npass"
         android:layout_toRightOf="@+id/textView_currentpass"
         android:layout_toEndOf="@+id/textView_currentpass"
         android:layout_marginLeft="39dp"
-        android:layout_marginStart="39dp" />
+        android:layout_marginStart="39dp"
+        android:hint="Email/username" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -64,7 +65,8 @@
         android:id="@+id/editText_passreg"
         android:layout_alignBottom="@+id/textView_npass"
         android:layout_alignLeft="@+id/editText_usereg"
-        android:layout_alignStart="@+id/editText_usereg" />
+        android:layout_alignStart="@+id/editText_usereg"
+        android:hint="Enter Password" />
 
     <Button
         android:layout_width="wrap_content"
