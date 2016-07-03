@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ribbons"
+    android:background="@drawable/blue"
     android:orientation="vertical"
     android:weightSum="1"
     android:paddingBottom="40dp">
@@ -14,17 +14,21 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Congratulations Your Account has been succesfully created!"
         android:id="@+id/textView_ack"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginRight="40dp"
-        android:textColor="@android:color/background_dark" />
+        android:layout_marginTop="106dp"
+        android:textColor="@android:color/background_dark"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="132dp"
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/button_Login_ack"
-        android:layout_gravity="bottom|center" />
+        android:layout_gravity="bottom|center"
+        android:layout_below="@+id/textView_ack"
+        android:layout_alignRight="@+id/textView_Tips"
+        android:layout_alignEnd="@+id/textView_Tips"
+        android:layout_marginTop="100dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,6 +37,9 @@
         android:text="Click for Tips"
         android:id="@+id/textView_Tips"
         android:layout_gravity="bottom|center_horizontal"
-        android:textColor="@color/colorAccent"
-        android:textStyle="italic" />
-</LinearLayout>
+        android:textColor="@android:color/background_dark"
+        android:textStyle="italic"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="78dp" />
+</RelativeLayout>
