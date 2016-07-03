@@ -187,6 +187,25 @@
 
 
         </activity>
+
+        <activity
+            android:name=".UserTips_Popup_Window"
+            android:label="UserTips_Popup_Window"
+            android:theme="@style/AppTheme.CustomeTheme">
+            <intent-filter>
+                <action android:name="com.example.sadi.smartdoorapp.UserTips_Popup_Window" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+
+        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>

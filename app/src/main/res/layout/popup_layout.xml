@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_element"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10px"
+    android:orientation="vertical"
+    android:background="@color/accent_material_light">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Did You Know?"
+        android:textColor="@color/bright_foreground_material_light"
+        android:textStyle="normal"
+        android:textSize="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="Tip1:"
+        android:textSize="20dp"
+        android:textStyle="normal"
+        android:textColor="@color/bright_foreground_material_light"
+        android:layout_marginTop="15dp" />
+
+    <TextView android:id="@+id/Tip1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="If you would like to update profile info go to profile settings page."
+        android:paddingLeft="10sp"
+        android:textColor="@color/bright_foreground_material_light"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="Tip2:"
+        android:textSize="20dp"
+        android:textStyle="normal"
+        android:textColor="@color/bright_foreground_material_light"
+        android:layout_marginTop="15dp" />
+
+    <TextView android:id="@+id/Tip2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="If you want to change your Username go to Account Settings."
+        android:paddingLeft="10sp"
+        android:textColor="@color/bright_foreground_material_light"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp" />
+
+
+
+
+</LinearLayout>
