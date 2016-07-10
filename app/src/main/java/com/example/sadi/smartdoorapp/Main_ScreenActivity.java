@@ -13,7 +13,9 @@ import android.widget.Toast;
 
 public class Main_ScreenActivity extends AppCompatActivity {
     // main screen is Login Page here in this class we will initialize some variables
-    DatabaseHelper myDB;
+
+    DatabaseHelper myDB; //For SQLite DB
+
     private static EditText username;
     private static EditText password;
     private static TextView attempts;
@@ -24,8 +26,9 @@ public class Main_ScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main__screen);
-     // For SQLite implementation
-        //myDB=new DatabaseHelper(this);
+
+     // For SQLite DB implementation
+        myDB = new DatabaseHelper(this);
 
       /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
