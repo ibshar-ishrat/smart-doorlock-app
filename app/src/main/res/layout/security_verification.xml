@@ -26,7 +26,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
+            android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/editText_Answer_ver1"
             android:layout_below="@+id/textView_ques_ver"
@@ -53,7 +53,7 @@
             android:ems="10"
             android:id="@+id/editText_answer_ver2"
             android:hint="Type here"
-            android:inputType="textImeMultiLine"
+            android:inputType="textPassword"
             android:layout_below="@+id/textView_ques_ver2"
             android:layout_alignLeft="@+id/textView_ques_ver2"
             android:layout_alignStart="@+id/textView_ques_ver2"

@@ -61,7 +61,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/editText_confirmpin"
         android:layout_above="@+id/textView_nameDoor"
