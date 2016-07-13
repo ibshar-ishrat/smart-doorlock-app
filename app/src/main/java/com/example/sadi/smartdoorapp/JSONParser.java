@@ -25,7 +25,8 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-public class JSONParser {
+public class JSONParser
+{
 
     static InputStream is = null;    //data in bytes
     static JSONObject jObj = null;  //json object

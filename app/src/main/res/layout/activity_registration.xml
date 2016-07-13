@@ -80,7 +80,8 @@
         android:text="Next Step"
         android:layout_below="@+id/imageToUpload"
         android:layout_toRightOf="@+id/textView_upload_image"
-        android:layout_toEndOf="@+id/textView_upload_image" />
+        android:layout_toEndOf="@+id/textView_upload_image"
+        android:onClick="ButtonNext1"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -128,7 +129,8 @@
         android:text="Upload"
         android:layout_below="@+id/imageToUpload"
         android:layout_alignLeft="@+id/textView_upload_image"
-        android:layout_alignStart="@+id/textView_upload_image" />
+        android:layout_alignStart="@+id/textView_upload_image"
+        />
 
 
 </RelativeLayout>
