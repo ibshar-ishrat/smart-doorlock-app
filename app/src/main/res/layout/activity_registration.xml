@@ -96,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText_city"
-        android:inputType="number"
+        android:inputType="text"
         android:layout_below="@+id/textView_city"
         android:layout_alignLeft="@+id/textView_city"
         android:layout_alignStart="@+id/textView_city"
