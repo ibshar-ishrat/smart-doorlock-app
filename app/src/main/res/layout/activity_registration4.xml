@@ -40,7 +40,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:inputType="numberPassword"
         android:ems="10"
         android:id="@+id/editText_pin"
         android:layout_above="@+id/textview_confirmpin"
@@ -61,7 +61,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:inputType="numberPassword"
         android:ems="10"
         android:id="@+id/editText_confirmpin"
         android:layout_above="@+id/textView_nameDoor"
