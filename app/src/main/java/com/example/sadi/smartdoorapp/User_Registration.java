@@ -170,7 +170,7 @@ public class User_Registration extends Main_ScreenActivity
             params.add(new BasicNameValuePair("editText_city", uCity));
 
 
-            JSONObject json = jsonParser.makeHttpRequest("http://192.168.1.101/user_create.php", "POST", params);
+            JSONObject json = jsonParser.makeHttpRequest("http://192.168.1.102/user_create.php", "POST", params);
 
             try
             {
