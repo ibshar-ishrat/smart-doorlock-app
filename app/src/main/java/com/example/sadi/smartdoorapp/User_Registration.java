@@ -32,14 +32,15 @@ public class User_Registration extends Main_ScreenActivity
     private ProgressDialog pDialog;
 
     JSONParser jsonParser = new JSONParser();
+
     private static Button button_next1;
     private static final int RESULT_LOAD_IMAGE = 1;
     public static ImageView imageToUpload;
-    Button bUploadImage;
-    EditText firstName;
-    EditText lastName;
+    public static Button bUploadImage;
+    public static EditText firstName;
+    public static EditText lastName;
 
-    EditText city;
+    public static EditText city;
     //DatePicker datePicker ;
     //SimpleDateFormat dateFormatter ;
    // Date d ;
@@ -58,6 +59,7 @@ public class User_Registration extends Main_ScreenActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
         bUploadImage=(Button)findViewById(R.id.bUploadImage);
         firstName = (EditText)findViewById(R.id.editText_firstname);
         lastName = (EditText)findViewById(R.id.editText_lastname);
@@ -139,6 +141,7 @@ public class User_Registration extends Main_ScreenActivity
         DialogFragment newFragment = new DatePickerFragment_Signup();
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
+
     class Create_User extends AsyncTask<String, String, String>
     {
         @Override

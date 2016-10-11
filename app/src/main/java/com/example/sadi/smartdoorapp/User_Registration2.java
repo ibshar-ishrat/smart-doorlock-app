@@ -11,6 +11,8 @@ import android.widget.EditText;
  */
 public class User_Registration2 extends Main_ScreenActivity
 {
+    JSONParser jsonParser = new JSONParser();
+
     private static Button button_next2;
     public static EditText email;
     public static EditText userName;

@@ -18,9 +18,6 @@ public class User_Registration4 extends Main_ScreenActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration4);
         ButtonDone();
-
-
-
     }
 
 
