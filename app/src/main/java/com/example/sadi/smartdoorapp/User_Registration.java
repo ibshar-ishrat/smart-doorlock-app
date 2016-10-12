@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,6 +38,7 @@ public class User_Registration extends Main_ScreenActivity
 
     public static EditText firstName;
     public static EditText lastName;
+    public static EditText country;
     public static EditText city;
 
     @Override
@@ -51,9 +51,9 @@ public class User_Registration extends Main_ScreenActivity
         firstName = (EditText)findViewById(R.id.editText_firstname);
         lastName = (EditText)findViewById(R.id.editText_lastname);
         city = (EditText)findViewById(R.id.editText_city);
+        country = (EditText)findViewById(R.id.editText_country);
 
-     /*
-     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+     /*   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -91,12 +91,13 @@ public class User_Registration extends Main_ScreenActivity
 
     public void ButtonNext1(View view)
     {
-        String first_name = firstName.getText().toString();
-        String last_name = lastName.getText().toString();
-        String uCity = city.getText().toString();
+        String first_name = firstName.getText().toString().trim();
+        String last_name = lastName.getText().toString().trim();
+        String uCountry = country.getText().toString().trim();
+        String uCity = city.getText().toString().trim();
 
         //********* VALIDATION CODE ***********//
-        if(first_name.length() == 0 || last_name.length() == 0 || uCity.length() == 0 || first_name.length() > 35 || last_name.length() > 35)
+        if(first_name.length() == 0 || last_name.length() == 0 || uCity.length() == 0 || uCountry.length() == 0 || first_name.length() > 35 || last_name.length() > 35)
         {
             if( first_name.length() == 0 )
                 firstName.setError( "First name is required!" );
@@ -109,6 +110,9 @@ public class User_Registration extends Main_ScreenActivity
 
             else if( last_name.length() > 35 )
                 lastName.setError( "Last name is too long!" );
+
+            if( uCountry.length() == 0 )
+                country.setError( "Country is required!" );
 
             if( uCity.length() == 0 )
                 city.setError( "City is required!" );
@@ -133,11 +137,6 @@ public class User_Registration extends Main_ScreenActivity
             Uri selectedImage = data.getData();
             imageToUpload.setImageURI(selectedImage);
         }
-    }
-
-    public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment_Signup();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
     class Create_User extends AsyncTask<String, String, String>

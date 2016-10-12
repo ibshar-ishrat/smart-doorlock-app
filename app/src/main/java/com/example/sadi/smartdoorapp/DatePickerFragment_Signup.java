@@ -1,4 +1,4 @@
-package com.example.sadi.smartdoorapp;
+/*package com.example.sadi.smartdoorapp;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -11,7 +11,7 @@ import java.util.Calendar;
 
 /**
  * Created by Sadia Sami on 7/2/2016.
- */
+
 public class DatePickerFragment_Signup extends DialogFragment
         implements DatePickerDialog.OnDateSetListener  {
 
@@ -27,7 +27,7 @@ public class DatePickerFragment_Signup extends DialogFragment
         return new DatePickerDialog(getActivity(), this, year,month, day);
     }
 
-    public void onDateSet(DatePicker view, int year, int month, int day) {
+   /* public void onDateSet(DatePicker view, int year, int month, int day) {
         // Do something with the date chosen by the user
         //Setting and Displaying date set by user in textView
                 TextView tv2 = (TextView) getActivity().findViewById(R.id.textView_PickDate_registration);
@@ -35,4 +35,4 @@ public class DatePickerFragment_Signup extends DialogFragment
 
 
     }
-}
+}*/
