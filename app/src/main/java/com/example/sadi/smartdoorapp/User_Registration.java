@@ -9,7 +9,6 @@ import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -18,9 +17,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -39,7 +36,7 @@ public class User_Registration extends Main_ScreenActivity
     public static Button bUploadImage;
     public static EditText firstName;
     public static EditText lastName;
-
+    public static EditText country;
     public static EditText city;
     //DatePicker datePicker ;
     //SimpleDateFormat dateFormatter ;
@@ -66,6 +63,7 @@ public class User_Registration extends Main_ScreenActivity
         //datePicker = (DatePicker) findViewById(R.id.textView_PickDate_registration);
         //DOB = (EditText)findViewById(R.id.editText_dob);
         city = (EditText)findViewById(R.id.editText_city);
+        country = (EditText)findViewById(R.id.editText_country);
       //  d = new Date(year, month, day);
        // dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
         //entered_dob = dateFormatter.format(d);
@@ -109,6 +107,7 @@ public class User_Registration extends Main_ScreenActivity
         String first_name = firstName.getText().toString();
         String last_name = lastName.getText().toString();
         //String DOfB = DOB.getText().toString();
+        String uCountry = country.getText().toString();
         String uCity = city.getText().toString();
 
         new Create_User().execute(first_name,last_name,uCity);
@@ -164,12 +163,13 @@ public class User_Registration extends Main_ScreenActivity
             String first_name = args[0];
             String last_name = args[1];
            // String DofB = args[2];
-            String uCity = args[2];
+            String uCountry = args[2];
+            String uCity = args[3];
 
             List<NameValuePair> params = new ArrayList<>();
             params.add(new BasicNameValuePair("editText_firstname", first_name));
             params.add(new BasicNameValuePair("editText_lastname", last_name));
-           // params.add(new BasicNameValuePair("editText_DOB", DofB));
+            params.add(new BasicNameValuePair("editText_country", uCountry));
             params.add(new BasicNameValuePair("editText_city", uCity));
 
 

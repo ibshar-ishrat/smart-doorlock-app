@@ -54,25 +54,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textView_dob"
-        android:text="Date of Birth"
+        android:id="@+id/textView_country"
+        android:text="Country"
         android:layout_below="@+id/editText_lastname"
         android:layout_alignLeft="@+id/textView_lastname"
         android:layout_alignStart="@+id/textView_lastname" />
 
-    <TextView
-        android:id="@+id/textView_PickDate_registration"
-        android:onClick="showDatePickerDialog"
-        android:text="Click here pick date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editText_lastname"
-        android:layout_alignEnd="@+id/editText_lastname"
-        android:layout_below="@+id/textView_dob"
-        android:layout_alignLeft="@+id/textView_dob"
-        android:layout_alignStart="@+id/textView_dob"
-        android:height="30dp"
-        android:gravity="top|bottom" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,8 +77,8 @@
         android:text="City"
         android:id="@+id/textView_city"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/textView_PickDate_registration"
-        android:layout_alignStart="@+id/textView_PickDate_registration" />
+        android:layout_alignLeft="@+id/textView_country"
+        android:layout_alignStart="@+id/textView_country" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -131,6 +118,16 @@
         android:layout_alignLeft="@+id/textView_upload_image"
         android:layout_alignStart="@+id/textView_upload_image"
         />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText_country"
+        android:layout_below="@+id/textView_country"
+        android:layout_alignLeft="@+id/textView_country"
+        android:layout_alignStart="@+id/textView_country" />
 
 
 </RelativeLayout>
