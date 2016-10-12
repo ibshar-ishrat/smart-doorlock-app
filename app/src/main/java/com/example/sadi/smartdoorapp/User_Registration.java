@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -136,10 +135,10 @@ public class User_Registration extends Main_ScreenActivity
         }
     }
 
-    public void showDatePickerDialog(View v) {
+   /* public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment_Signup();
         newFragment.show(getSupportFragmentManager(), "datePicker");
-    }
+    }*/
 
     class Create_User extends AsyncTask<String, String, String>
     {
