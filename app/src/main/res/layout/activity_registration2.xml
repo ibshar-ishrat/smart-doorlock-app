@@ -76,7 +76,9 @@
         android:id="@+id/editText_pnum"
         android:layout_below="@+id/textView_pnum"
         android:layout_alignLeft="@+id/textView_pnum"
-        android:layout_alignStart="@+id/textView_pnum" />
+        android:layout_alignStart="@+id/textView_pnum"
+        android:phoneNumber="true"
+        android:inputType="phone" />
 
 
 
@@ -94,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="textEmailAddress|text"
         android:id="@+id/editText_AltEmail"
         android:layout_below="@+id/textView_altEmail"
         android:layout_alignLeft="@+id/textView_altEmail"
@@ -120,7 +122,8 @@
         android:id="@+id/editText_pass"
         android:layout_below="@+id/textView_pass"
         android:layout_alignLeft="@+id/textView_pass"
-        android:layout_alignStart="@+id/textView_pass" />
+        android:layout_alignStart="@+id/textView_pass"
+        android:password="true" />
 
 
 
@@ -142,7 +145,8 @@
         android:id="@+id/editText_confirmpas"
         android:layout_below="@+id/textView_confirmpas"
         android:layout_alignLeft="@+id/textView_confirmpas"
-        android:layout_alignStart="@+id/textView_confirmpas" />
+        android:layout_alignStart="@+id/textView_confirmpas"
+        android:password="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -151,7 +155,8 @@
         android:id="@+id/button_next2"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="40dp"
+        android:onClick="ButtonNext2" />
 
 
 

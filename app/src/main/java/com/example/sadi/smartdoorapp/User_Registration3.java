@@ -12,19 +12,24 @@ import android.widget.EditText;
 public class User_Registration3 extends Main_ScreenActivity
 {
     private static Button button_next3;
+
     public static EditText secQ1;
     public static EditText secA1;
     public static EditText secQ2;
     public static EditText secA2;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration3);
+
         secQ1=(EditText)findViewById(R.id.editText_secQ1);
         secA1=(EditText)findViewById(R.id.editText_secAns1);
         secQ2=(EditText)findViewById(R.id.editText_secQ2);
         secA2=(EditText)findViewById(R.id.editText_secAns2);
-     /*   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        /*
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -34,23 +39,12 @@ public class User_Registration3 extends Main_ScreenActivity
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });*/
-        ButtonNext3();
-
-    }
-    public void ButtonNext3()
-    {
-        button_next3=(Button)findViewById(R.id.button_next3);
-        button_next3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent next3 = new Intent("com.example.sadi.smartdoorapp.activity_registration4");
-                startActivity(next3);
-
-            }
-
-
-
         });
+        */
+    }
+    public void ButtonNext3(View view)
+    {
+        Intent next3 = new Intent("com.example.sadi.smartdoorapp.activity_registration4");
+        startActivity(next3);
     }
 }
