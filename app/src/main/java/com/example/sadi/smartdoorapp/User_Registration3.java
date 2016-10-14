@@ -28,6 +28,7 @@ public class User_Registration3 extends Main_ScreenActivity
         secA1=(EditText)findViewById(R.id.editText_secAns1);
         secQ2=(EditText)findViewById(R.id.editText_secQ2);
         secA2=(EditText)findViewById(R.id.editText_secAns2);
+
         /*
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -42,9 +43,44 @@ public class User_Registration3 extends Main_ScreenActivity
         });
         */
     }
+
     public void ButtonNext3(View view)
     {
-        Intent next3 = new Intent("com.example.sadi.smartdoorapp.activity_registration4");
-        startActivity(next3);
+        String sSecQ1 =  secQ1.getText().toString().trim();
+        String sSecQ2 =  secQ2.getText().toString().trim();
+        String sSecA1 =  secA1.getText().toString().trim();
+        String sSecA2 =  secA2.getText().toString().trim();
+
+        if(  sSecQ1.length() == 0 || sSecQ2.length() == 0 || sSecA1.length() == 0 || sSecA2.length() == 0 )
+        {
+            if( sSecQ1.length() == 0 )
+                secQ1.setError( "Security Question is required!" );
+
+            else if( sSecQ1.length() > 255 )
+                secQ1.setError( "Security Question length exceeded!" );
+
+            if( sSecQ2.length() == 0 )
+                secQ2.setError( "Security Question is required!" );
+
+            else if( sSecQ2.length() > 255 )
+                secQ2.setError( "Security Question length exceeded!" );
+
+            if( sSecA1.length() == 0 )
+                secA1.setError( "Please answer your security question!" );
+
+            else if( sSecA1.length() > 25 )
+                secA1.setError( "Please answer question in 25 characters!" );
+
+            if( sSecA2.length() == 0 )
+                secA2.setError( "Please answer your security question!" );
+
+            else if( sSecA2.length() > 25 )
+                secA2.setError( "Please answer question in 25 characters!" );
+        }
+        else
+        {
+            Intent next3 = new Intent("com.example.sadi.smartdoorapp.activity_registration4");
+            startActivity(next3);
+        }
     }
 }

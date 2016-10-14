@@ -119,7 +119,7 @@ public class User_Registration extends Main_ScreenActivity
         }
 
         else {
-            new Create_User().execute(first_name, last_name, uCity);
+            //new Create_User().execute(first_name, last_name, uCity);
 
             //************** VALIDATION SUCCESSFUL SO GO TO NEXT PAGE *****************//
 
