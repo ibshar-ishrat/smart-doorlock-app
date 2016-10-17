@@ -45,7 +45,8 @@
         android:id="@+id/editText_pin"
         android:layout_above="@+id/textview_confirmpin"
         android:layout_alignLeft="@+id/textView_pin"
-        android:layout_alignStart="@+id/textView_pin" />
+        android:layout_alignStart="@+id/textView_pin"
+        android:password="true" />
 
 
     <TextView
@@ -66,7 +67,8 @@
         android:id="@+id/editText_confirmpin"
         android:layout_above="@+id/textView_nameDoor"
         android:layout_alignLeft="@+id/textview_confirmpin"
-        android:layout_alignStart="@+id/textview_confirmpin" />
+        android:layout_alignStart="@+id/textview_confirmpin"
+        android:password="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -115,7 +117,8 @@
         android:id="@+id/button_done"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="66dp" />
+        android:layout_marginBottom="66dp"
+        android:onClick="ButtonDone" />
 
     <Spinner
         android:layout_width="wrap_content"

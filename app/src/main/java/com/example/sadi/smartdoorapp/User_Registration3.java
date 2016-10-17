@@ -51,6 +51,7 @@ public class User_Registration3 extends Main_ScreenActivity
         String sSecA1 =  secA1.getText().toString().trim();
         String sSecA2 =  secA2.getText().toString().trim();
 
+        //********* VALIDATION CODE ***********//
         if(  sSecQ1.length() == 0 || sSecQ2.length() == 0 || sSecA1.length() == 0 || sSecA2.length() == 0 )
         {
             if( sSecQ1.length() == 0 )
