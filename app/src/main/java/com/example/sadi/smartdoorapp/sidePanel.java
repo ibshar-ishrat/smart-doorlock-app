@@ -87,11 +87,12 @@ public class sidePanel extends AppCompatActivity
         }
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // flate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.side_panel, menu);
-        /** Getting a reference to Spinner object of the resource activity_main */
+        // Getting a reference to Spinner object of the resource activity_main
         MenuItem item=menu.findItem(R.id.spinner);
         Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
         SharedPreferences bb = getSharedPreferences("my_prefs", 0);
@@ -100,15 +101,16 @@ public class sidePanel extends AppCompatActivity
         //String doorname = i.getStringExtra("text_label");
         list.add(m);
 
-        /** Defining the ArrayAdapter to set items to Spinner Widget */
+        // Defining the ArrayAdapter to set items to Spinner Widget
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-        /** Setting the adapter to the ListView */
+        // Setting the adapter to the ListView
         spinner.setAdapter(adapter);
-        /** Adding radio buttons for the spinner items*/
+        // Adding radio buttons for the spinner items
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         return true;
     }
+    */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

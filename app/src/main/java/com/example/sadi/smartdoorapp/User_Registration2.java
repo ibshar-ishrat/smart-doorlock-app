@@ -61,11 +61,11 @@ public class User_Registration2 extends Main_ScreenActivity
 
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"; //for email validation
 
-        String userNamePattern = "^(?=.{8,30}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"; //username validation
+        String userNamePattern = "^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"; //username validation
 
         //*********** USERNAME DEFINITION ************//
         /*
-        ^(?=.{8,30}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$
+        ^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$
         └─────┬────┘└───┬──┘└─────┬─────┘└─────┬─────┘ └───┬───┘
         │         │         │            │           no _ or . at the end
         │         │         │            │
@@ -75,7 +75,7 @@ public class User_Registration2 extends Main_ScreenActivity
         │         │
         │         no _ or . at the beginning
         │
-        username is 8-30 characters long
+        username is 8-20 characters long
         */
 
         String passwordPattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
@@ -109,7 +109,7 @@ public class User_Registration2 extends Main_ScreenActivity
                 /* Also check if someone has taken this user name already or not for this we have to access Pi*/
 
                 userName.setError("Invalid Username!");
-                Toast.makeText(this, "HINT: Username must be 8 to 30 character long", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "HINT: Username must be 8 to 20 character long", Toast.LENGTH_SHORT).show();
             }
 
             if( sPassword.length() == 0 )
@@ -122,7 +122,7 @@ public class User_Registration2 extends Main_ScreenActivity
             }
 
             if( sAltEmail.length() == 0 )
-                altEmail.setError( "First name is required!" );
+                altEmail.setError( "Alternate Email is required!" );
 
             else if ( !(sAltEmail.matches(emailPattern)) )
             {
