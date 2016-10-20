@@ -1,7 +1,10 @@
 package com.example.sadi.smartdoorapp;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -118,9 +121,20 @@ public class User_Registration extends Main_ScreenActivity
                 city.setError( "City is required!" );
         }
 
-        else {
-            new Create_User().execute(first_name, last_name, uCity);
-
+        else
+        {
+            /*CHECK FOR SUCCESSFUL INTERNET CONNECTIVITY ON PHONE THEN GO FOR REGISTRATION*/
+            ConnectivityManager connMgr = (ConnectivityManager)
+            getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+            if (networkInfo == null || !networkInfo.isConnected())
+            {
+                Toast.makeText(User_Registration.this,"No active internet connection. Please try again later", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                new Create_User().execute(first_name, last_name, uCity);
+            }
             //************** VALIDATION SUCCESSFUL SO GO TO NEXT PAGE *****************//
 
             Intent next1 = new Intent("com.example.sadi.smartdoorapp.activity_registration2");
@@ -141,7 +155,6 @@ public class User_Registration extends Main_ScreenActivity
 
     class Create_User extends AsyncTask<String, String, String>
     {
-       /*
         @Override
         protected void onPreExecute()
         {
@@ -152,7 +165,7 @@ public class User_Registration extends Main_ScreenActivity
             pDialog.setCancelable(true);
             pDialog.show();
         }
-        */
+
 
         @Override
         protected String doInBackground(String... args)
@@ -166,7 +179,9 @@ public class User_Registration extends Main_ScreenActivity
             params.add(new BasicNameValuePair("editText_lastname", last_name));
             params.add(new BasicNameValuePair("editText_city", uCity));
 
-            JSONObject json = jsonParser.makeHttpRequest("http://192.168.1.102/user_create.php", "POST", params);
+
+
+            JSONObject json = jsonParser.makeHttpRequest("http://192.168.8.102/db_create.php", "POST", params);
 
             try
             {
@@ -187,9 +202,9 @@ public class User_Registration extends Main_ScreenActivity
 
         protected void onPostExecute(String file_url)
         {
-            //pDialog.dismiss();
-            Intent next1 = new Intent("com.example.sadi.smartdoorapp.activity_registration2");
-            startActivity(next1);
+            pDialog.dismiss();
+           // Intent next1 = new Intent("com.example.sadi.smartdoorapp.activity_registration2");
+           // startActivity(next1);
         }
     }
 }
