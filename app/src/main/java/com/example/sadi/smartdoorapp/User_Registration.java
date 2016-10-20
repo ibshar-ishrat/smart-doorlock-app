@@ -137,8 +137,8 @@ public class User_Registration extends Main_ScreenActivity
             }
             //************** VALIDATION SUCCESSFUL SO GO TO NEXT PAGE *****************//
 
-            Intent next1 = new Intent("com.example.sadi.smartdoorapp.activity_registration2");
-            startActivity(next1);
+           // Intent next1 = new Intent("com.example.sadi.smartdoorapp.activity_registration2");
+            //startActivity(next1);
         }
     }
 
@@ -203,8 +203,8 @@ public class User_Registration extends Main_ScreenActivity
         protected void onPostExecute(String file_url)
         {
             pDialog.dismiss();
-           // Intent next1 = new Intent("com.example.sadi.smartdoorapp.activity_registration2");
-           // startActivity(next1);
+            Intent next1 = new Intent("com.example.sadi.smartdoorapp.activity_registration2");
+            startActivity(next1);
         }
     }
 }
