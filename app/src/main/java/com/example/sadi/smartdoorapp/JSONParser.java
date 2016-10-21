@@ -60,6 +60,7 @@ public class JSONParser
                 //httpResponse stores the response of the request locally
                 HttpResponse httpResponse = httpClient.execute(httpPost);
                 //httpEntity helps to extract the data from response
+
                 HttpEntity httpEntity = httpResponse.getEntity();
                 is = httpEntity.getContent();
 
@@ -90,6 +91,8 @@ public class JSONParser
         catch (IOException e)
         {
             e.printStackTrace();
+            //return null;
+           // System.exit(0); /*if the connection is refused, exit the application (just checking)
         }
 
         try

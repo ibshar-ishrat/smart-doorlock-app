@@ -1,7 +1,10 @@
 package com.example.sadi.smartdoorapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -90,7 +93,22 @@ public class User_Registration4 extends Main_ScreenActivity
             edit.commit();
 
             Toast.makeText(this, reg4_Pref.getString("L_Name", "") , Toast.LENGTH_SHORT).show();
-            new Create_User().execute();
+
+            /*CHECK FOR SUCCESSFUL INTERNET CONNECTIVITY ON PHONE THEN GO FOR REGISTRATION*/
+
+            ConnectivityManager connMgr = (ConnectivityManager)
+                    getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+            if (networkInfo == null || !networkInfo.isConnected())
+            {
+                Toast.makeText(this,"No active internet connection. Please try again later", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                new Create_User().execute();
+            }
         }
     }
 
