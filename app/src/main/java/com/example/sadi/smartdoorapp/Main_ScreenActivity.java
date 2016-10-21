@@ -23,7 +23,8 @@ public class Main_ScreenActivity extends AppCompatActivity {
     int attempt_counter = 3;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main__screen);
 
@@ -41,11 +42,13 @@ public class Main_ScreenActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         }); */
+
         LoginButton();
     }
-// making method for Login button in which we will cast all variables declared above i.e username, password, attempts
 
-    public void LoginButton(){
+// making method for Login button in which we will cast all variables declared above i.e username, password, attempts
+    public void LoginButton()
+    {
         username = (EditText) findViewById(R.id.editText_usereg);
         password = (EditText) findViewById(R.id.editText_passreg);
        // attempts =(TextView) findViewById(R.id.textView_attemptcount);
@@ -56,16 +59,18 @@ public class Main_ScreenActivity extends AppCompatActivity {
 
        // attempts.setText(Integer.toString(attempt_counter));
 
-
         login_btn.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(username.getText().toString().equals("sadia")&& password.getText().toString().equals("sami")) {
+                        if(username.getText().toString().trim().equals("sadia")&& password.getText().toString().trim().equals("sami"))
+                        {
                             Toast.makeText(Main_ScreenActivity.this, "Username and Password is correct", Toast.LENGTH_SHORT).show();
+
                             //creating instance of intent for redirecting to second screen
                             Intent i = new Intent("com.example.sadi.smartdoorapp.sidePanel");
                             startActivity(i);
+
                             EditText text = (EditText) findViewById(R.id.editText_passreg);
                             text.setText("");
                         }
@@ -73,17 +78,15 @@ public class Main_ScreenActivity extends AppCompatActivity {
                         {
                             Toast.makeText(Main_ScreenActivity.this, "Username or Password is not correct", Toast.LENGTH_SHORT).show();
                             attempt_counter--;
+
                            // attempts.setText(Integer.toString(attempt_counter));
                             if(attempt_counter == 0)
                             {
                                 login_btn.setEnabled(false);
                             }
                         }
-
                     }
                 }
-
-
         );
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +98,6 @@ public class Main_ScreenActivity extends AppCompatActivity {
             }
         });
 
-
         forget_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,8 +107,10 @@ public class Main_ScreenActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main__screen, menu);
         return true;

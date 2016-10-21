@@ -3,20 +3,16 @@ package com.example.sadi.smartdoorapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import android.content.SharedPreferences;
 
 /**
  * Created by Sami Ullah on 3/16/2016.
  */
 public class User_Registration2 extends Main_ScreenActivity
 {
-    JSONParser jsonParser = new JSONParser();
-
-    private static Button button_next2;
-
     public static EditText email;
     public static EditText userName;
     public static EditText altEmail;
@@ -56,8 +52,6 @@ public class User_Registration2 extends Main_ScreenActivity
         String sAltEmail = altEmail.getText().toString().trim();
         String sPassword = password.getText().toString().trim();
         String sConfirmPassword = confirmPassword.getText().toString().trim();;
-
-        button_next2=(Button)findViewById(R.id.button_next2);
 
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"; //for email validation
 
@@ -141,8 +135,19 @@ public class User_Registration2 extends Main_ScreenActivity
         }
         else
         {
-            //************** VALIDATION SUCCESSFUL SO GO TO NEXT PAGE *****************//
+            SharedPreferences reg2_Pref = getSharedPreferences("reg_pref", 0);
 
+            SharedPreferences.Editor edit = reg2_Pref.edit();
+
+            edit.putString("Email", sEmail);
+            edit.putString("Alt_Email", sAltEmail);
+            edit.putString("Username", sUserName);
+            edit.putString("Password", sPassword);
+
+            edit.commit();
+
+
+            //************** VALIDATION SUCCESSFUL SO GO TO NEXT PAGE *****************//
             Intent next2 = new Intent("com.example.sadi.smartdoorapp.activity_registration3");
             startActivity(next2);
         }

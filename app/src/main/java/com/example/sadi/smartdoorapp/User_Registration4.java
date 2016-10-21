@@ -1,18 +1,31 @@
 package com.example.sadi.smartdoorapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by Sami Ullah on 3/16/2016.
  */
 public class User_Registration4 extends Main_ScreenActivity
 {
+    private ProgressDialog pDialog;
+    JSONParser jsonParser = new JSONParser();
+
     public static EditText pinCode;
     public static EditText confirmPinCode;
     public static EditText doorName;
@@ -66,18 +79,86 @@ public class User_Registration4 extends Main_ScreenActivity
         }
 
         else {
-            //Here define all your sharedpreferences code with key and value
-            //create object of SharedPreferences
-            SharedPreferences prefs = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
-            //Now get editor
-            SharedPreferences.Editor edit = prefs.edit();
-            //takes value from edit text
-            edit.putString("MID", sDoorName);
-            //commits your edit
+            SharedPreferences reg4_Pref = getSharedPreferences("reg_pref", 0);
+
+            SharedPreferences.Editor edit = reg4_Pref.edit();
+
+            edit.putString("Pin_Code", sPinCode);
+            edit.putString("Door_Name", sDoorName);
+            if(sDoorDesc != "") edit.putString("Door_Desc", sDoorDesc);
+
             edit.commit();
+
+            Toast.makeText(this, reg4_Pref.getString("L_Name", "") , Toast.LENGTH_SHORT).show();
+            new Create_User().execute();
+        }
+    }
+
+    class Create_User extends AsyncTask<String, String, String>
+    {
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(User_Registration4.this);
+            pDialog.setMessage("Loading...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... args)
+        {
+            SharedPreferences reg4_Pref = getSharedPreferences("reg_pref", 0);
+
+            List<NameValuePair> params = new ArrayList<>();
+
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("F_Name", "") ));
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("L_Name", "")  ));
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Country", "") ));
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("City", "") ));
+
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Email", "") ));
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Alt_Email", "")  ));
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Username", "") ));
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Password", "") ));
+
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("SecQ1", "") ));
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("SecQ2", "")  ));
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("SecA1", "") ));
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("SecA2", "") ));
+
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Pin_Code", "") ));
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Door_Name", "")  ));
+            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Door_Desc", "") ));
+
+            /*JSONObject json = jsonParser.makeHttpRequest("http://192.168.1.102/user_create.php", "POST", params);
+
+            try
+            {
+                int success = json.getInt("success");
+
+                if (success == 1)
+                {
+                    finish();
+                }
+            }
+            catch (JSONException e
+            {
+                e.printStackTrace();
+            }*/
+
+            return null;
+        }
+
+        protected void onPostExecute(String file_url)
+        {
+            pDialog.dismiss();
 
             Intent next3 = new Intent("com.example.sadi.smartdoorapp.Acknowledgement_Page");
             startActivity(next3);
         }
     }
+
 }

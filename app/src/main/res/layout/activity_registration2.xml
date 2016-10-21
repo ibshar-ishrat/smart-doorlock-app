@@ -59,28 +59,6 @@
         android:layout_alignLeft="@+id/textView_username"
         android:layout_alignStart="@+id/textView_username" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Phone Number"
-        android:id="@+id/textView_pnum"
-        android:layout_below="@+id/editText_uname"
-        android:layout_alignLeft="@+id/editText_uname"
-        android:layout_alignStart="@+id/editText_uname" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/editText_pnum"
-        android:layout_below="@+id/textView_pnum"
-        android:layout_alignLeft="@+id/textView_pnum"
-        android:layout_alignStart="@+id/textView_pnum"
-        android:phoneNumber="true"
-        android:inputType="phone" />
-
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,9 +66,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Alternate Email"
         android:id="@+id/textView_altEmail"
-        android:layout_below="@+id/editText_pnum"
-        android:layout_alignLeft="@+id/editText_pnum"
-        android:layout_alignStart="@+id/editText_pnum" />
+        android:layout_below="@+id/editText_uname"
+        android:layout_alignLeft="@+id/editText_uname"
+        android:layout_alignStart="@+id/editText_uname" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -153,10 +131,10 @@
         android:layout_height="wrap_content"
         android:text="Next Step"
         android:id="@+id/button_next2"
+        android:layout_marginBottom="43dp"
+        android:onClick="ButtonNext2"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
-        android:onClick="ButtonNext2" />
+        android:layout_centerHorizontal="true" />
 
 
 

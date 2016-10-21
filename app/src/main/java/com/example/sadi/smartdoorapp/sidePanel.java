@@ -87,16 +87,20 @@ public class sidePanel extends AppCompatActivity
         }
     }
 
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+
+   @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // flate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.side_panel, menu);
+
         // Getting a reference to Spinner object of the resource activity_main
         MenuItem item=menu.findItem(R.id.spinner);
         Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
-        SharedPreferences bb = getSharedPreferences("my_prefs", 0);
-        String m = bb.getString("MID", "");
+
+        SharedPreferences bb = getSharedPreferences("reg_pref", 0);
+        String m = bb.getString("Door_Name", "");
+
         //Intent i = getIntent();
         //String doorname = i.getStringExtra("text_label");
         list.add(m);
@@ -110,7 +114,7 @@ public class sidePanel extends AppCompatActivity
 
         return true;
     }
-    */
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -54,26 +54,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textView_pdob"
-        android:text="Date of Birth"
+        android:id="@+id/textView_pcountry"
+        android:text="Country"
         android:layout_below="@+id/editText_plastname"
         android:layout_alignLeft="@+id/textView_plastname"
         android:layout_alignStart="@+id/textView_plastname" />
-
-    <TextView
-        android:id="@+id/textView_PickDate"
-        android:onClick="showDatePickerDialog"
-        android:text="Click here pick date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editText_plastname"
-        android:layout_alignEnd="@+id/editText_plastname"
-        android:layout_below="@+id/textView_pdob"
-        android:layout_alignLeft="@+id/textView_pdob"
-        android:layout_alignStart="@+id/textView_pdob"
-        android:height="30dp"
-        android:gravity="top|bottom" />
-
 
 
     <Button
@@ -83,7 +68,8 @@
         android:text="Save Changes"
         android:layout_below="@+id/imageToUploadprofile"
         android:layout_toRightOf="@+id/textView_pupload_image"
-        android:layout_toEndOf="@+id/textView_pupload_image" />
+        android:layout_toEndOf="@+id/textView_pupload_image"
+        android:onClick="SaveChanges" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -92,8 +78,8 @@
         android:text="City"
         android:id="@+id/textView_pcity"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/textView_PickDate"
-        android:layout_alignStart="@+id/textView_PickDate" />
+        android:layout_alignLeft="@+id/textView_pcountry"
+        android:layout_alignStart="@+id/textView_pcountry" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -134,6 +120,17 @@
         android:layout_alignStart="@+id/textView_pupload_image"
         android:layout_alignRight="@+id/textView_plastname"
         android:layout_alignEnd="@+id/textView_plastname" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_pcountry"
+        android:inputType="number"
+        android:layout_below="@+id/textView_pcountry"
+        android:layout_alignLeft="@+id/textView_pcity"
+        android:layout_alignStart="@+id/textView_pcity"
+        android:layout_alignRight="@+id/editText_plastname"
+        android:layout_alignEnd="@+id/editText_plastname" />
 
 
 </RelativeLayout>
