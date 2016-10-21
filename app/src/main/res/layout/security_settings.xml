@@ -55,7 +55,8 @@
         android:id="@+id/editText_secAns1_sec"
         android:layout_below="@+id/textView_secAns1_sec"
         android:layout_alignLeft="@+id/editText_secQ2_sec"
-        android:layout_alignStart="@+id/editText_secQ2_sec" />
+        android:layout_alignStart="@+id/editText_secQ2_sec"
+        android:password="true" />
 
 
     <TextView
@@ -94,7 +95,8 @@
         android:id="@+id/editText_secAns2_sec"
         android:layout_below="@+id/textView_secAns2_sec"
         android:layout_alignLeft="@+id/editText_secQ2_sec"
-        android:layout_alignStart="@+id/editText_secQ2_sec" />
+        android:layout_alignStart="@+id/editText_secQ2_sec"
+        android:password="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -103,7 +105,8 @@
         android:id="@+id/button_save3"
         android:layout_below="@+id/editText_secAns2_sec"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="66dp" />
+        android:layout_marginTop="66dp"
+        android:onClick="SaveChanges3" />
 
 
 </RelativeLayout>

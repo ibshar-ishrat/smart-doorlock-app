@@ -59,12 +59,13 @@
         android:layout_alignLeft="@+id/textView_acc_username"
         android:layout_alignStart="@+id/textView_acc_username" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Phone Number"
-        android:id="@+id/textView_acc_pnum"
+        android:text="Alternate Email"
+        android:id="@+id/textView_acc_altEmail"
         android:layout_below="@+id/editText_acc_uname"
         android:layout_alignLeft="@+id/editText_acc_uname"
         android:layout_alignStart="@+id/editText_acc_uname" />
@@ -73,32 +74,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:id="@+id/editText_acc_pnum"
-        android:layout_below="@+id/textView_acc_pnum"
-        android:layout_alignLeft="@+id/textView_acc_pnum"
-        android:layout_alignStart="@+id/textView_acc_pnum" />
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Alternate Email"
-        android:id="@+id/textView_acc_altEmail"
-        android:layout_below="@+id/editText_acc_pnum"
-        android:layout_alignLeft="@+id/editText_acc_pnum"
-        android:layout_alignStart="@+id/editText_acc_pnum" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
         android:id="@+id/editText_acc_AltEmail"
         android:layout_below="@+id/textView_acc_altEmail"
         android:layout_alignLeft="@+id/textView_acc_altEmail"
-        android:layout_alignStart="@+id/textView_acc_altEmail" />
+        android:layout_alignStart="@+id/textView_acc_altEmail"
+        android:inputType="textEmailAddress" />
 
 
 
@@ -120,7 +100,8 @@
         android:id="@+id/editText_acc_pass"
         android:layout_below="@+id/textView_acc_pass"
         android:layout_alignLeft="@+id/textView_acc_pass"
-        android:layout_alignStart="@+id/textView_acc_pass" />
+        android:layout_alignStart="@+id/textView_acc_pass"
+        android:password="true" />
 
 
 
@@ -142,7 +123,8 @@
         android:id="@+id/editText_acc_confirmpas"
         android:layout_below="@+id/textView_acc_confirmpas"
         android:layout_alignLeft="@+id/textView_acc_confirmpas"
-        android:layout_alignStart="@+id/textView_acc_confirmpas" />
+        android:layout_alignStart="@+id/textView_acc_confirmpas"
+        android:password="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -151,7 +133,8 @@
         android:id="@+id/button_save2"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="40dp"
+        android:onClick="SaveChanges2" />
 
 
 

@@ -3,32 +3,35 @@ package com.example.sadi.smartdoorapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import android.content.SharedPreferences;
 
 /**
  * Created by Sami Ullah on 3/16/2016.
  */
 public class User_Registration2 extends Main_ScreenActivity
 {
-    JSONParser jsonParser = new JSONParser();
-
-    private static Button button_next2;
     public static EditText email;
     public static EditText userName;
-    public static EditText contactNum;
-    //EditText altEmail;
+    public static EditText altEmail;
     public static EditText password;
+    public static EditText confirmPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration2);
-        email=(EditText)findViewById(R.id.editText_email);
-        userName=(EditText)findViewById(R.id.editText_uname);
-        contactNum=(EditText)findViewById(R.id.editText_pnum);
-        password=(EditText)findViewById(R.id.editText_pass);
-     /*   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        email = (EditText)findViewById(R.id.editText_email);
+        altEmail = (EditText)findViewById(R.id.editText_AltEmail);
+        userName = (EditText)findViewById(R.id.editText_uname);
+        password = (EditText)findViewById(R.id.editText_pass);
+        confirmPassword = (EditText)findViewById(R.id.editText_confirmpas);
+
+        /*
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -38,26 +41,115 @@ public class User_Registration2 extends Main_ScreenActivity
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });*/
-
-        ButtonNext2();
+        });
+        */
     }
 
-
-    public void ButtonNext2()
+    public void ButtonNext2(View view)
     {
-        button_next2=(Button)findViewById(R.id.button_next2);
-        button_next2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent next2 = new Intent("com.example.sadi.smartdoorapp.activity_registration3");
-                startActivity(next2);
+        String sEmail = email.getText().toString().trim();
+        String sUserName = userName.getText().toString().trim();
+        String sAltEmail = altEmail.getText().toString().trim();
+        String sPassword = password.getText().toString().trim();
+        String sConfirmPassword = confirmPassword.getText().toString().trim();;
 
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"; //for email validation
+
+        String userNamePattern = "^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"; //username validation
+
+        //*********** USERNAME DEFINITION ************//
+        /*
+        ^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$
+        └─────┬────┘└───┬──┘└─────┬─────┘└─────┬─────┘ └───┬───┘
+        │         │         │            │           no _ or . at the end
+        │         │         │            │
+        │         │         │            allowed characters
+        │         │         │
+        │         │         no __ or _. or ._ or .. inside
+        │         │
+        │         no _ or . at the beginning
+        │
+        username is 8-20 characters long
+        */
+
+        String passwordPattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+
+        //********* PASSWORD DEFINITION ***********//
+        /*
+        At least one upper case english letter
+        At least one lower case english letter
+        At least one digit
+        At least one special character
+        Minimum 8 in length
+         */
+
+        //********* VALIDATION CODE ***********//
+        if(sEmail.length() == 0 || !(sEmail.matches(emailPattern)) || sUserName.length() == 0 || !(sUserName.matches(userNamePattern)) || sPassword.length() == 0 || !(sPassword.matches(passwordPattern)) || sAltEmail.length() == 0 || !(sAltEmail.matches(emailPattern)) || sAltEmail.matches(sEmail) || !(sConfirmPassword.matches(sPassword)) )
+        {
+            if( sEmail.length() == 0 )
+                email.setError( "Email is required!" );
+
+            else if ( !(sEmail.matches(emailPattern)) )
+            {
+                email.setError( "Invalid Email Address!" );
             }
 
+            if( sUserName.length() == 0 )
+                userName.setError( "Username is required!" );
+
+            else if( !(sUserName.matches(userNamePattern)) )
+            {
+                //**************** NOTE ****************//
+                /* Also check if someone has taken this user name already or not for this we have to access Pi*/
+
+                userName.setError("Invalid Username!");
+                Toast.makeText(this, "HINT: Username must be 8 to 20 character long", Toast.LENGTH_SHORT).show();
+            }
+
+            if( sPassword.length() == 0 )
+                password.setError( "Password is required!" );
+
+            else if( !(sPassword.matches(passwordPattern)) )
+            {
+                password.setError("Invalid password! Password must contain At least one upper case,one lower case, 1 digit, 1 special character");
+                Toast.makeText(this, "HINT: Password must be 8 to 20 character long", Toast.LENGTH_SHORT).show();
+            }
+
+            if( sAltEmail.length() == 0 )
+                altEmail.setError( "Alternate Email is required!" );
+
+            else if ( !(sAltEmail.matches(emailPattern)) )
+            {
+                altEmail.setError( "Invalid Email Address!" );
+            }
+
+            else if( sAltEmail.matches(sEmail) )
+            {
+                altEmail.setError("Please provide other email address!");
+            }
+
+            if ( !(sConfirmPassword.matches(sPassword)) )
+            {
+                confirmPassword.setError("Password not matched!");
+            }
+        }
+        else
+        {
+            SharedPreferences reg2_Pref = getSharedPreferences("reg_pref", 0);
+
+            SharedPreferences.Editor edit = reg2_Pref.edit();
+
+            edit.putString("Email", sEmail);
+            edit.putString("Alt_Email", sAltEmail);
+            edit.putString("Username", sUserName);
+            edit.putString("Password", sPassword);
+
+            edit.commit();
 
 
-        });
+            //************** VALIDATION SUCCESSFUL SO GO TO NEXT PAGE *****************//
+            Intent next2 = new Intent("com.example.sadi.smartdoorapp.activity_registration3");
+            startActivity(next2);
+        }
     }
-
 }

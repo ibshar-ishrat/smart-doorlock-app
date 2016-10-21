@@ -21,7 +21,8 @@
             android:layout_marginTop="75dp"
             android:layout_below="@+id/textView_recover_acc"
             android:layout_alignLeft="@+id/editText_Answer_ver1"
-            android:layout_alignStart="@+id/editText_Answer_ver1" />
+            android:layout_alignStart="@+id/editText_Answer_ver1"
+            android:inputType="text" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -34,7 +35,8 @@
             android:layout_marginTop="42dp"
             android:hint="Type here"
             android:textIsSelectable="false"
-            android:singleLine="false" />
+            android:singleLine="false"
+            android:password="true" />
 
     <TextView
             android:layout_width="wrap_content"
@@ -45,7 +47,8 @@
         android:layout_below="@+id/editText_Answer_ver1"
         android:layout_alignLeft="@+id/editText_Answer_ver1"
         android:layout_alignStart="@+id/editText_Answer_ver1"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="32dp"
+        android:inputType="text" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -57,7 +60,8 @@
             android:layout_below="@+id/textView_ques_ver2"
             android:layout_alignLeft="@+id/textView_ques_ver2"
             android:layout_alignStart="@+id/textView_ques_ver2"
-            android:layout_marginTop="49dp" />
+            android:layout_marginTop="49dp"
+            android:password="true" />
 
         <Button
             android:layout_width="wrap_content"
@@ -66,7 +70,8 @@
             android:text="Verification"
             android:layout_marginTop="42dp"
             android:layout_below="@+id/editText_answer_ver2"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:onClick="Button_verify" />
 
     <TextView
         android:layout_width="wrap_content"
