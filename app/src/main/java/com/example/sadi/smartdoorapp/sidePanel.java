@@ -181,7 +181,7 @@ public class sidePanel extends AppCompatActivity
         }
         if (id == R.id.nav_manage) {
 
-            Intent intent = new Intent(this, Manage_Locks.class);
+            Intent intent = new Intent(this, Manage_Doors.class);
             startActivity(intent);
 
         }
