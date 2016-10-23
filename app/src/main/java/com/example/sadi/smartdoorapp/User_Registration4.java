@@ -17,6 +17,11 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +86,8 @@ public class User_Registration4 extends Main_ScreenActivity
                 doorDesc.setError("Door description is too long!");
         }
 
-        else {
+        else
+        {
             SharedPreferences reg4_Pref = getSharedPreferences("reg_pref", 0);
 
             SharedPreferences.Editor edit = reg4_Pref.edit();
@@ -92,7 +98,8 @@ public class User_Registration4 extends Main_ScreenActivity
 
             edit.commit();
 
-            Toast.makeText(this, reg4_Pref.getString("L_Name", "") , Toast.LENGTH_SHORT).show();
+
+
 
             /*CHECK FOR SUCCESSFUL INTERNET CONNECTIVITY ON PHONE THEN GO FOR REGISTRATION*/
 
@@ -103,7 +110,7 @@ public class User_Registration4 extends Main_ScreenActivity
 
             if (networkInfo == null || !networkInfo.isConnected())
             {
-                Toast.makeText(this,"No active internet connection. Please try again later", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"No active internet connection. Please try again later!", Toast.LENGTH_SHORT).show();
             }
             else
             {
@@ -132,26 +139,73 @@ public class User_Registration4 extends Main_ScreenActivity
 
             List<NameValuePair> params = new ArrayList<>();
 
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("F_Name", "") ));
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("L_Name", "")  ));
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Country", "") ));
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("City", "") ));
+            params.add(new BasicNameValuePair("F_Name", reg4_Pref.getString("F_Name", "") ));
+            params.add(new BasicNameValuePair("L_Name", reg4_Pref.getString("L_Name", "")  ));
+            params.add(new BasicNameValuePair("Country", reg4_Pref.getString("Country", "") ));
+            params.add(new BasicNameValuePair("City", reg4_Pref.getString("City", "") ));
 
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Email", "") ));
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Alt_Email", "")  ));
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Username", "") ));
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Password", "") ));
+            params.add(new BasicNameValuePair("Email", reg4_Pref.getString("Email", "") ));
+            params.add(new BasicNameValuePair("Alt_Email", reg4_Pref.getString("Alt_Email", "")  ));
+            params.add(new BasicNameValuePair("Username", reg4_Pref.getString("Username", "") ));
+            params.add(new BasicNameValuePair("PW", reg4_Pref.getString("Password", "") ));
 
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("SecQ1", "") ));
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("SecQ2", "")  ));
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("SecA1", "") ));
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("SecA2", "") ));
+            params.add(new BasicNameValuePair("SecQ1", reg4_Pref.getString("SecQ1", "") ));
+            params.add(new BasicNameValuePair("SecQ2", reg4_Pref.getString("SecQ2", "")  ));
+            params.add(new BasicNameValuePair("SecA1", reg4_Pref.getString("SecA1", "") ));
+            params.add(new BasicNameValuePair("SecA2", reg4_Pref.getString("SecA2", "") ));
 
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Pin_Code", "") ));
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Door_Name", "")  ));
-            params.add(new BasicNameValuePair("db_col_name", reg4_Pref.getString("Door_Desc", "") ));
+            params.add(new BasicNameValuePair("Pin_Code", reg4_Pref.getString("Pin_Code", "") ));
+            params.add(new BasicNameValuePair("Door_Name", reg4_Pref.getString("Door_Name", "")  ));
+            params.add(new BasicNameValuePair("Door_Desc", reg4_Pref.getString("Door_Desc", "") ));
 
-            /*JSONObject json = jsonParser.makeHttpRequest("http://192.168.1.102/user_create.php", "POST", params);
+
+
+            // Find MAC and IP Address of Device
+            String mac_addr = Utils.getMACAddress("wlan0");
+            //String mac_addr_eth = Utils.getMACAddress("eth0");
+
+            String ip_addr = Utils.getIPAddress(true); // IPv4
+            //String ip_addr_v6 = Utils.getIPAddress(false); // IPv6
+
+
+            //Find Public IP Address
+            String ip_public = null; //you get the IP as a String
+
+            URL whatismyip = null;
+            try
+            {
+                whatismyip = new URL("http://checkip.amazonaws.com");
+            } catch (MalformedURLException e)
+            {
+                e.printStackTrace();
+            }
+            BufferedReader in = null;
+            try
+            {
+                in = new BufferedReader(new InputStreamReader(
+                        whatismyip.openStream()));
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+
+            try
+            {
+                ip_public = in.readLine();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+
+
+            params.add(new BasicNameValuePair("Phone_MAC_Addr", mac_addr ));
+            params.add(new BasicNameValuePair("Phone_IP_Public", ip_public ));
+            params.add(new BasicNameValuePair("Phone_IP_Local", ip_addr ));
+
+
+            JSONObject json = jsonParser.makeHttpRequest("http://192.168.0.103/db_register_user.php", "POST", params);
 
             try
             {
@@ -162,10 +216,10 @@ public class User_Registration4 extends Main_ScreenActivity
                     finish();
                 }
             }
-            catch (JSONException e
+            catch (JSONException e)
             {
                 e.printStackTrace();
-            }*/
+            }
 
             return null;
         }
@@ -178,5 +232,4 @@ public class User_Registration4 extends Main_ScreenActivity
             startActivity(next3);
         }
     }
-
 }

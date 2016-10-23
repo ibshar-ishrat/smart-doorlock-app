@@ -146,7 +146,6 @@ public class User_Registration2 extends Main_ScreenActivity
 
             edit.commit();
 
-
             //************** VALIDATION SUCCESSFUL SO GO TO NEXT PAGE *****************//
             Intent next2 = new Intent("com.example.sadi.smartdoorapp.activity_registration3");
             startActivity(next2);
