@@ -1,17 +1,21 @@
 package com.example.sadi.smartdoorapp;
 
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
@@ -33,6 +37,7 @@ public class User_Registration4 extends Main_ScreenActivity
 {
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
 
     public static EditText pinCode;
     public static EditText confirmPinCode;
@@ -112,6 +117,69 @@ public class User_Registration4 extends Main_ScreenActivity
             }
             else
             {
+                      /* REGISTER THE USER TO GOOGLE CLOUD MESSAGING */
+                mRegistrationBroadcastReceiver = new BroadcastReceiver()
+                {
+
+                    //When the broadcast received
+                    //We are sending the broadcast from GCMRegistrationIntentService
+
+                    @Override
+                    public void onReceive(Context context, Intent intent)
+                    {
+                        //If the broadcast has received with success
+                        //that means device is registered successfully
+                        if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS))
+                        {
+                            //Getting the registration token from the intent
+                            String token = intent.getStringExtra("token");
+                            //Displaying the token as toast
+                            Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
+
+                            //if the intent is not with success then displaying error messages
+                        }
+                        else if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR))
+                        {
+                            Toast.makeText(getApplicationContext(), "GCM registration error!", Toast.LENGTH_LONG).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(), "Error occurred", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                };
+
+                //Checking play service is available or not
+                int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+
+                //if play service is not available
+                if(ConnectionResult.SUCCESS != resultCode)
+                {
+                    //If play service is supported but not installed
+                    if(GooglePlayServicesUtil.isUserRecoverableError(resultCode))
+                    {
+                        //Displaying message that play service is not installed
+                        Toast.makeText(getApplicationContext(), "Google Play Service is not install/enabled in this device!", Toast.LENGTH_LONG).show();
+                        GooglePlayServicesUtil.showErrorNotification(resultCode, getApplicationContext());
+
+                        //If play service is not supported
+                        //Displaying an error message
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "This device does not support for Google Play Service!", Toast.LENGTH_LONG).show();
+                    }
+
+                    //If play service is available
+                }
+                else
+                {
+                    //Starting intent to register device
+                    Intent itent = new Intent(this, GCMRegistrationIntentService.class);
+                    startService(itent);
+                }
+        /* USER HAS BEEN REGISTERED TO GOOGLE CLOUD MESSAGING */
+
                 new Create_User().execute();
             }
         }
@@ -196,7 +264,6 @@ public class User_Registration4 extends Main_ScreenActivity
             {
                 e.printStackTrace();
             }
-
 
             params.add(new BasicNameValuePair("Phone_MAC_Addr", mac_addr ));
             params.add(new BasicNameValuePair("Phone_IP_Public", ip_public ));
