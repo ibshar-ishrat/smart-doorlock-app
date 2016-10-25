@@ -99,8 +99,6 @@ public class User_Registration4 extends Main_ScreenActivity
             edit.commit();
 
 
-
-
             /*CHECK FOR SUCCESSFUL INTERNET CONNECTIVITY ON PHONE THEN GO FOR REGISTRATION*/
 
             ConnectivityManager connMgr = (ConnectivityManager)
@@ -205,7 +203,7 @@ public class User_Registration4 extends Main_ScreenActivity
             params.add(new BasicNameValuePair("Phone_IP_Local", ip_addr ));
 
 
-            JSONObject json = jsonParser.makeHttpRequest("http://192.168.0.103/db_register_user.php", "POST", params);
+            JSONObject json = jsonParser.makeHttpRequest("http://192.168.0.101/db_register_user.php", "POST", params);
 
             try
             {

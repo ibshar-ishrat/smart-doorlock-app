@@ -1,6 +1,7 @@
 package com.example.sadi.smartdoorapp;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -27,8 +28,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE PHONE ( Phone_ID INTEGER PRIMARY KEY AUTOINCREMENT, MAC_Address TEXT NOT NULL UNIQUE, IP_Address_Network TEXT NOT NULL, IP_Address_Device TEXT NOT NULL, User_ID INTEGER NOT NULL, FOREIGN KEY(User_ID) REFERENCES USER(User_ID) );");
 
-        db.execSQL("CREATE TABLE DEVICE_NAME ( Name_ID INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Description TEXT, PIN_Code INTEGER NOT NULL, User_ID INTEGER NOT NULL, FOREIGN KEY(User_ID) REFERENCES USER(User_ID) );");
+        db.execSQL("CREATE TABLE DEVICE_NAME ( Name_ID INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Description TEXT, PIN_Code TEXT NOT NULL, User_ID INTEGER , FOREIGN KEY(User_ID) REFERENCES USER(User_ID) );");
 
+        //Inserting dummy data in Device_Name
+        //first is id that is auto inc start with name
+        //wait I have made changes in db warna you ki insert query will not work ihave to delte db first
+        //
+        db.execSQL("INSERT INTO DEVICE_NAME VALUES(1,'Door','This is my Door','1000',1)");
         db.execSQL("CREATE TABLE DEVICE ( Device_ID INTEGER PRIMARY KEY AUTOINCREMENT, MAC_Address TEXT NOT NULL, IP_Address_Network TEXT NOT NULL, IP_Address_Device TEXT NOT NULL, Device_Status TEXT NOT NULL DEFAULT 'Enable', Door_Status TEXT NOT NULL DEFAULT 'Close', Phone_ID INTEGER NOT NULL, Device_Name_ID INTEGER NOT NULL, FOREIGN KEY(Phone_ID) REFERENCES PHONE(Phone_ID), FOREIGN KEY(Device_Name_ID) REFERENCES DEVICE_NAME(Device_Name_ID), UNIQUE (MAC_Address, Device_Name_ID), CHECK(Door_Status IN('Close', 'Open')), CHECK(Device_Status IN('Enable', 'Disable')) );");
 
         db.execSQL("CREATE TABLE PORT ( Port_ID INTEGER PRIMARY KEY AUTOINCREMENT, Port_Color INTEGER UNIQUE );");
@@ -41,6 +47,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE ACTIVITY ( Activity_ID INTEGER PRIMARY KEY AUTOINCREMENT, Activity_Name TEXT NOT NULL, Visitor_Image NONE NOT NULL, Time_Marked NUMERIC NOT NULL UNIQUE, Action_ID INTEGER, Device_ID INTEGER NOT NULL, FOREIGN KEY(Action_ID) REFERENCES ACTION(Action_ID), FOREIGN KEY(Device_ID) REFERENCES DEVICE(Device_ID), CHECK(Activity_Name IN('Door Bell Ringed', 'Door Knock', 'Door Tampered', 'Human Detected')) );");
 
+    }
+
+    public Cursor getAllData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select NAME, NAME_ID from DEVICE_NAME",null);
+        return res;
     }
 
     @Override
