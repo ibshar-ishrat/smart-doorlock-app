@@ -105,7 +105,8 @@ public class User_Registration extends Main_ScreenActivity
             if( sCity.length() == 0 )
                 city.setError( "City is required!" );
         }
-        else {
+        else
+        {
             //Here define all your shared preferences code with key and value
             //create object of SharedPreferences
             SharedPreferences reg_Pref = getSharedPreferences("reg_pref", Context.MODE_PRIVATE);

@@ -222,6 +222,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 </activity>
+        <activity
+            android:name=".test_db"
+            android:label="test_db"
+            android:theme="@style/AppTheme.CustomeTheme">
+            <intent-filter>
+                <action android:name="com.example.sadi.smartdoorapp.test_db" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
 
         <activity

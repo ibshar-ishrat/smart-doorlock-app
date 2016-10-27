@@ -7,17 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by Sadia Sami on 6/22/2016.
+ * Created by Sadia Sami on 6/21/2016.
  */
-public class Fragment_Tab_Delete extends Fragment {
-
-
+public class Fragment_Tab_Action extends Fragment {
     View rootview;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootview = inflater.inflate(R.layout.delete_tab,container,false);
+        rootview = inflater.inflate(R.layout.activity_tab,container,false);
         return rootview;
     }
-
 }

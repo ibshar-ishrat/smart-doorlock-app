@@ -77,8 +77,6 @@ public class JSONParser
                 HttpEntity httpEntity = httpResponse.getEntity();
                 is = httpEntity.getContent();
             }
-
-
         }
         catch (UnsupportedEncodingException e)
         {

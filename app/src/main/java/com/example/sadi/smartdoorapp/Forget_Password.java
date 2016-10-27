@@ -31,6 +31,7 @@ public class Forget_Password extends AppCompatActivity
 
     public void Button_verify (View view)
     {
+
         String sSecA1 =  secA1.getText().toString().trim();
         String sSecA2 =  secA2.getText().toString().trim();
 
@@ -45,4 +46,6 @@ public class Forget_Password extends AppCompatActivity
         Intent next1 = new Intent("com.example.sadi.smartdoorapp.Reset_Password");
         startActivity(next1);
     }
+
+
 }

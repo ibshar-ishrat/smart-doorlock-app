@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Smart_Door _App</string>
+    <string name="app_name">Unlatch</string>
     <string name="action_settings">Settings</string>
     <string name="username_text">UserName</string>
     <string name="password_text">Password</string>
@@ -24,11 +24,12 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="activity">I am in the activity page!</string>
-    <string name="action">I am in the action page!</string>
     <string name="settings">I am in the door settings page!</string>
+    <string name="activity">I am in the Activity page!</string>
+    <string name="action">I am in the Action page!</string>
     <string name="insert">I am in the insert lock page!</string>
-    <string name="delete">I am in the delete lock page!</string>
+    <string name="delete">I am in the insert lock page!</string>
+    <string name="door_stat">I am in the Door Status page!</string>
     <string name="title_activity_manage_lock">Manage Lock</string>
     <string name="title_activity_profile_settings">Profile Settings</string>
 

@@ -51,8 +51,10 @@ public class Main_ScreenActivity extends AppCompatActivity {
     {
         username = (EditText) findViewById(R.id.editText_usereg);
         password = (EditText) findViewById(R.id.editText_passreg);
+
        // attempts =(TextView) findViewById(R.id.textView_attemptcount);
         login_btn= (Button) findViewById(R.id.button_login);
+
         //= (TextView) findViewById(R.id.textView_createAcc);
         final TextView signup =(TextView) findViewById(R.id.textView_signup);
         final TextView forget_password =(TextView) findViewById(R.id.textView_forgetPas);

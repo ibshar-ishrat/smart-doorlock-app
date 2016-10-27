@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTabHost;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,12 +19,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TabHost;
 
 import java.util.ArrayList;
 
 public class sidePanel extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FragmentTabHost mTabHost;
 
     /** Items entered by the user is stored in this ArrayList variable */
     ArrayList<String> list = new ArrayList<String>();
@@ -48,20 +50,7 @@ public class sidePanel extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-        TabHost tabhost=(TabHost) findViewById(R.id.tabHost);
-        tabhost.setup();
-        TabHost.TabSpec tabspec= tabhost.newTabSpec("Activity");
-        tabspec.setContent(R.id.Activity);
-        tabspec.setIndicator("Activity");
-        tabhost.addTab(tabspec);
-        tabspec= tabhost.newTabSpec("Action");
-        tabspec.setContent(R.id.Action);
-        tabspec.setIndicator("Action");
-        tabhost.addTab(tabspec);
-        tabspec= tabhost.newTabSpec("Door Settings");
-        tabspec.setContent(R.id.DoorLog);
-        tabspec.setIndicator("Door Settings");
-        tabhost.addTab(tabspec);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -70,6 +59,18 @@ public class sidePanel extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        mTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
+        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
+
+        mTabHost.addTab(mTabHost.newTabSpec("Activity").setIndicator("Activity"),
+               Fragment_Tab_Action.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("Action").setIndicator("Action"),
+              Fragment_Tab_Activity.class, null);
+
+        mTabHost.addTab(mTabHost.newTabSpec("Door status").setIndicator("Door status"),
+                Fragment_Tab_Door_Status.class, null);
     }
 
    /* @Override

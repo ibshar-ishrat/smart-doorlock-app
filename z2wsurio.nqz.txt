@@ -1,0 +1,48 @@
+﻿Merge branch 'master' of https://github.com/ibshar-ishrat/smart-doorlock-app
+
+# Conflicts:
+#	app/app.iml
+#	app/src/main/java/com/example/sadi/smartdoorapp/User_Registration4.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 3 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	deleted:    .idea/.name
+#	modified:   .idea/modules.xml
+#	deleted:    .idea/vcs.xml
+#	modified:   app/app.iml
+#	modified:   app/build.gradle
+#	new file:   app/google-services.json
+#	modified:   app/src/main/AndroidManifest.xml
+#	renamed:    app/src/main/java/com/example/sadi/smartdoorapp/Fragment_Tab_Delete.java -> app/src/main/java/com/example/sadi/smartdoorapp/Fragment_Tab_Action.java
+#	new file:   app/src/main/java/com/example/sadi/smartdoorapp/Fragment_Tab_Activity.java
+#	renamed:    app/src/main/java/com/example/sadi/smartdoorapp/Fragment_Tab_Insert.java -> app/src/main/java/com/example/sadi/smartdoorapp/Fragment_Tab_Door_Status.java
+#	new file:   app/src/main/java/com/example/sadi/smartdoorapp/GCMPushReceiverService.java
+#	new file:   app/src/main/java/com/example/sadi/smartdoorapp/GCMRegistrationIntentService.java
+#	new file:   app/src/main/java/com/example/sadi/smartdoorapp/GCMTokenRefreshListenerService.java
+#	modified:   app/src/main/java/com/example/sadi/smartdoorapp/User_Registration4.java
+#	modified:   app/src/main/java/com/example/sadi/smartdoorapp/sidePanel.java
+#	new file:   app/src/main/res/layout/action_tab.xml
+#	new file:   app/src/main/res/layout/activity_tab.xml
+#	modified:   app/src/main/res/layout/content_side_panel.xml
+#	deleted:    app/src/main/res/layout/delete_tab.xml
+#	new file:   app/src/main/res/layout/door_status.xml
+#	deleted:    app/src/main/res/layout/insert_tab.xml
+#	modified:   app/src/main/res/values/strings.xml
+#	modified:   build.gradle
+#
+
+Reruired merge
