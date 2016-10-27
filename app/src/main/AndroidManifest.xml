@@ -223,6 +223,55 @@
             </intent-filter>
 </activity>
 
+
+        <activity
+            android:name=".test_db"
+            android:label="test_db"
+            android:theme="@style/AppTheme.CustomeTheme">
+            <intent-filter>
+                <action android:name="com.example.sadi.smartdoorapp.test_db" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Door_Info"
+            android:label="Door_Info"
+            android:theme="@style/AppTheme.CustomeTheme">
+            <intent-filter>
+                <action android:name="com.example.sadi.smartdoorapp.Door_Info" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".Door_Info2"
+            android:label="Door_Info2"
+            android:theme="@style/AppTheme.CustomeTheme">
+            <intent-filter>
+                <action android:name="com.example.sadi.smartdoorapp.Door_Info2" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".DoorInfo3"
+            android:label="DoorInfo3"
+            android:theme="@style/AppTheme.CustomeTheme">
+            <intent-filter>
+                <action android:name="com.example.sadi.smartdoorapp.DoorInfo3" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+
+
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
@@ -263,5 +312,6 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 </manifest>
