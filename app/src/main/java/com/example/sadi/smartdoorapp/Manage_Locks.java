@@ -24,10 +24,8 @@ public class Manage_Locks extends FragmentActivity {
 
         mTabHost.addTab(mTabHost.newTabSpec("Insert").setIndicator("Insert"),
                 Fragment_Tab_Insert.class, null);
+
         mTabHost.addTab(mTabHost.newTabSpec("Delete").setIndicator("Delete"),
                 Fragment_Tab_Delete.class, null);
-
-
-
     }
 }

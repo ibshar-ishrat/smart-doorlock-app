@@ -27,7 +27,8 @@
     <string name="settings">I am in the door settings page!</string>
     <string name="activity">I am in the Activity page!</string>
     <string name="action">I am in the Action page!</string>
-
+    <string name="insert">I am in the insert lock page!</string>
+    <string name="delete">I am in the insert lock page!</string>
     <string name="door_stat">I am in the Door Status page!</string>
     <string name="title_activity_manage_lock">Manage Lock</string>
     <string name="title_activity_profile_settings">Profile Settings</string>
