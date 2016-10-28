@@ -1,14 +1,18 @@
 package com.example.sadi.smartdoorapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Switch;
 
 import java.io.BufferedReader;
@@ -21,6 +25,7 @@ import java.net.URL;
  * Created by Sadia Sami on 6/21/2016.
  */
 public class Fragment_Tab_Door_Status extends Fragment {
+    private String Pin_CODE;
     View rootview;
 
     @Override
@@ -30,6 +35,7 @@ public class Fragment_Tab_Door_Status extends Fragment {
           /********************************/
          /*    Define all the buttons    */
         /********************************/
+
 
 
         Switch led1 = (Switch) rootview.findViewById(R.id.Led1);
@@ -43,6 +49,34 @@ public class Fragment_Tab_Door_Status extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     /* Switch is led 1 */
+
+                    //Open Alert Dialog and asks for PIN CODE When USER clicks on OK to
+                    //save Entered Pin in variable Pin_code
+                    //verify pin code and calls function Background_get()
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("Enter PINCODE to Unlock Door");
+                    // Set up the input
+                    final EditText input = new EditText(getActivity());
+                    // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                    input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    builder.setView(input);
+
+                    // Set up the buttons
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Pin_CODE = input.getText().toString();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    builder.show();
                     new Background_get().execute("led1=1");
                 } else {
                     new Background_get().execute("led1=0");
