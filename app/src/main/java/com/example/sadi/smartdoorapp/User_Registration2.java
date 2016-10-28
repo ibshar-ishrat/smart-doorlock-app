@@ -51,6 +51,8 @@ public class User_Registration2 extends Main_ScreenActivity {
     public static String userNamePattern;
     public static String emailPattern;
 
+    public static String IP_ADDRESS = "192.168.0.102";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,7 +138,7 @@ public class User_Registration2 extends Main_ScreenActivity {
         @Override
         protected String doInBackground(String... args)
         {
-            String url = "http://192.168.0.103/db_val_reg2.php?Email="+sEmail+"&Username="+sUserName+"&AltEmail="+sAltEmail;
+            String url = "http://"+IP_ADDRESS+"/db_val_reg2.php?Email="+sEmail+"&Username="+sUserName+"&AltEmail="+sAltEmail;
 
             DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
             HttpGet httppost = new HttpGet(url);

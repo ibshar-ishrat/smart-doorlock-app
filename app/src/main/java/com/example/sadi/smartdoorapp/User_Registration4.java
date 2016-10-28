@@ -62,6 +62,8 @@ public class User_Registration4 extends Main_ScreenActivity
     public static String sDoorName;
     public static String sDoorDesc;
 
+    public static String IP_ADDRESS = "192.168.0.102";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -129,12 +131,12 @@ public class User_Registration4 extends Main_ScreenActivity
         @Override
         protected void onPreExecute()
         {
-            super.onPreExecute();
+            /*super.onPreExecute();
             pDialog = new ProgressDialog(User_Registration4.this);
             pDialog.setMessage("Loading...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
-            pDialog.show();
+            pDialog.show();*/
         }
 
         @Override
@@ -165,11 +167,9 @@ public class User_Registration4 extends Main_ScreenActivity
             params.add(new BasicNameValuePair("Door_Desc", reg4_Pref.getString("Door_Desc", "") ));
 
             params.add(new BasicNameValuePair("Phone_MAC_Addr", reg4_Pref.getString("Phone_MAC_Addr", "") ));
-            //params.add(new BasicNameValuePair("Phone_IP_Public", reg4_Pref.getString("Phone_IP_Public", "") ));
-            //params.add(new BasicNameValuePair("Phone_IP_Local", reg4_Pref.getString("Phone_IP_Local", "") ));
 
 
-            JSONObject json = jsonParser.makeHttpRequest("http://192.168.0.103/db_register_user.php", "POST", params);
+            JSONObject json = jsonParser.makeHttpRequest("http://"+IP_ADDRESS+"/db_register_user.php", "POST", params);
 
             try
             {
@@ -190,7 +190,7 @@ public class User_Registration4 extends Main_ScreenActivity
 
         protected void onPostExecute(String file_url)
         {
-            pDialog.dismiss();
+            //pDialog.dismiss();
 
             Intent next3 = new Intent("com.example.sadi.smartdoorapp.Acknowledgement_Page");
             startActivity(next3);
@@ -202,7 +202,7 @@ public class User_Registration4 extends Main_ScreenActivity
         @Override
         protected String doInBackground(String... args)
         {
-            String url = "http://192.168.0.103/db_val_reg4.php?MAC="+mac_addr;
+            String url = "http://"+IP_ADDRESS+"/db_val_reg4.php?MAC="+Utils.getMACAddress("wlan0");
 
             DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
             HttpGet httppost = new HttpGet(url);
@@ -298,7 +298,7 @@ public class User_Registration4 extends Main_ScreenActivity
                     doorDesc.setError("Door description is too long!");
 
                 if (mac_addr.matches(mac_addr_out)) {
-                    //Toast.makeText(this, "Oops! This phone has already registered user! Please register with other phone!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(User_Registration4.this, "Oops! This phone has already registered user! Please register with other phone!", Toast.LENGTH_LONG).show();
                 }
             } else {
                 /*CHECK FOR SUCCESSFUL INTERNET CONNECTIVITY ON PHONE THEN GO FOR REGISTRATION*/
@@ -309,7 +309,7 @@ public class User_Registration4 extends Main_ScreenActivity
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
                 if (networkInfo == null || !networkInfo.isConnected()) {
-                    //Toast.makeText(this,"No active internet connection. Please try again later!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(User_Registration4.this,"No active internet connection. Please try again later!", Toast.LENGTH_SHORT).show();
                 } else {
                       /* REGISTER THE USER TO GOOGLE CLOUD MESSAGING */
                     mRegistrationBroadcastReceiver = new BroadcastReceiver() {
@@ -326,13 +326,13 @@ public class User_Registration4 extends Main_ScreenActivity
                                 token = intent.getStringExtra("token");
 
                                 //Displaying the token as toast
-                                //Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
 
                                 //if the intent is not with success then displaying error messages
                             } else if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)) {
                                 //Toast.makeText(getApplicationContext(), "GCM registration error!", Toast.LENGTH_LONG).show();
                             } else {
-                                //Toast.makeText(getApplicationContext(), "Error occurred", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Error occurred", Toast.LENGTH_LONG).show();
                             }
                         }
                     };
@@ -343,21 +343,24 @@ public class User_Registration4 extends Main_ScreenActivity
                     //if play service is not available
                     if (ConnectionResult.SUCCESS != resultCode) {
                         //If play service is supported but not installed
+
                         if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
                             //Displaying message that play service is not installed
-                            //Toast.makeText(getApplicationContext(), "Google Play Service is not install/enabled in this device!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Google Play Service is not install/enabled in this device!", Toast.LENGTH_LONG).show();
                             GooglePlayServicesUtil.showErrorNotification(resultCode, getApplicationContext());
 
                             //If play service is not supported
                             //Displaying an error message
                         } else {
-                            //Toast.makeText(getApplicationContext(), "This device does not support for Google Play Service!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "This device does not support for Google Play Service!", Toast.LENGTH_LONG).show();
                         }
 
                         //If play service is available
                     } else {
                         //Starting intent to register device
-                        Intent itent = new Intent(this, GCMRegistrationIntentService.class);
+                        Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
+
+                        Intent itent = new Intent(User_Registration4.this, GCMRegistrationIntentService.class);
                         startService(itent);
                     }
         /* USER HAS BEEN REGISTERED TO GOOGLE CLOUD MESSAGING */
@@ -370,9 +373,7 @@ public class User_Registration4 extends Main_ScreenActivity
                     edit.putString("Door_Name", sDoorName);
                     edit.putString("Door_Desc", sDoorDesc);
                     edit.putString("Phone_MAC_Addr", mac_addr);
-                    //edit.putString("Phone_IP_Public",ip_public);
-                    //edit.putString("Phone_IP_Local",ip_addr);
-                    edit.putString("Token", "abc");
+                    edit.putString("Token", token);
                     edit.commit();
 
                     new Create_User().execute();
