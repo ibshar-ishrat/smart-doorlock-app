@@ -38,7 +38,7 @@ public class Forget_Password extends AppCompatActivity
     public static String SecA1_out;
     public static String SecA2_out;
 
-    public static String IP_ADDRESS = "192.168.0.102";
+    public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;;
 
     public static int USERID = 1; //to bring from sadia code
 

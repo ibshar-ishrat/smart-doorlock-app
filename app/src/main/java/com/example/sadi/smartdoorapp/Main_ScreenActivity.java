@@ -1,6 +1,7 @@
 package com.example.sadi.smartdoorapp;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -11,6 +12,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class Main_ScreenActivity extends AppCompatActivity {
     // main screen is Login Page here in this class we will initialize some variables
 
@@ -18,9 +32,19 @@ public class Main_ScreenActivity extends AppCompatActivity {
 
     private static EditText username;
     private static EditText password;
+
+    private static String sUsername;
+    private static String sPassword;
+
+    private static String username_out;
+    private static String password_out;
+    private static String email_out;
+
     private static TextView attempts;
     private static Button login_btn;
     int attempt_counter = 3;
+
+    public static String IP_ADDRESS = "192.168.8.100";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,14 +67,20 @@ public class Main_ScreenActivity extends AppCompatActivity {
             }
         }); */
 
-        LoginButton();
+        //LoginButton();
     }
 
 // making method for Login button in which we will cast all variables declared above i.e username, password, attempts
-    public void LoginButton()
+    public void LoginButton(View view)
     {
         username = (EditText) findViewById(R.id.editText_usereg);
         password = (EditText) findViewById(R.id.editText_passreg);
+
+        sUsername = username.getText().toString().trim();
+        sPassword = password.getText().toString().trim();
+
+        GetDataJSON_Login g = new GetDataJSON_Login();
+        g.execute();
 
        // attempts =(TextView) findViewById(R.id.textView_attemptcount);
         login_btn= (Button) findViewById(R.id.button_login);
@@ -59,55 +89,19 @@ public class Main_ScreenActivity extends AppCompatActivity {
         final TextView signup =(TextView) findViewById(R.id.textView_signup);
         final TextView forget_password =(TextView) findViewById(R.id.textView_forgetPas);
 
-       // attempts.setText(Integer.toString(attempt_counter));
+       //attempts.setText(Integer.toString(attempt_counter));
+    }
 
-        login_btn.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(username.getText().toString().trim().equals("sadia")&& password.getText().toString().trim().equals("sami"))
-                        {
-                            Toast.makeText(Main_ScreenActivity.this, "Username and Password is correct", Toast.LENGTH_SHORT).show();
+    public void Signup(View view)
+    {
+        Intent i2 = new Intent(Main_ScreenActivity.this,User_Registration.class);
+        startActivity(i2);
+    }
 
-                            //creating instance of intent for redirecting to second screen
-                            Intent i = new Intent("com.example.sadi.smartdoorapp.sidePanel");
-                            startActivity(i);
-
-                            EditText text = (EditText) findViewById(R.id.editText_passreg);
-                            text.setText("");
-                        }
-                        else
-                        {
-                            Toast.makeText(Main_ScreenActivity.this, "Username or Password is not correct", Toast.LENGTH_SHORT).show();
-                            attempt_counter--;
-
-                           // attempts.setText(Integer.toString(attempt_counter));
-                            if(attempt_counter == 0)
-                            {
-                                login_btn.setEnabled(false);
-                            }
-                        }
-                    }
-                }
-        );
-
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i2 = new Intent(Main_ScreenActivity.this,User_Registration.class);
-                startActivity(i2);
-
-            }
-        });
-
-        forget_password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i2 = new Intent(Main_ScreenActivity.this,Forget_Password.class);
-                startActivity(i2);
-
-            }
-        });
+    public void ForgetPW(View view)
+    {
+        Intent i2 = new Intent(Main_ScreenActivity.this,Forget_Password.class);
+        startActivity(i2);
     }
 
     @Override
@@ -131,5 +125,124 @@ public class Main_ScreenActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    class GetDataJSON_Login extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            /*super.onPreExecute();
+            pDialog = new ProgressDialog(User_Registration2.this);
+            pDialog.setMessage("Loading...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();*/
+        }
+        @Override
+        protected String doInBackground(String... args)
+        {
+            String url = "http://"+IP_ADDRESS+"/db_ver_Login.php?MAC="+Utils.getMACAddress("wlan0");
+
+            DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
+            HttpGet httppost = new HttpGet(url);
+
+            // Depends on your web service
+            httppost.setHeader("Content-type", "application/json");
+
+            InputStream inputStream = null;
+            String result = null;
+
+            try
+            {
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+
+                inputStream = entity.getContent();
+                // json is UTF-8 by default
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
+                StringBuilder sb = new StringBuilder();
+
+                String line = null;
+
+                while ((line = reader.readLine()) != null)
+                {
+                    sb.append(line + "\n");
+                }
+
+                result = sb.toString().trim();
+            }
+
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            finally
+            {
+                try
+                {
+                    if (inputStream != null) inputStream.close();
+                }
+                catch (Exception squish)
+                {
+                }
+            }
+
+            /*SharedPreferences query_result = getSharedPreferences("query", 0);
+            SharedPreferences.Editor edit = query_result.edit();
+
+            edit.putString(result_tag, result);
+
+            edit.commit();*/
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result)
+        {
+            JSONArray retrievedArray = null;
+
+            try
+            {
+                JSONObject jsonObj = new JSONObject(result);
+                retrievedArray = jsonObj.getJSONArray("result");
+
+                // for(int i=0;i<retrievedArray.length();i++)
+                {
+                    JSONObject c = retrievedArray.getJSONObject(0);
+                    email_out= c.getString("Email_Address");
+
+                    c = retrievedArray.getJSONObject(0);
+
+                    c = retrievedArray.getJSONObject(0);
+                    username_out = c.getString("Username");
+
+                    c = retrievedArray.getJSONObject(0);
+                    password_out = c.getString("PW");
+                }
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+
+            if( !( sUsername.matches(email_out) || sUsername.matches(username_out) ) || !(sPassword.matches(password_out)) )
+            {
+                Toast.makeText(Main_ScreenActivity.this, "Invalid username or password!", Toast.LENGTH_SHORT).show();
+            }
+
+            else
+            {
+                Intent i = new Intent("com.example.sadi.smartdoorapp.sidePanel");
+                startActivity(i);
+
+                EditText text = (EditText) findViewById(R.id.editText_passreg);
+                text.setText("");
+            }
+
+            //pDialog.dismiss();
+        }
     }
 }

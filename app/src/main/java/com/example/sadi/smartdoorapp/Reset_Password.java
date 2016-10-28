@@ -23,7 +23,7 @@ public class Reset_Password extends AppCompatActivity
     public static EditText password;
     public static EditText confirmPassword;
 
-    public static String IP_ADDRESS = "192.168.0.102";
+    public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;
 
     JSONParser jsonParser = new JSONParser();
 

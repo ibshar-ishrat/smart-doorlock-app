@@ -51,7 +51,7 @@ public class User_Registration2 extends Main_ScreenActivity {
     public static String userNamePattern;
     public static String emailPattern;
 
-    public static String IP_ADDRESS = "192.168.0.102";
+    public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

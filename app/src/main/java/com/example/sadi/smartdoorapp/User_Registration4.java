@@ -62,19 +62,75 @@ public class User_Registration4 extends Main_ScreenActivity
     public static String sDoorName;
     public static String sDoorDesc;
 
-    public static String IP_ADDRESS = "192.168.0.102";
+    public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration4);
 
-        pinCode = (EditText)findViewById(R.id.editText_pin);
-        confirmPinCode = (EditText)findViewById(R.id.editText_confirmpin);
-        doorName = (EditText)findViewById(R.id.editText_nameDoor);
-        doorDesc = (EditText)findViewById(R.id.editText_desc_Door);
+        pinCode = (EditText) findViewById(R.id.editText_pin);
+        confirmPinCode = (EditText) findViewById(R.id.editText_confirmpin);
+        doorName = (EditText) findViewById(R.id.editText_nameDoor);
+        doorDesc = (EditText) findViewById(R.id.editText_desc_Door);
+
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if (networkInfo == null || !networkInfo.isConnected()) {
+            Toast.makeText(User_Registration4.this, "No active internet connection. Please try again later!", Toast.LENGTH_SHORT).show();
+        } else {
+                      /* REGISTER THE USER TO GOOGLE CLOUD MESSAGING */
+            mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+
+                //When the broadcast received
+                //We are sending the broadcast from GCMRegistrationIntentService
+
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    //If the broadcast has received with success
+                    //that means device is registered successfully
+                    if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)) {
+                        //Getting the registration token from the intent
+                        token = intent.getStringExtra("token");
+
+                        //Displaying the token as toast
+                        Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
+
+                        //if the intent is not with success then displaying error messages
+                    } else if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)) {
+                        //Toast.makeText(getApplicationContext(), "GCM registration error!", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Error occurred", Toast.LENGTH_LONG).show();
+                    }
+                }
+            };
+
+            //Checking play service is available or not
+            int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+
+            //if play service is not available
+            if (ConnectionResult.SUCCESS != resultCode) {
+                //If play service is supported but not installed
+
+                if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                    //Displaying message that play service is not installed
+                    Toast.makeText(getApplicationContext(), "Google Play Service is not install/enabled in this device!", Toast.LENGTH_LONG).show();
+                    GooglePlayServicesUtil.showErrorNotification(resultCode, getApplicationContext());
+
+                    //If play service is not supported
+                    //Displaying an error message
+                } else {
+                    Toast.makeText(getApplicationContext(), "This device does not support for Google Play Service!", Toast.LENGTH_LONG).show();
+                }
+
+                //If play service is available
+            }
+
+        }
     }
 
     public void ButtonDone(View view)
