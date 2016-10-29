@@ -70,7 +70,7 @@ public class Main_ScreenActivity extends AppCompatActivity {
         //LoginButton();
     }
 
-// making method for Login button in which we will cast all variables declared above i.e username, password, attempts
+    // making method for Login button in which we will cast all variables declared above i.e username, password, attempts
     public void LoginButton(View view)
     {
         username = (EditText) findViewById(R.id.editText_usereg);
@@ -79,6 +79,17 @@ public class Main_ScreenActivity extends AppCompatActivity {
         sUsername = username.getText().toString().trim();
         sPassword = password.getText().toString().trim();
 
+
+        /*if( sUsername.matches("sadia") && sPassword.matches("sami"))
+        {
+            Intent i = new Intent("com.example.sadi.smartdoorapp.sidePanel");
+            startActivity(i);
+        }
+
+        else
+        {
+            Toast.makeText(Main_ScreenActivity.this, "Invalid username or password!", Toast.LENGTH_SHORT).show();
+        }*/
         GetDataJSON_Login g = new GetDataJSON_Login();
         g.execute();
 

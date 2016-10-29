@@ -44,6 +44,7 @@ public class User_Registration4 extends Main_ScreenActivity
 {
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
+
     private BroadcastReceiver mRegistrationBroadcastReceiver;
 
     public static EditText pinCode;
@@ -56,13 +57,12 @@ public class User_Registration4 extends Main_ScreenActivity
 
     public static String token;
 
-
     public static String sPinCode;
     public static String sConfirmPinCode;
     public static String sDoorName;
     public static String sDoorDesc;
 
-    public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;;
+    public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;
 
 
     @Override

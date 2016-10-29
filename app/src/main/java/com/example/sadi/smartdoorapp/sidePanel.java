@@ -27,10 +27,14 @@ public class sidePanel extends AppCompatActivity
 
     private FragmentTabHost mTabHost;
 
-    /** Items entered by the user is stored in this ArrayList variable */
+    /**
+     * Items entered by the user is stored in this ArrayList variable
+     */
     ArrayList<String> list = new ArrayList<String>();
 
-    /** Declaring an ArrayAdapter to set items to ListView */
+    /**
+     * Declaring an ArrayAdapter to set items to ListView
+     */
     ArrayAdapter<String> adapter;
 
 
@@ -61,13 +65,14 @@ public class sidePanel extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        mTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
+        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 
         mTabHost.addTab(mTabHost.newTabSpec("Activity").setIndicator("Activity"),
-               Fragment_Tab_Action.class, null);
+                Fragment_Tab_Action.class, null);
+
         mTabHost.addTab(mTabHost.newTabSpec("Action").setIndicator("Action"),
-              Fragment_Tab_Activity.class, null);
+                Fragment_Tab_Activity.class, null);
 
         mTabHost.addTab(mTabHost.newTabSpec("Door status").setIndicator("Door status"),
                 Fragment_Tab_Door_Status.class, null);
@@ -78,6 +83,7 @@ public class sidePanel extends AppCompatActivity
         getMenuInflater().inflate(R.menu.activity_side_panel_drawer, menu);
         return true;
     }*/
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -89,14 +95,13 @@ public class sidePanel extends AppCompatActivity
     }
 
 
-   @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
         // flate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.side_panel, menu);
 
         // Getting a reference to Spinner object of the resource activity_main
-        MenuItem item=menu.findItem(R.id.spinner);
+        MenuItem item = menu.findItem(R.id.spinner);
         Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
 
         SharedPreferences bb = getSharedPreferences("reg_pref", 0);
@@ -174,10 +179,10 @@ public class sidePanel extends AppCompatActivity
 
 
         }
-       if (id == R.id.nav_account) {
-           //fragmentManager.beginTransaction().replace(R.id.content_frame,new Account_Settings()).commit();
-           Intent intent = new Intent(this, Account_Settings.class);
-           startActivity(intent);
+        if (id == R.id.nav_account) {
+            //fragmentManager.beginTransaction().replace(R.id.content_frame,new Account_Settings()).commit();
+            Intent intent = new Intent(this, Account_Settings.class);
+            startActivity(intent);
 
         }
         if (id == R.id.nav_manage) {
@@ -185,8 +190,7 @@ public class sidePanel extends AppCompatActivity
             Intent intent = new Intent(this, Manage_Doors.class);
             startActivity(intent);
 
-        }
-       else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_logout) {
 
             finish();
         }
