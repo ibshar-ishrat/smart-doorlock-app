@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -41,18 +42,25 @@ public class Fragment_Tab_Door_Status extends Fragment
     private String pinCode;
     View rootview;
 
+    private static TextView tv_Door_Status;
+    private static Switch led1;
     public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;
-
-    private final Switch led1 = (Switch) rootview.findViewById(R.id.Led1);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         rootview = inflater.inflate(R.layout.door_status, container, false);
 
+        tv_Door_Status =(TextView) rootview.findViewById(R.id.textview_Door_Status);
+
+        GetDataJSON_Door_Status g = new GetDataJSON_Door_Status();
+        g.execute();
+
         /********************************/
          /*    Define all the buttons    */
         /********************************/
+
+        led1 = (Switch) rootview.findViewById(R.id.Led1);
 
         /*******************************************************/
          /*  Set an onclick/onchange listener for every button  */
@@ -90,9 +98,9 @@ public class Fragment_Tab_Door_Status extends Fragment
                         {
                             pinCode = input.getText().toString().trim();
 
-
+                            //dialog.cancel();
                             //Verify Pin Code and do necessary action
-                            GetDataJSON g = new GetDataJSON();
+                            GetDataJSON_PIN g = new GetDataJSON_PIN();
                             g.execute();
                         }
                     });
@@ -102,6 +110,8 @@ public class Fragment_Tab_Door_Status extends Fragment
                         @Override
                         public void onClick(DialogInterface dialog, int which)
                         {
+                            led1.setChecked(false);
+                            //can you call method here getData or whatever method you created wo uper horaha call GetDatJson wala wahan mene connet out kiya ye dialogcancel
                             dialog.cancel();
                         }
                     });
@@ -119,6 +129,10 @@ public class Fragment_Tab_Door_Status extends Fragment
         return rootview;
     }
 
+    public void Go_To_Door_Info(View view)
+    {
+
+    }
 
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -186,7 +200,7 @@ public class Fragment_Tab_Door_Status extends Fragment
         }
     }
 
-    class GetDataJSON extends AsyncTask<String, String, String> {
+    class GetDataJSON_PIN extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... args)
@@ -276,8 +290,108 @@ public class Fragment_Tab_Door_Status extends Fragment
             else
             {
                 //dialog.cancel();
-                Toast.makeText(getActivity(), "Invalid username or password!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Invalid PIN Code!", Toast.LENGTH_SHORT).show();
+                led1.setChecked(false);
             }
+        }
+    }
+
+    class GetDataJSON_Door_Status extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            /*super.onPreExecute();
+            pDialog = new ProgressDialog(User_Registration2.this);
+            pDialog.setMessage("Loading...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();*/
+        }
+        @Override
+        protected String doInBackground(String... args)
+        {
+            String url = "http://"+IP_ADDRESS+"/db_Status_Tab.php?MAC="+Utils.getMACAddress("wlan0");
+
+            DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
+            HttpGet httppost = new HttpGet(url);
+
+            // Depends on your web service
+            httppost.setHeader("Content-type", "application/json");
+
+            InputStream inputStream = null;
+            String result = null;
+
+            try
+            {
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+
+                inputStream = entity.getContent();
+                // json is UTF-8 by default
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
+                StringBuilder sb = new StringBuilder();
+
+                String line = null;
+
+                while ((line = reader.readLine()) != null)
+                {
+                    sb.append(line + "\n");
+                }
+
+                result = sb.toString().trim();
+            }
+
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            finally
+            {
+                try
+                {
+                    if (inputStream != null) inputStream.close();
+                }
+                catch (Exception squish)
+                {
+                }
+            }
+
+            /*SharedPreferences query_result = getSharedPreferences("query", 0);
+            SharedPreferences.Editor edit = query_result.edit();
+
+            edit.putString(result_tag, result);
+
+            edit.commit();*/
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result)
+        {
+            JSONArray retrievedArray = null;
+            String doorStatus_out = "";
+            try
+            {
+                JSONObject jsonObj = new JSONObject(result);
+                retrievedArray = jsonObj.getJSONArray("result");
+
+                // for(int i=0;i<retrievedArray.length();i++)
+                {
+                    JSONObject c = retrievedArray.getJSONObject(0);
+                    doorStatus_out= c.getString("Status");
+
+                    tv_Door_Status.setText(doorStatus_out);
+                }
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+
+            //pDialog.dismiss();
         }
     }
 }

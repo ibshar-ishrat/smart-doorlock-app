@@ -44,7 +44,7 @@ public class Main_ScreenActivity extends AppCompatActivity {
     private static Button login_btn;
     int attempt_counter = 3;
 
-    public static String IP_ADDRESS = "192.168.0.104";
+    public static String IP_ADDRESS = "192.168.0.103";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
