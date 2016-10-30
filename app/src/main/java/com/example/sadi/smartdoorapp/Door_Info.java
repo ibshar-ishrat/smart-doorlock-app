@@ -1,16 +1,21 @@
 package com.example.sadi.smartdoorapp;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import java.util.ArrayList;
 
@@ -18,159 +23,124 @@ import java.util.ArrayList;
  * Created by Ibshar on 26/10/2016.
  */
 
-public class Door_Info extends Activity {
-     private ArrayList<Integer> id = new ArrayList<Integer>();
+public class Door_Info extends Activity
+{
+    public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;
 
+    private static String Door_Name = "";
+    private static String Door_Desc = "";
+    private static String Door_Status = "";
 
-    DatabaseHelper myDB;
-    private ArrayList<String> results = new ArrayList<String>();
-    private String tableName = myDB.tableName;
-    private SQLiteDatabase newDB;
-
-    //private ArrayList<Integer> result_array = new ArrayList<Integer>();
-    String name;
+    ArrayList<String> Features_Name_Array = new ArrayList<String>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-     setContentView(R.layout.door_info);
-     //Intent i = getIntent();
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.door_info);
 
-        String name_door = getIntent().getExtras().getString("key");
+        GetDataJSON_Door_Info g = new GetDataJSON_Door_Info();
+        g.execute();
+    }
 
+    class GetDataJSON_Door_Info extends AsyncTask<String, String, String> {
 
-        //getting array of ids of Doors
-       // id = (ArrayList<Integer>) getIntent().getSerializableExtra("key");
-        //getting id of Door1
-        //int door = id.get(0);
+        @Override
+        protected void onPreExecute()
+        {
+            /*super.onPreExecute();
+            pDialog = new ProgressDialog(User_Registration2.this);
+            pDialog.setMessage("Loading...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();*/
+        }
+        @Override
+        protected String doInBackground(String... args)
+        {
+            String url = "http://"+IP_ADDRESS+"/db_Door_Info.php?MAC="+Utils.getMACAddress("wlan0");
 
-       // Toast.makeText(this,name_door,Toast.LENGTH_SHORT).show();
+            DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
+            HttpGet httppost = new HttpGet(url);
 
-        //myDB = new DatabaseHelper(this);
-        openAndQueryDatabase(name_door);
+            // Depends on your web service
+            httppost.setHeader("Content-type", "application/json");
 
-         }
+            InputStream inputStream = null;
+            String result = null;
 
+            try
+            {
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
 
+                inputStream = entity.getContent();
+                // json is UTF-8 by default
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
+                StringBuilder sb = new StringBuilder();
 
+                String line = null;
 
-
-    private void openAndQueryDatabase(String myDoor1) {
-        try {
-            myDB= new DatabaseHelper(this.getApplicationContext());
-            newDB = myDB.getWritableDatabase();
-
-            SharedPreferences door_list = getSharedPreferences("door_list", 0);
-            int i = door_list.getInt(myDoor1,5);
-
-            Cursor c = newDB.rawQuery("select NAME, Description from DEVICE_NAME where Name_ID="+i+"", null);
-            Toast.makeText(this,Integer.toString(door_list.getInt(myDoor1,5)),Toast.LENGTH_SHORT).show();
-
-
-            if (c != null ) {
-
-                if (c.moveToFirst()) {
-                    do {
-                        String Name = c.getString(c.getColumnIndex("Name"));
-                        String Description = c.getString(c.getColumnIndex("Description"));
-                        results.add("Name: " + Name + "  Description: " + Description);
-
-                    } while (c.moveToNext());
+                while ((line = reader.readLine()) != null)
+                {
+                    sb.append(line + "\n");
                 }
 
-                displayResultList();
-
+                result = sb.toString().trim();
             }
-        } catch (SQLiteException se ) {
-            Log.e(getClass().getSimpleName(), "Could not create or Open the database");
-        } finally {
-            if (newDB != null)
-                newDB.execSQL("DELETE FROM " + tableName);
-            newDB.close();
+
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            finally
+            {
+                try
+                {
+                    if (inputStream != null) inputStream.close();
+                }
+                catch (Exception squish)
+                {
+                }
+            }
+
+            return result;
         }
 
+        @Override
+        protected void onPostExecute(String result)
+        {
+            JSONArray retrievedArray = null;
 
-    }
+            try
+            {
+                JSONObject jsonObj = new JSONObject(result);
+                retrievedArray = jsonObj.getJSONArray("result");
 
-    private void displayResultList() {
+                JSONObject c = retrievedArray.getJSONObject( retrievedArray.length() - 3 );
+                Door_Status = c.getString("Door Status");
 
+                c = retrievedArray.getJSONObject( retrievedArray.length() - 2 );
+                Door_Name = c.getString("Door_Name");
 
-        TextView tView = (TextView) findViewById(R.id.Door_info);
-        //TextView tView = new TextView(this);
-        tView.setText("Information of All Doors....");
-        ListView list = (ListView)findViewById(R.id.listView);
-
-
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results);
-
-        list.setAdapter(adapter);
-
-    }
-
-       /* getListView().addHeaderView(tView);
+                c = retrievedArray.getJSONObject( retrievedArray.length() - 1 );
+                Door_Desc = c.getString("Door Description");
 
 
-        getListView().setTextFilterEnabled(true);*/
+                for(int i=0;i<retrievedArray.length()-3;i++)
+                {
+                    c = retrievedArray.getJSONObject(i);
 
-
-    }
-
-
-
-
-  /*  private void list(final ArrayList<Integer> result_array )
-    {
-        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                //when user click on item new activity open and id pass to next activity
-
-                switch(position){
-
-                    case 1: Intent newActivity = new Intent(view.getContext(), Door_Info.class);
-                        newActivity.putExtra("key", result_array);
-                        startActivity(newActivity);
-                        break;
-
-                    case 2:
-                        Intent newActivity1 = new Intent(view.getContext(), Door_Info2.class);
-                        newActivity1.putExtra("key", result_array);
-                        startActivity(newActivity1);
-                        break;
-
-                    case 3:
-                        Intent newActivity2 = new Intent(view.getContext(), DoorInfo3.class);
-                        newActivity2.putExtra("key", result_array);
-                        startActivity(newActivity2);
-                        break;
-
+                    Features_Name_Array.add(c.getString("Feature Name"));
                 }
-
-
-
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
             }
 
-        });
+            //pDialog.dismiss();
+        }
     }
-*/
-
-       //id = getIntent().getExtras().getIntegerArrayList("id");
-        //idhar chaiye????????// yes //give me two min ok
-
-        /*SharedPreferences get_id = getSharedPreferences("pass", 0)         ;
-        id = get_id.getLong("user_id",0);*/
-
-
-
-
-
-        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        //String value = prefs.getString("key", null);
-
-       // TextView tv = (TextView) findViewById(R.id.Door_info);
-       // tv.setText( String.valueOf(id.get(0)));
-
-                //actually we need to cast it in string first see conversion ok :)run now ok
-
-
+}
