@@ -28,11 +28,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,8 +41,6 @@ public class User_Registration4 extends Main_ScreenActivity {
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
 
-    private BroadcastReceiver mRegistrationBroadcastReceiver;
-
     public static EditText pinCode;
     public static EditText confirmPinCode;
     public static EditText doorName;
@@ -54,7 +49,7 @@ public class User_Registration4 extends Main_ScreenActivity {
     public static String mac_addr_out;
     public static String mac_addr;
 
-    public static String token;
+    public static String token_db;
 
     public static String sPinCode;
     public static String sConfirmPinCode;
@@ -62,6 +57,9 @@ public class User_Registration4 extends Main_ScreenActivity {
     public static String sDoorDesc;
 
     public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;
+
+    public BroadcastReceiver mRegistrationBroadcastReceiver;
+
 
 
     @Override
@@ -291,30 +289,40 @@ class GetDataJSON extends AsyncTask<String, String, String> {
 
             NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-            if (networkInfo == null || !networkInfo.isConnected()) {
+            if (networkInfo == null || !networkInfo.isConnected())
+            {
                 Toast.makeText(User_Registration4.this, "No active internet connection. Please try again later!", Toast.LENGTH_SHORT).show();
-            } else {
+            }
+            else
+            {
                       /* REGISTER THE USER TO GOOGLE CLOUD MESSAGING */
-                mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+                mRegistrationBroadcastReceiver = new BroadcastReceiver()
+                {
 
                     //When the broadcast received
                     //We are sending the broadcast from GCMRegistrationIntentService
 
                     @Override
-                    public void onReceive(Context context, Intent intent) {
+                    public void onReceive(Context context, Intent intent)
+                    {
                         //If the broadcast has received with success
                         //that means device is registered successfully
-                        if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)) {
+                        if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS))
+                        {
                             //Getting the registration token from the intent
-                            token = intent.getStringExtra("token");
-
+                            String token = intent.getStringExtra("token");
+                            System.out.println("Here we go");
                             //Displaying the token as toast
                             Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
 
                             //if the intent is not with success then displaying error messages
-                        } else if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)) {
-                            //Toast.makeText(getApplicationContext(), "GCM registration error!", Toast.LENGTH_LONG).show();
-                        } else {
+                        }
+                        else if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR))
+                        {
+                            Toast.makeText(getApplicationContext(), "GCM registration error!", Toast.LENGTH_LONG).show();
+                        }
+                        else
+                        {
                             Toast.makeText(getApplicationContext(), "Error occurred", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -324,25 +332,27 @@ class GetDataJSON extends AsyncTask<String, String, String> {
                 int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
 
                 //if play service is not available
-                if (ConnectionResult.SUCCESS != resultCode) {
+                if(ConnectionResult.SUCCESS != resultCode)
+                {
                     //If play service is supported but not installed
-
-                    if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                    if(GooglePlayServicesUtil.isUserRecoverableError(resultCode))
+                    {
                         //Displaying message that play service is not installed
                         Toast.makeText(getApplicationContext(), "Google Play Service is not install/enabled in this device!", Toast.LENGTH_LONG).show();
                         GooglePlayServicesUtil.showErrorNotification(resultCode, getApplicationContext());
 
                         //If play service is not supported
                         //Displaying an error message
-                    } else {
+                    }
+                    else
+                    {
                         Toast.makeText(getApplicationContext(), "This device does not support for Google Play Service!", Toast.LENGTH_LONG).show();
                     }
 
                     //If play service is available
-                } else {
-                    //Starting intent to register device
-                    //Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
-
+                }
+                else
+                {
                     Intent itent = new Intent(User_Registration4.this, GCMRegistrationIntentService.class);
                     startService(itent);
                 }
@@ -356,7 +366,7 @@ class GetDataJSON extends AsyncTask<String, String, String> {
                 edit.putString("Door_Name", sDoorName);
                 edit.putString("Door_Desc", sDoorDesc);
                 edit.putString("Phone_MAC_Addr", mac_addr);
-                edit.putString("Token", token);
+                edit.putString("Token", token_db);
                 edit.commit();
 
                 new Create_User().execute();
