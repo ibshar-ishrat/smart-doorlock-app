@@ -341,7 +341,7 @@ class GetDataJSON extends AsyncTask<String, String, String> {
                     //If play service is available
                 } else {
                     //Starting intent to register device
-                    Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
 
                     Intent itent = new Intent(User_Registration4.this, GCMRegistrationIntentService.class);
                     startService(itent);

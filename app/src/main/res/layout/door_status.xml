@@ -50,7 +50,7 @@
     <TextView  android:id="@+id/textview_Door_Status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Conencting..."
+        android:text="Connecting..."
         android:textSize="25sp"
         android:layout_alignBaseline="@+id/textView_Label_Door_Status"
         android:layout_alignBottom="@+id/textView_Label_Door_Status"
@@ -93,7 +93,8 @@
         android:id="@+id/button_Door_Info"
         android:layout_marginTop="86dp"
         android:layout_below="@+id/textview_Door_Status"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="Go_To_Door_Info (Fragment_Tab_Door_Status)" />
 
     <Switch
         android:layout_width="match_parent"

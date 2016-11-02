@@ -95,7 +95,7 @@ public class Door_Info2 extends Activity {
     private void displayResultList() {
 
 
-        TextView tView = (TextView) findViewById(R.id.Door_info);
+        TextView tView = (TextView) findViewById(R.id.tag_Door_info);
         //TextView tView = new TextView(this);
         tView.setText("Information of All Doors....");
         ListView list = (ListView)findViewById(R.id.listView);

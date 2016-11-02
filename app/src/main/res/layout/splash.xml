@@ -11,7 +11,7 @@
         android:layout_width="265dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Smart Door Lock"
+        android:text="UNLATCH"
         android:id="@+id/textView_door_lock"
         android:layout_gravity="center"
         android:layout_marginRight="50dp"
@@ -20,7 +20,7 @@
         android:layout_marginBottom="200dp"
         android:layout_weight="0.08"
         android:gravity="center"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="#401558"
         android:textSize="50dp"
         android:textStyle="bold" />
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.example.sadi.smartdoorapp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -44,6 +46,8 @@ public class Fragment_Tab_Door_Status extends Fragment
 
     private static TextView tv_Door_Status;
     private static Switch led1;
+    private static Button bt_DoorInfo;
+
     public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;
 
     @Override
@@ -52,6 +56,7 @@ public class Fragment_Tab_Door_Status extends Fragment
         rootview = inflater.inflate(R.layout.door_status, container, false);
 
         tv_Door_Status =(TextView) rootview.findViewById(R.id.textview_Door_Status);
+        bt_DoorInfo = (Button) rootview.findViewById(R.id.button_Door_Info);
 
         GetDataJSON_Door_Status g = new GetDataJSON_Door_Status();
         g.execute();
@@ -126,12 +131,20 @@ public class Fragment_Tab_Door_Status extends Fragment
             }
         });
 
+        bt_DoorInfo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Go_To_Door_Info(v);
+            }
+        });
+
+
         return rootview;
     }
 
     public void Go_To_Door_Info(View view)
     {
-
+        Intent next1 = new Intent(view.getContext(), Door_Info.class);
+        startActivity(next1);
     }
 
     public boolean onCreateOptionsMenu(Menu menu)

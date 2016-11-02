@@ -22,7 +22,7 @@ public class DoorInfo3 extends Activity {
 
         id = (ArrayList<Integer>) getIntent().getSerializableExtra("key");
 
-        TextView tv = (TextView) findViewById(R.id.Door_info);
+        TextView tv = (TextView) findViewById(R.id.tag_Door_info);
         tv.setText( String.valueOf(id.get(2)));
     }
 }

@@ -1,8 +1,17 @@
 package com.example.sadi.smartdoorapp;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -31,23 +40,80 @@ public class Door_Info extends Activity
     private static String Door_Desc = "";
     private static String Door_Status = "";
 
+    private static TextView tv_Door_Name;
+    private static TextView tv_Door_Desc;
+    private static ListView lv_Features_Name;
+
     ArrayList<String> Features_Name_Array = new ArrayList<String>();
 
+    private static ArrayAdapter<String> adapter;
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.door_info);
 
+        tv_Door_Name = (TextView) findViewById(R.id.tv_Door_Name);
+        tv_Door_Desc = (TextView) findViewById(R.id.tv_Door_Desc);
+
+        lv_Features_Name = (ListView) findViewById(R.id.lv_Features_Name);
+
+        adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, Features_Name_Array);
+
         GetDataJSON_Door_Info g = new GetDataJSON_Door_Info();
         g.execute();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("Door_Info Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
     }
 
     class GetDataJSON_Door_Info extends AsyncTask<String, String, String> {
 
         @Override
-        protected void onPreExecute()
-        {
+        protected void onPreExecute() {
             /*super.onPreExecute();
             pDialog = new ProgressDialog(User_Registration2.this);
             pDialog.setMessage("Loading...");
@@ -55,10 +121,10 @@ public class Door_Info extends Activity
             pDialog.setCancelable(false);
             pDialog.show();*/
         }
+
         @Override
-        protected String doInBackground(String... args)
-        {
-            String url = "http://"+IP_ADDRESS+"/db_Door_Info.php?MAC="+Utils.getMACAddress("wlan0");
+        protected String doInBackground(String... args) {
+            String url = "http://" + IP_ADDRESS + "/db_Door_Info.php?MAC=" + Utils.getMACAddress("wlan0");
 
             DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
             HttpGet httppost = new HttpGet(url);
@@ -69,8 +135,7 @@ public class Door_Info extends Activity
             InputStream inputStream = null;
             String result = null;
 
-            try
-            {
+            try {
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
 
@@ -81,27 +146,17 @@ public class Door_Info extends Activity
 
                 String line = null;
 
-                while ((line = reader.readLine()) != null)
-                {
+                while ((line = reader.readLine()) != null) {
                     sb.append(line + "\n");
                 }
 
                 result = sb.toString().trim();
-            }
-
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
-            }
-
-            finally
-            {
-                try
-                {
+            } finally {
+                try {
                     if (inputStream != null) inputStream.close();
-                }
-                catch (Exception squish)
-                {
+                } catch (Exception squish) {
                 }
             }
 
@@ -109,31 +164,35 @@ public class Door_Info extends Activity
         }
 
         @Override
-        protected void onPostExecute(String result)
-        {
+        protected void onPostExecute(String result) {
             JSONArray retrievedArray = null;
 
-            try
-            {
+            try {
                 JSONObject jsonObj = new JSONObject(result);
                 retrievedArray = jsonObj.getJSONArray("result");
 
-                JSONObject c = retrievedArray.getJSONObject( retrievedArray.length() - 3 );
+                JSONObject c = retrievedArray.getJSONObject(retrievedArray.length() - 3);
                 Door_Status = c.getString("Door Status");
 
-                c = retrievedArray.getJSONObject( retrievedArray.length() - 2 );
+                c = retrievedArray.getJSONObject(retrievedArray.length() - 2);
                 Door_Name = c.getString("Door_Name");
 
-                c = retrievedArray.getJSONObject( retrievedArray.length() - 1 );
+                tv_Door_Name.setText(Door_Name);
+
+                c = retrievedArray.getJSONObject(retrievedArray.length() - 1);
                 Door_Desc = c.getString("Door Description");
 
+                tv_Door_Desc.setText(Door_Desc);
 
-                for(int i=0;i<retrievedArray.length()-3;i++)
-                {
+
+                for (int i = 0; i < retrievedArray.length() - 3; i++) {
                     c = retrievedArray.getJSONObject(i);
 
                     Features_Name_Array.add(c.getString("Feature Name"));
                 }
+
+                lv_Features_Name.setAdapter(adapter);
+
             }
             catch (JSONException e)
             {
