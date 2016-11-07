@@ -16,6 +16,7 @@ public class GCMRegistrationIntentService extends IntentService
 {
     public static final String REGISTRATION_SUCCESS = "RegistrationSuccess";
     public static final String REGISTRATION_ERROR = "RegistrationError";
+    public static String token=null;
 
     public GCMRegistrationIntentService()
     {
@@ -34,7 +35,7 @@ public class GCMRegistrationIntentService extends IntentService
 
         //Register token is also null
         //we will get the token on successful registration
-        String token = null;
+        //String token = null;
         try
         {
             //Creating an instanceid

@@ -44,7 +44,8 @@ public class Main_ScreenActivity extends AppCompatActivity {
     private static Button login_btn;
     int attempt_counter = 3;
 
-    public static String IP_ADDRESS = "192.168.10.35";
+
+    public static String IP_ADDRESS = "192.168.10.38";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,8 +55,7 @@ public class Main_ScreenActivity extends AppCompatActivity {
 
      // For SQLite DB implementation
         myDB = new DatabaseHelper(this);
-
-      /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -69,7 +69,6 @@ public class Main_ScreenActivity extends AppCompatActivity {
 
         //LoginButton();
     }
-
     // making method for Login button in which we will cast all variables declared above i.e username, password, attempts
     public void LoginButton(View view)
     {
