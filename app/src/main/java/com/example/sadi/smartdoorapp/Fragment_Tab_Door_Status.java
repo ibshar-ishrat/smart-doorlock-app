@@ -52,7 +52,6 @@ public class Fragment_Tab_Door_Status extends Fragment
         rootview = inflater.inflate(R.layout.door_status, container, false);
 
         tv_Door_Status =(TextView) rootview.findViewById(R.id.textview_Door_Status);
-
         GetDataJSON_Door_Status g = new GetDataJSON_Door_Status();
         g.execute();
 

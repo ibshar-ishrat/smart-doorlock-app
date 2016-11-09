@@ -14,7 +14,7 @@ public class Fragment_Tab_Action extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootview = inflater.inflate(R.layout.activity_tab,container,false);
+        rootview = inflater.inflate(R.layout.action_tab,container,false);
         return rootview;
     }
 }

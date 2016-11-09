@@ -69,10 +69,10 @@ public class sidePanel extends AppCompatActivity
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 
         mTabHost.addTab(mTabHost.newTabSpec("Activity").setIndicator("Activity"),
-                Fragment_Tab_Action.class, null);
+                Fragment_Tab_Activity.class, null);
 
         mTabHost.addTab(mTabHost.newTabSpec("Action").setIndicator("Action"),
-                Fragment_Tab_Activity.class, null);
+                Fragment_Tab_Action.class, null);
 
         mTabHost.addTab(mTabHost.newTabSpec("Door status").setIndicator("Door status"),
                 Fragment_Tab_Door_Status.class, null);

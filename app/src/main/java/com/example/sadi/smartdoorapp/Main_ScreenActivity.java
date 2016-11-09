@@ -45,7 +45,7 @@ public class Main_ScreenActivity extends AppCompatActivity {
     int attempt_counter = 3;
 
 
-    public static String IP_ADDRESS = "192.168.10.38";
+    public static String IP_ADDRESS = "192.168.10.33";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -79,7 +79,7 @@ public class Main_ScreenActivity extends AppCompatActivity {
         sPassword = password.getText().toString().trim();
 
 
-        /*if( sUsername.matches("sadia") && sPassword.matches("sami"))
+        if( sUsername.matches("sadia") && sPassword.matches("sami"))
         {
             Intent i = new Intent("com.example.sadi.smartdoorapp.sidePanel");
             startActivity(i);
@@ -88,7 +88,7 @@ public class Main_ScreenActivity extends AppCompatActivity {
         else
         {
             Toast.makeText(Main_ScreenActivity.this, "Invalid username or password!", Toast.LENGTH_SHORT).show();
-        }*/
+        }
         GetDataJSON_Login g = new GetDataJSON_Login();
         g.execute();
 
@@ -238,7 +238,7 @@ public class Main_ScreenActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            if( !( sUsername.matches(email_out) || sUsername.matches(username_out) ) || !(sPassword.matches(password_out)) )
+            /*if( !( sUsername.matches(email_out) || sUsername.matches(username_out) ) || !(sPassword.matches(password_out)) )
             {
                 Toast.makeText(Main_ScreenActivity.this, "Invalid username or password!", Toast.LENGTH_SHORT).show();
             }
@@ -250,7 +250,7 @@ public class Main_ScreenActivity extends AppCompatActivity {
 
                 EditText text = (EditText) findViewById(R.id.editText_passreg);
                 text.setText("");
-            }
+            }*/
 
             //pDialog.dismiss();
         }
