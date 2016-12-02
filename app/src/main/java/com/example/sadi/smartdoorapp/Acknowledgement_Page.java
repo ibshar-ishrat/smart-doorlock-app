@@ -12,7 +12,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 /**
  * Created by Sadia Sami on 7/2/2016.
  */
-public class Acknowledgement_Page extends Main_ScreenActivity {
+public class Acknowledgement_Page extends Main_ScreenActivity
+{
+
     private static Button button_login_ack;
     private static TextView tips;
     private PopupWindow pw;
@@ -23,13 +25,13 @@ public class Acknowledgement_Page extends Main_ScreenActivity {
     private GoogleApiClient client;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acknowledge_page);
         ButtonLogin();
         Tip();
-
-        }
+    }
 
     private void Tip() {
         tips = (TextView) findViewById(R.id.textView_Tips);

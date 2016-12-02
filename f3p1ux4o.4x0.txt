@@ -1,0 +1,41 @@
+﻿Merge branch 'master' of https://github.com/ibshar-ishrat/smart-doorlock-app
+
+# Conflicts:
+#	app/src/main/java/com/example/sadi/smartdoorapp/Fragment_Tab_Door_Status.java
+#	app/src/main/java/com/example/sadi/smartdoorapp/User_Registration4.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 2 and 2 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   app/src/main/AndroidManifest.xml
+#	modified:   app/src/main/java/com/example/sadi/smartdoorapp/Acknowledgement_Page.java
+#	new file:   app/src/main/java/com/example/sadi/smartdoorapp/ActivityList.java
+#	modified:   app/src/main/java/com/example/sadi/smartdoorapp/Fragment_Tab_Action.java
+#	modified:   app/src/main/java/com/example/sadi/smartdoorapp/Fragment_Tab_Activity.java
+#	modified:   app/src/main/java/com/example/sadi/smartdoorapp/GCMRegistrationIntentService.java
+#	new file:   app/src/main/java/com/example/sadi/smartdoorapp/GetImages.java
+#	modified:   app/src/main/java/com/example/sadi/smartdoorapp/Main_ScreenActivity.java
+#	modified:   app/src/main/java/com/example/sadi/smartdoorapp/User_Registration2.java
+#	modified:   app/src/main/java/com/example/sadi/smartdoorapp/User_Registration3.java
+#	modified:   app/src/main/java/com/example/sadi/smartdoorapp/User_Registration4.java
+#	new file:   app/src/main/java/com/example/sadi/smartdoorapp/ViewFullImage.java
+#	modified:   app/src/main/java/com/example/sadi/smartdoorapp/sidePanel.java
+#	new file:   app/src/main/res/layout/activity_listview.xml
+#	modified:   app/src/main/res/layout/activity_registration3.xml
+#	new file:   app/src/main/res/layout/activity_view_full.xml
+#	new file:   app/src/main/res/layout/image_list_view.xml
+#
+Adding final changes 

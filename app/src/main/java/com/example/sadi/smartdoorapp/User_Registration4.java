@@ -1,7 +1,6 @@
 package com.example.sadi.smartdoorapp;
 
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,9 +11,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -37,7 +33,9 @@ import java.util.List;
 /**
  * Created by Sami Ullah on 3/16/2016.
  */
-public class User_Registration4 extends Main_ScreenActivity {
+public class User_Registration4 extends Main_ScreenActivity
+{
+
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
 
@@ -49,7 +47,6 @@ public class User_Registration4 extends Main_ScreenActivity {
     public static String mac_addr_out;
     public static String mac_addr;
 
-    public static String token_db;
 
     public static String sPinCode;
     public static String sConfirmPinCode;
@@ -57,10 +54,6 @@ public class User_Registration4 extends Main_ScreenActivity {
     public static String sDoorDesc;
 
     public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;
-
-    public BroadcastReceiver mRegistrationBroadcastReceiver;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -72,6 +65,7 @@ public class User_Registration4 extends Main_ScreenActivity {
         confirmPinCode = (EditText) findViewById(R.id.editText_confirmpin);
         doorName = (EditText) findViewById(R.id.editText_nameDoor);
         doorDesc = (EditText) findViewById(R.id.editText_desc_Door);
+
 
     }
 
@@ -126,7 +120,8 @@ public class User_Registration4 extends Main_ScreenActivity {
         new GetDataJSON().execute();
     }
 
-class Create_User extends AsyncTask<String, String, String> {
+class Create_User extends AsyncTask<String, String, String>
+{
     @Override
     protected void onPreExecute()
     {
@@ -139,7 +134,8 @@ class Create_User extends AsyncTask<String, String, String> {
     }
 
     @Override
-    protected String doInBackground(String... args) {
+    protected String doInBackground(String... args)
+    {
         SharedPreferences reg4_Pref = getSharedPreferences("reg_pref", 0);
 
         List<NameValuePair> params = new ArrayList<>();
@@ -155,7 +151,7 @@ class Create_User extends AsyncTask<String, String, String> {
         params.add(new BasicNameValuePair("PW", reg4_Pref.getString("Password", "")));
         params.add(new BasicNameValuePair("Token", reg4_Pref.getString("Token", "")));
 
-        params.add(new BasicNameValuePair("SecQ1", reg4_Pref.getString("SecQ1", "")));
+             params.add(new BasicNameValuePair("SecQ1", reg4_Pref.getString("SecQ1", "")));
         params.add(new BasicNameValuePair("SecQ2", reg4_Pref.getString("SecQ2", "")));
         params.add(new BasicNameValuePair("SecA1", reg4_Pref.getString("SecA1", "")));
         params.add(new BasicNameValuePair("SecA2", reg4_Pref.getString("SecA2", "")));
@@ -182,9 +178,9 @@ class Create_User extends AsyncTask<String, String, String> {
         return null;
     }
 
-    protected void onPostExecute(String file_url) {
+    protected void onPostExecute(String file_url)
+    {
         //pDialog.dismiss();
-
         Intent next3 = new Intent("com.example.sadi.smartdoorapp.Acknowledgement_Page");
         startActivity(next3);
     }
@@ -193,11 +189,11 @@ class Create_User extends AsyncTask<String, String, String> {
 class GetDataJSON extends AsyncTask<String, String, String> {
 
     @Override
-    protected String doInBackground(String... args) {
+    protected String doInBackground(String... args)
+    {
         String url = "http://" + IP_ADDRESS + "/db_val_reg4.php?MAC=" + Utils.getMACAddress("wlan0");
 
-        DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-        HttpGet httppost = new HttpGet(url);
+        DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());HttpGet httppost = new HttpGet(url);
 
         // Depends on your web service
         httppost.setHeader("Content-type", "application/json");
@@ -235,7 +231,8 @@ class GetDataJSON extends AsyncTask<String, String, String> {
     }
 
     @Override
-    protected void onPostExecute(String result) {
+    protected void onPostExecute(String result)
+    {
         JSONArray retrievedArray = null;
 
         try {
@@ -295,69 +292,6 @@ class GetDataJSON extends AsyncTask<String, String, String> {
             }
             else
             {
-                      /* REGISTER THE USER TO GOOGLE CLOUD MESSAGING */
-                mRegistrationBroadcastReceiver = new BroadcastReceiver()
-                {
-
-                    //When the broadcast received
-                    //We are sending the broadcast from GCMRegistrationIntentService
-
-                    @Override
-                    public void onReceive(Context context, Intent intent)
-                    {
-                        //If the broadcast has received with success
-                        //that means device is registered successfully
-                        if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS))
-                        {
-                            //Getting the registration token from the intent
-                            String token = intent.getStringExtra("token");
-                            System.out.println("Here we go");
-                            //Displaying the token as toast
-                            Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
-
-                            //if the intent is not with success then displaying error messages
-                        }
-                        else if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR))
-                        {
-                            Toast.makeText(getApplicationContext(), "GCM registration error!", Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            Toast.makeText(getApplicationContext(), "Error occurred", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                };
-
-                //Checking play service is available or not
-                int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
-
-                //if play service is not available
-                if(ConnectionResult.SUCCESS != resultCode)
-                {
-                    //If play service is supported but not installed
-                    if(GooglePlayServicesUtil.isUserRecoverableError(resultCode))
-                    {
-                        //Displaying message that play service is not installed
-                        Toast.makeText(getApplicationContext(), "Google Play Service is not install/enabled in this device!", Toast.LENGTH_LONG).show();
-                        GooglePlayServicesUtil.showErrorNotification(resultCode, getApplicationContext());
-
-                        //If play service is not supported
-                        //Displaying an error message
-                    }
-                    else
-                    {
-                        Toast.makeText(getApplicationContext(), "This device does not support for Google Play Service!", Toast.LENGTH_LONG).show();
-                    }
-
-                    //If play service is available
-                }
-                else
-                {
-                    Intent itent = new Intent(User_Registration4.this, GCMRegistrationIntentService.class);
-                    startService(itent);
-                }
-        /* USER HAS BEEN REGISTERED TO GOOGLE CLOUD MESSAGING */
-
                 SharedPreferences reg4_Pref = getSharedPreferences("reg_pref", 0);
 
                 SharedPreferences.Editor edit = reg4_Pref.edit();
@@ -366,7 +300,6 @@ class GetDataJSON extends AsyncTask<String, String, String> {
                 edit.putString("Door_Name", sDoorName);
                 edit.putString("Door_Desc", sDoorDesc);
                 edit.putString("Phone_MAC_Addr", mac_addr);
-                edit.putString("Token", token_db);
                 edit.commit();
 
                 new Create_User().execute();

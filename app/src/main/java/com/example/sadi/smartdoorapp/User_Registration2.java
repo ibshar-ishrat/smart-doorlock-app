@@ -51,7 +51,7 @@ public class User_Registration2 extends Main_ScreenActivity {
     public static String userNamePattern;
     public static String emailPattern;
 
-    public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;;
+    public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -259,8 +259,8 @@ public class User_Registration2 extends Main_ScreenActivity {
                     password.setError("Password is required!");
 
                 else if (!(sPassword.matches(passwordPattern))) {
-                    password.setError("Invalid password! Password must contain At least one upper case,one lower case, 1 digit, 1 special character");
                     //Toast.makeText(this, "HINT: Password must be 8 to 20 character long", Toast.LENGTH_SHORT).show();
+                    password.setError("Invalid password! Password must contain At least 1 upper case letter, 1 lower case letter, 1 digit and 1 special character!s");
                 }
 
                 else if (sPassword.length() < 8) {
