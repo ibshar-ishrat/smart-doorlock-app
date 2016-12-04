@@ -5,9 +5,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText_reg4"
+        android:id="@+id/editText_insertdoor"
         android:layout_alignParentTop="true"
-        android:text="Door Settings"
+        android:text="Insert Door"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -22,11 +22,11 @@
         android:layout_height="wrap_content"
         android:inputType="numberPassword"
         android:ems="10"
-        android:id="@+id/editText_pin"
+        android:id="@+id/editText_pin_id"
         android:password="true"
-        android:layout_below="@+id/textView_pin"
-        android:layout_alignLeft="@+id/textView_pin"
-        android:layout_alignStart="@+id/textView_pin" />
+        android:layout_below="@+id/textView_pin_id"
+        android:layout_alignLeft="@+id/textView_pin_id"
+        android:layout_alignStart="@+id/textView_pin_id" />
 
 
     <TextView
@@ -34,81 +34,82 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Confirm Pin Code"
-        android:id="@+id/textview_confirmpin"
-        android:layout_below="@+id/editText_pin"
-        android:layout_alignLeft="@+id/editText_pin"
-        android:layout_alignStart="@+id/editText_pin" />
+        android:id="@+id/textview_confirmpin_id"
+        android:layout_below="@+id/editText_pin_id"
+        android:layout_alignLeft="@+id/editText_pin_id"
+        android:layout_alignStart="@+id/editText_pin_id" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="numberPassword"
         android:ems="10"
-        android:id="@+id/editText_confirmpin"
+        android:id="@+id/editText_confirmpin_id"
         android:password="true"
-        android:layout_below="@+id/textview_confirmpin"
-        android:layout_alignLeft="@+id/textview_confirmpin"
-        android:layout_alignStart="@+id/textview_confirmpin" />
+        android:layout_below="@+id/textview_confirmpin_id"
+        android:layout_alignLeft="@+id/textview_confirmpin_id"
+        android:layout_alignStart="@+id/textview_confirmpin_id" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Name Door"
-        android:id="@+id/textView_nameDoor"
-        android:layout_below="@+id/editText_confirmpin"
-        android:layout_alignLeft="@+id/editText_confirmpin"
-        android:layout_alignStart="@+id/editText_confirmpin" />
+        android:id="@+id/textView_nameDoor_id"
+        android:layout_below="@+id/editText_confirmpin_id"
+        android:layout_alignLeft="@+id/editText_confirmpin_id"
+        android:layout_alignStart="@+id/editText_confirmpin_id" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:ems="10"
-        android:id="@+id/editText_nameDoor"
-        android:layout_below="@+id/textView_nameDoor"
-        android:layout_alignLeft="@+id/textView_nameDoor"
-        android:layout_alignStart="@+id/textView_nameDoor" />
+        android:id="@+id/editText_nameDoor_id"
+        android:layout_below="@+id/textView_nameDoor_id"
+        android:layout_alignLeft="@+id/textView_nameDoor_id"
+        android:layout_alignStart="@+id/textView_nameDoor_id" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Description of Door"
-        android:id="@+id/textView_desc_Door"
-        android:layout_below="@+id/editText_nameDoor"
-        android:layout_alignLeft="@+id/editText_nameDoor"
-        android:layout_alignStart="@+id/editText_nameDoor" />
+        android:id="@+id/textView_desc_Door_id"
+        android:layout_below="@+id/editText_nameDoor_id"
+        android:layout_alignLeft="@+id/editText_nameDoor_id"
+        android:layout_alignStart="@+id/editText_nameDoor_id" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:ems="10"
-        android:id="@+id/editText_desc_Door"
-        android:layout_below="@+id/textView_desc_Door"
-        android:layout_alignLeft="@+id/textView_desc_Door"
-        android:layout_alignStart="@+id/textView_desc_Door" />
+        android:id="@+id/editText_desc_Door_id"
+        android:layout_below="@+id/textView_desc_Door_id"
+        android:layout_alignLeft="@+id/textView_desc_Door_id"
+        android:layout_alignStart="@+id/textView_desc_Door_id" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Done"
-        android:id="@+id/button_done"
+        android:text="Next"
+        android:id="@+id/button_next_id"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="66dp"
-        android:onClick="ButtonDone" />
+        android:onClick="Goto_InsertDoor2" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Enter Pin Code"
-        android:id="@+id/textView_pin"
-        android:layout_below="@+id/editText_reg4"
-        android:layout_alignRight="@+id/button_done"
-        android:layout_alignEnd="@+id/button_done" />
+        android:id="@+id/textView_pin_id"
+        android:layout_below="@+id/editText_insertdoor"
+        android:layout_alignRight="@+id/button_next_id"
+        android:layout_alignEnd="@+id/button_next_id"
+        android:layout_marginTop="50dp" />
 
 
 </RelativeLayout>

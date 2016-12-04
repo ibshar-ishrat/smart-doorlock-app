@@ -15,8 +15,12 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +31,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ibshar on 26/10/2016.
@@ -123,19 +128,26 @@ public class Door_Info extends Activity
         }
 
         @Override
-        protected String doInBackground(String... args) {
-            String url = "http://" + IP_ADDRESS + "/db_Door_Info.php?MAC=" + Utils.getMACAddress("wlan0");
+        protected String doInBackground(String... args)
+        {
+            List<NameValuePair> params = new ArrayList<>();
 
-            DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-            HttpGet httppost = new HttpGet(url);
+            params.add(new BasicNameValuePair("MAC",Utils.getMACAddress("wlan0")));
 
-            // Depends on your web service
-            httppost.setHeader("Content-type", "application/json");
+            String url = "http://" + IP_ADDRESS + "/db_Door_Info.php";
 
             InputStream inputStream = null;
             String result = null;
 
             try {
+                DefaultHttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(url);
+
+                // Depends on your web service
+                //httppost.setHeader("Content-type", "application/json");
+
+                httppost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
 

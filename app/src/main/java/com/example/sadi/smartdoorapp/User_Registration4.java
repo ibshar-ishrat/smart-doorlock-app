@@ -15,7 +15,9 @@ import android.widget.Toast;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
@@ -65,8 +67,6 @@ public class User_Registration4 extends Main_ScreenActivity
         confirmPinCode = (EditText) findViewById(R.id.editText_confirmpin);
         doorName = (EditText) findViewById(R.id.editText_nameDoor);
         doorDesc = (EditText) findViewById(R.id.editText_desc_Door);
-
-
     }
 
     public void ButtonDone(View view)
@@ -151,7 +151,7 @@ class Create_User extends AsyncTask<String, String, String>
         params.add(new BasicNameValuePair("PW", reg4_Pref.getString("Password", "")));
         params.add(new BasicNameValuePair("Token", reg4_Pref.getString("Token", "")));
 
-             params.add(new BasicNameValuePair("SecQ1", reg4_Pref.getString("SecQ1", "")));
+        params.add(new BasicNameValuePair("SecQ1", reg4_Pref.getString("SecQ1", "")));
         params.add(new BasicNameValuePair("SecQ2", reg4_Pref.getString("SecQ2", "")));
         params.add(new BasicNameValuePair("SecA1", reg4_Pref.getString("SecA1", "")));
         params.add(new BasicNameValuePair("SecA2", reg4_Pref.getString("SecA2", "")));
@@ -191,17 +191,24 @@ class GetDataJSON extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... args)
     {
-        String url = "http://" + IP_ADDRESS + "/db_val_reg4.php?MAC=" + Utils.getMACAddress("wlan0");
+        List<NameValuePair> params = new ArrayList<>();
 
-        DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());HttpGet httppost = new HttpGet(url);
+        params.add(new BasicNameValuePair("MAC",Utils.getMACAddress("wlan0")));
 
-        // Depends on your web service
-        httppost.setHeader("Content-type", "application/json");
+        String url = "http://" + IP_ADDRESS + "/db_val_reg4.php";
 
         InputStream inputStream = null;
         String result = null;
 
         try {
+            DefaultHttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(url);
+
+            // Depends on your web service
+            //httppost.setHeader("Content-type", "application/json");
+
+            httppost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+
             HttpResponse response = httpclient.execute(httppost);
             HttpEntity entity = response.getEntity();
 
@@ -250,7 +257,7 @@ class GetDataJSON extends AsyncTask<String, String, String> {
         }
 
         //********* VALIDATION CODE ***********//
-        if (sPinCode.length() == 0 || sPinCode.length() != 4 || mac_addr.matches(mac_addr_out) || sConfirmPinCode.length() == 0 || !(sConfirmPinCode.matches(sPinCode)) || sConfirmPinCode.length() != 4 || sDoorName.length() == 0 || sDoorName.length() > 30 || sDoorDesc.length() > 255) {
+        if (sPinCode.length() == 0 || sPinCode.length() != 4 || sDoorDesc.length() == 0||  mac_addr.matches(mac_addr_out) || sConfirmPinCode.length() == 0 || !(sConfirmPinCode.matches(sPinCode)) || sConfirmPinCode.length() != 4 || sDoorName.length() == 0 || sDoorName.length() > 30 || sDoorDesc.length() > 255) {
             if (sPinCode.length() == 0)
                 pinCode.setError("PIN code is required!");
 
@@ -272,7 +279,10 @@ class GetDataJSON extends AsyncTask<String, String, String> {
             else if (sDoorName.length() > 30)
                 doorName.setError("Door name is too long!");
 
-            if (sDoorDesc.length() > 255)
+            if (sDoorDesc.length() == 0)
+                doorDesc.setError("Door description is required!");
+
+            else if (sDoorDesc.length() > 255)
                 doorDesc.setError("Door description is too long!");
 
             if (mac_addr.matches(mac_addr_out)) {

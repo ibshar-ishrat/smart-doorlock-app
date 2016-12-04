@@ -13,9 +13,12 @@ import android.os.AsyncTask;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +27,9 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Exchanger;
 
 /**
  * Created by Sami Ullah on 3/16/2016.
@@ -138,19 +144,27 @@ public class User_Registration2 extends Main_ScreenActivity {
         @Override
         protected String doInBackground(String... args)
         {
-            String url = "http://"+IP_ADDRESS+"/db_val_reg2.php?Email="+sEmail+"&Username="+sUserName+"&AltEmail="+sAltEmail;
+            List<NameValuePair> params = new ArrayList<>();
 
-            DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-            HttpGet httppost = new HttpGet(url);
+            params.add(new BasicNameValuePair("Email",sEmail));
+            params.add(new BasicNameValuePair("Username",sUserName));
+            params.add(new BasicNameValuePair("AltEmail",sAltEmail));
 
-            // Depends on your web service
-            httppost.setHeader("Content-type", "application/json");
+            String url = "http://"+IP_ADDRESS+"/db_val_reg2.php";
 
             InputStream inputStream = null;
             String result = null;
 
             try
             {
+                DefaultHttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(url);
+
+                // Depends on your web service
+                //httppost.setHeader("Content-type", "application/json");
+
+                httppost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
 
@@ -168,7 +182,6 @@ public class User_Registration2 extends Main_ScreenActivity {
 
                 result = sb.toString().trim();
             }
-
             catch (Exception e)
             {
                 e.printStackTrace();

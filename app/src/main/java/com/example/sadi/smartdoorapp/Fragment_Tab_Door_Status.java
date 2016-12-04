@@ -21,8 +21,12 @@ import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +38,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -105,8 +111,8 @@ public class Fragment_Tab_Door_Status extends Fragment
 
                             //dialog.cancel();
                             //Verify Pin Code and do necessary action
-                            GetDataJSON_PIN g = new GetDataJSON_PIN();
-                            g.execute();
+                            //GetDataJSON_PIN g = new GetDataJSON_PIN();
+                            //g.execute();
                         }
                     });
 
@@ -126,7 +132,7 @@ public class Fragment_Tab_Door_Status extends Fragment
                 }
                 else
                 {
-                    new Background_get().execute("led1=0");
+                    new Background_get().execute("led1=0",Utils.getMACAddress("wlan0"),pinCode);
                 }
             }
         });
@@ -185,8 +191,9 @@ public class Fragment_Tab_Door_Status extends Fragment
         {
             try
             {
+
                 /* Change the IP to the IP you set in the arduino sketch */
-                URL url = new URL("http://" + IP_ADDRESS + "/?" + params[0]);
+                URL url = new URL("http://" + IP_ADDRESS + "/?" + params);
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -218,19 +225,25 @@ public class Fragment_Tab_Door_Status extends Fragment
         @Override
         protected String doInBackground(String... args)
         {
-            String url = "http://"+IP_ADDRESS+"/db_ver_PIN.php?MAC="+Utils.getMACAddress("wlan0");
+            List<NameValuePair> params = new ArrayList<>();
 
-            DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-            HttpGet httppost = new HttpGet(url);
+            params.add(new BasicNameValuePair("MAC",Utils.getMACAddress("wlan0")));
 
-            // Depends on your web service
-            httppost.setHeader("Content-type", "application/json");
+            String url = "http://"+IP_ADDRESS+"/db_ver_PIN.php";
 
             InputStream inputStream = null;
             String result = null;
 
             try
             {
+                DefaultHttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(url);
+
+                // Depends on your web service
+                //httppost.setHeader("Content-type", "application/json");
+
+                httppost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
 
@@ -324,19 +337,25 @@ public class Fragment_Tab_Door_Status extends Fragment
         @Override
         protected String doInBackground(String... args)
         {
-            String url = "http://"+IP_ADDRESS+"/db_Status_Tab.php?MAC="+Utils.getMACAddress("wlan0");
+            List<NameValuePair> params = new ArrayList<>();
 
-            DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-            HttpGet httppost = new HttpGet(url);
+            params.add(new BasicNameValuePair("MAC",Utils.getMACAddress("wlan0")));
 
-            // Depends on your web service
-            httppost.setHeader("Content-type", "application/json");
+            String url = "http://"+IP_ADDRESS+"/db_Status_Tab.php";
 
             InputStream inputStream = null;
             String result = null;
 
             try
             {
+                DefaultHttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(url);
+
+                // Depends on your web service
+                //httppost.setHeader("Content-type", "application/json");
+
+                httppost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
 
