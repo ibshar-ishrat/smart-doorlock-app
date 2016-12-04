@@ -27,7 +27,7 @@ public class GetImages
     public static Bitmap[] bitmaps;
 
     public static final String JSON_ARRAY = "result";
-    public static final String IMAGE_URL = "url";
+    public static final String IMAGE_URL = "Visitor_Image";
     private String json;
     private JSONArray urls;
 

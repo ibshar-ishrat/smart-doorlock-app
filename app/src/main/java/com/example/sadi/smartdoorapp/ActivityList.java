@@ -36,7 +36,6 @@ public class ActivityList extends ArrayAdapter<String>
         View listViewItem = inflater.inflate(R.layout.image_list_view, null, true);
         TextView textViewURL = (TextView) listViewItem.findViewById(R.id.textViewURL);
         ImageView image = (ImageView) listViewItem.findViewById(R.id.imageDownloaded);
-
         textViewURL.setText(urls[position]);
         image.setImageBitmap(Bitmap.createScaledBitmap(bitmaps[position],100,50,false));
         return  listViewItem;

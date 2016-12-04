@@ -30,7 +30,7 @@ public class GCMPushReceiverService extends GcmListenerService
     //This method is generating a notification and displaying the notification
     private void sendNotification(String message)
     {
-        Intent intent = new Intent(this, sidePanel.class);
+        Intent intent = new Intent(this, ViewFullImage.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         int requestCode = 0;
         PendingIntent pendingIntent = PendingIntent.getActivity(this, requestCode, intent, PendingIntent.FLAG_ONE_SHOT);

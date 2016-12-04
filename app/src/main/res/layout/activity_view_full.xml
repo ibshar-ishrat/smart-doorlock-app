@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation= "vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/imageViewFull"
-        />
+        android:layout_height="293dp"
+        android:id="@+id/imageViewFull" />
+
+    <Button
+        android:text="Ignore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonIgnore"
+        android:layout_gravity="center_horizontal"
+        android:onClick="Ignore"
+       />
+
+    <Button
+        android:text="Unlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonUnlock"
+        android:layout_gravity="center_horizontal"
+        android:onClick="Unlock"
+     />
+
 </LinearLayout>
+
