@@ -14,9 +14,11 @@ import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,6 +26,8 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main_ScreenActivity extends AppCompatActivity {
     // main screen is Login Page here in this class we will initialize some variables
@@ -45,7 +49,9 @@ public class Main_ScreenActivity extends AppCompatActivity {
     int attempt_counter = 3;
 
 
-    public static String IP_ADDRESS = "192.168.8.101";
+
+    public static String IP_ADDRESS = "192.168.10.34";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -79,16 +85,6 @@ public class Main_ScreenActivity extends AppCompatActivity {
         sPassword = password.getText().toString().trim();
 
 
-        if( sUsername.matches("sadia") && sPassword.matches("sami"))
-        {
-            Intent i = new Intent("com.example.sadi.smartdoorapp.sidePanel");
-            startActivity(i);
-        }
-
-        else
-        {
-            Toast.makeText(Main_ScreenActivity.this, "Invalid username or password!", Toast.LENGTH_SHORT).show();
-        }
         GetDataJSON_Login g = new GetDataJSON_Login();
         g.execute();
 
@@ -152,22 +148,27 @@ public class Main_ScreenActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... args)
         {
-            String url = "http://"+IP_ADDRESS+"/db_ver_Login.php?MAC="+Utils.getMACAddress("wlan0");
+            List<NameValuePair> params = new ArrayList<>();
 
-            DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-            HttpGet httppost = new HttpGet(url);
+            params.add(new BasicNameValuePair("MAC",Utils.getMACAddress("wlan0")));
 
-            // Depends on your web service
-            httppost.setHeader("Content-type", "application/json");
+            String url = "http://"+IP_ADDRESS+"/db_ver_Login.php";
 
             InputStream inputStream = null;
             String result = null;
 
             try
             {
+                DefaultHttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(url);
+
+                // Depends on your web service
+                //httppost.setHeader("Content-type", "application/json");
+
+                httppost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
-
                 inputStream = entity.getContent();
                 // json is UTF-8 by default
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
@@ -238,7 +239,7 @@ public class Main_ScreenActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            /*if( !( sUsername.matches(email_out) || sUsername.matches(username_out) ) || !(sPassword.matches(password_out)) )
+            if( !( sUsername.matches(email_out) || sUsername.matches(username_out) ) || !(sPassword.matches(password_out)) )
             {
                 Toast.makeText(Main_ScreenActivity.this, "Invalid username or password!", Toast.LENGTH_SHORT).show();
             }
@@ -250,7 +251,7 @@ public class Main_ScreenActivity extends AppCompatActivity {
 
                 EditText text = (EditText) findViewById(R.id.editText_passreg);
                 text.setText("");
-            }*/
+            }
 
             //pDialog.dismiss();
         }

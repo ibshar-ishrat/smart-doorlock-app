@@ -2,6 +2,7 @@ package com.example.sadi.smartdoorapp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -19,8 +21,12 @@ import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +38,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -44,6 +54,8 @@ public class Fragment_Tab_Door_Status extends Fragment
 
     private static TextView tv_Door_Status;
     private static Switch led1;
+    private static Button bt_DoorInfo;
+
     public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;
 
     @Override
@@ -52,6 +64,8 @@ public class Fragment_Tab_Door_Status extends Fragment
         rootview = inflater.inflate(R.layout.door_status, container, false);
 
         tv_Door_Status =(TextView) rootview.findViewById(R.id.textview_Door_Status);
+        bt_DoorInfo = (Button) rootview.findViewById(R.id.button_Door_Info);
+
         GetDataJSON_Door_Status g = new GetDataJSON_Door_Status();
         g.execute();
 
@@ -120,17 +134,25 @@ public class Fragment_Tab_Door_Status extends Fragment
                 }
                 else
                 {
-                    new Background_get().execute("led1=0");
+                    new Background_get().execute("led1=0",Utils.getMACAddress("wlan0"),pinCode);
                 }
             }
         });
+
+        bt_DoorInfo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Go_To_Door_Info(v);
+            }
+        });
+
 
         return rootview;
     }
 
     public void Go_To_Door_Info(View view)
     {
-
+        Intent next1 = new Intent(view.getContext(), Door_Info.class);
+        startActivity(next1);
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
@@ -171,8 +193,9 @@ public class Fragment_Tab_Door_Status extends Fragment
         {
             try
             {
+
                 /* Change the IP to the IP you set in the arduino sketch */
-                URL url = new URL("http://" + IP_ADDRESS + "/?" + params[0]);
+                URL url = new URL("http://" + IP_ADDRESS + "/?" + params);
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -199,24 +222,49 @@ public class Fragment_Tab_Door_Status extends Fragment
         }
     }
 
-    class GetDataJSON_PIN extends AsyncTask<String, String, String> {
+    class GetDataJSON_PIN extends AsyncTask<String, String, String>
+    {
+        /*Long tsLong = System.currentTimeMillis()/1000;
+        String ts = tsLong.toString();*/
+        public  String getCurrentTimeStamp()
+        {
+            try {
 
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String currentDateTime = dateFormat.format(new Date()); // Find todays date
+
+                return currentDateTime;
+            } catch (Exception e) {
+                e.printStackTrace();
+
+                return null;
+            }
+        }
+        String ts =getCurrentTimeStamp();
         @Override
         protected String doInBackground(String... args)
         {
-            String url = "http://"+IP_ADDRESS+"/db_ver_PIN.php?MAC="+Utils.getMACAddress("wlan0");
+            List<NameValuePair> params = new ArrayList<>();
 
-            DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-            HttpGet httppost = new HttpGet(url);
+            params.add(new BasicNameValuePair("MAC",Utils.getMACAddress("wlan0")));
+            params.add(new BasicNameValuePair("PIN",pinCode));
+            params.add(new BasicNameValuePair("TS",ts));
 
-            // Depends on your web service
-            httppost.setHeader("Content-type", "application/json");
+            String url = "http://"+IP_ADDRESS+"/test.php";
 
             InputStream inputStream = null;
             String result = null;
 
             try
             {
+                DefaultHttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(url);
+
+                // Depends on your web service
+                //httppost.setHeader("Content-type", "application/json");
+
+                httppost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
 
@@ -267,14 +315,15 @@ public class Fragment_Tab_Door_Status extends Fragment
                 // for(int i=0;i<retrievedArray.length();i++)
                 {
                     JSONObject c = retrievedArray.getJSONObject(0);
-                    pinCode_out = c.getString("PIN_Code");
+                    String out = c.getString("result");
+                    Toast.makeText(getActivity(), out , Toast.LENGTH_SHORT).show();
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            if (pinCode.matches(pinCode_out))
+            /*if (pinCode.matches(pinCode_out))
             {
                 //dialog.cancel();
 
@@ -291,7 +340,7 @@ public class Fragment_Tab_Door_Status extends Fragment
                 //dialog.cancel();
                 Toast.makeText(getActivity(), "Invalid PIN Code!", Toast.LENGTH_SHORT).show();
                 led1.setChecked(false);
-            }
+            }*/
         }
     }
 
@@ -310,19 +359,25 @@ public class Fragment_Tab_Door_Status extends Fragment
         @Override
         protected String doInBackground(String... args)
         {
-            String url = "http://"+IP_ADDRESS+"/db_Status_Tab.php?MAC="+Utils.getMACAddress("wlan0");
+            List<NameValuePair> params = new ArrayList<>();
 
-            DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-            HttpGet httppost = new HttpGet(url);
+            params.add(new BasicNameValuePair("MAC",Utils.getMACAddress("wlan0")));
 
-            // Depends on your web service
-            httppost.setHeader("Content-type", "application/json");
+            String url = "http://"+IP_ADDRESS+"/db_Status_Tab.php";
 
             InputStream inputStream = null;
             String result = null;
 
             try
             {
+                DefaultHttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(url);
+
+                // Depends on your web service
+                //httppost.setHeader("Content-type", "application/json");
+
+                httppost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
 

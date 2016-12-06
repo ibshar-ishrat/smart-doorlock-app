@@ -26,7 +26,9 @@ public class Fragment_Tab_Activity extends Fragment implements AdapterView.OnIte
 
     View rootview;
     public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;
-    public static final String GET_IMAGE_URL="http://"+IP_ADDRESS+"/db_Activity_Tab.php?MAC=C4:3A:BE:53:F5:D1";
+
+    public static final String GET_IMAGE_URL="http://"+IP_ADDRESS+"/db_Activity_Tab.php";
+
     public static GetImages getImages;
     static String rspStr;
     public static final String BITMAP_ID = "BITMAP_ID";

@@ -29,9 +29,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static com.example.sadi.smartdoorapp.GetImages.bitmaps;
+
 public class ViewFullImage extends AppCompatActivity {
     public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;
-    public static final String GET_IMAGE_URL = "http://" + IP_ADDRESS + "/db_Single_Activity.php?MAC=C4:3A:BE:53:F5:D1";
+    public static final String GET_IMAGE_URL = "http://" + IP_ADDRESS + "/db_Single_Activity.php";
     private ImageView imageView;
     static String activityinStr;
     public static GetImages getActivity;
@@ -217,7 +219,14 @@ public class ViewFullImage extends AppCompatActivity {
             {
                 super.onPostExecute(v);
                 imageView = (ImageView) findViewById(R.id.imageViewFull);
-                imageView.setImageBitmap(GetImages.bitmaps[0]);
+                if(bitmaps!=null)
+                {
+                    imageView.setImageBitmap(bitmaps[0]);
+                }
+                else
+                {
+                    System.out.println("No Image to show");
+                }
 
             }
         }

@@ -1,18 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <TextView
-        android:id="@+id/Door_info"
+        android:id="@+id/tag_Door_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="Door Information: "
+        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <ListView
-        android:id="@+id/listView"
+    <TextView
+        android:id="@+id/tag_Features"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Features:"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/tag_Door_info"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="166dp" />
+
+    <TextView
+        android:text="Door Name: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tag_Door_info"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="32dp"
+        android:id="@+id/tv_Label_Door_Name" />
+
+    <TextView
+        android:text="Door Desc:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_Label_Door_Name"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_alignLeft="@+id/tv_Label_Door_Name"
+        android:layout_alignStart="@+id/tv_Label_Door_Name"
+        android:layout_marginTop="41dp"
+        android:id="@+id/tv_Label_Door_Desc" />
+
+    <TextView
+        android:text="Connecting..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_alignBottom="@+id/tv_Label_Door_Desc"
+        android:layout_alignLeft="@+id/tv_Door_Name"
+        android:layout_alignStart="@+id/tv_Door_Name"
+        android:id="@+id/tv_Door_Desc" />
+
+
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tag_Features"
+        android:layout_alignRight="@+id/tv_Door_Desc"
+        android:layout_alignEnd="@+id/tv_Door_Desc"
+        android:id="@+id/lv_Features_Name" />
+
+    <TextView
+        android:text="Connecting..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/tv_Door_Name"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_alignBaseline="@+id/tv_Label_Door_Name"
+        android:layout_alignBottom="@+id/tv_Label_Door_Name"
+        android:layout_toRightOf="@+id/tv_Label_Door_Name"
+        android:layout_toEndOf="@+id/tv_Label_Door_Name" />
+
+</RelativeLayout>
