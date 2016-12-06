@@ -196,19 +196,25 @@ public class Forget_Password extends AppCompatActivity
         @Override
         protected String doInBackground(String... args)
         {
-            String url = "http://"+IP_ADDRESS+"/db_ver_secA.php?MAC="+Utils.getMACAddress("wlan0");
+            List<NameValuePair> params = new ArrayList<>();
 
-            DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-            HttpGet httppost = new HttpGet(url);
+            params.add(new BasicNameValuePair("MAC",Utils.getMACAddress("wlan0")));
 
-            // Depends on your web service
-            httppost.setHeader("Content-type", "application/json");
+            String url = "http://"+IP_ADDRESS+"/db_ver_secA.php";
 
             InputStream inputStream = null;
             String result = null;
 
             try
             {
+                DefaultHttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(url);
+
+                // Depends on your web service
+                //httppost.setHeader("Content-type", "application/json");
+
+                httppost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
 

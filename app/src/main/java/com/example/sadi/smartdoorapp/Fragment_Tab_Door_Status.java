@@ -38,7 +38,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -111,8 +113,8 @@ public class Fragment_Tab_Door_Status extends Fragment
 
                             //dialog.cancel();
                             //Verify Pin Code and do necessary action
-                            //GetDataJSON_PIN g = new GetDataJSON_PIN();
-                            //g.execute();
+                            GetDataJSON_PIN g = new GetDataJSON_PIN();
+                            g.execute();
                         }
                     });
 
@@ -220,16 +222,35 @@ public class Fragment_Tab_Door_Status extends Fragment
         }
     }
 
-    class GetDataJSON_PIN extends AsyncTask<String, String, String> {
+    class GetDataJSON_PIN extends AsyncTask<String, String, String>
+    {
+        /*Long tsLong = System.currentTimeMillis()/1000;
+        String ts = tsLong.toString();*/
+        public  String getCurrentTimeStamp()
+        {
+            try {
 
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String currentDateTime = dateFormat.format(new Date()); // Find todays date
+
+                return currentDateTime;
+            } catch (Exception e) {
+                e.printStackTrace();
+
+                return null;
+            }
+        }
+        String ts =getCurrentTimeStamp();
         @Override
         protected String doInBackground(String... args)
         {
             List<NameValuePair> params = new ArrayList<>();
 
             params.add(new BasicNameValuePair("MAC",Utils.getMACAddress("wlan0")));
+            params.add(new BasicNameValuePair("PIN",pinCode));
+            params.add(new BasicNameValuePair("TS",ts));
 
-            String url = "http://"+IP_ADDRESS+"/db_ver_PIN.php";
+            String url = "http://"+IP_ADDRESS+"/test.php";
 
             InputStream inputStream = null;
             String result = null;
@@ -294,14 +315,15 @@ public class Fragment_Tab_Door_Status extends Fragment
                 // for(int i=0;i<retrievedArray.length();i++)
                 {
                     JSONObject c = retrievedArray.getJSONObject(0);
-                    pinCode_out = c.getString("PIN_Code");
+                    String out = c.getString("result");
+                    Toast.makeText(getActivity(), out , Toast.LENGTH_SHORT).show();
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            if (pinCode.matches(pinCode_out))
+            /*if (pinCode.matches(pinCode_out))
             {
                 //dialog.cancel();
 
@@ -318,7 +340,7 @@ public class Fragment_Tab_Door_Status extends Fragment
                 //dialog.cancel();
                 Toast.makeText(getActivity(), "Invalid PIN Code!", Toast.LENGTH_SHORT).show();
                 led1.setChecked(false);
-            }
+            }*/
         }
     }
 
