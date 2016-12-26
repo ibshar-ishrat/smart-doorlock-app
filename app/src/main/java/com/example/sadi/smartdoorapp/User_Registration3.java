@@ -32,7 +32,7 @@ public class User_Registration3 extends Main_ScreenActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration3);
+        setContentView(R.layout.header_registration3);
 
         secQ1=(EditText)findViewById(R.id.editText_secQ1);
         secA1=(EditText)findViewById(R.id.editText_secAns1);

@@ -1,6 +1,5 @@
 package com.example.sadi.smartdoorapp;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -31,7 +30,7 @@ public class Reset_Password extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.reset_password);
+        setContentView(R.layout.header_reset_password);
 
         password = (EditText)findViewById(R.id.editText_newpas_reset);
         confirmPassword = (EditText)findViewById(R.id.editText_confpass_reset);

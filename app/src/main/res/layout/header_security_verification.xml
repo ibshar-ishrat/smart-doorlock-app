@@ -16,7 +16,8 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main__screen" />
+    <include layout="@layout/security_verification" />
+
 
 
 </android.support.design.widget.CoordinatorLayout>

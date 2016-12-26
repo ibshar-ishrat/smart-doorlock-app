@@ -20,7 +20,7 @@ public class Account_Settings extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.account_settings);
+        setContentView(R.layout.header_account_settings);
 
         email = (EditText)findViewById(R.id.editText_acc_email);
         altEmail = (EditText)findViewById(R.id.editText_acc_AltEmail);

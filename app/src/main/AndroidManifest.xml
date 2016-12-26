@@ -275,7 +275,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ViewFullImage" android:label="Activity" android:parentActivityName=".sidePanel"> </activity>
+        <activity android:name=".ViewFullImage" android:label="View Full Image" android:parentActivityName=".sidePanel"> </activity>
 
 
 

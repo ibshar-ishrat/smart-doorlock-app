@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Main_ScreenActivity"
+    tools:showIn="@layout/header_registration3">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -104,20 +111,19 @@
         android:layout_height="wrap_content"
         android:text="Next Step"
         android:id="@+id/button_next3"
+        android:onClick="ButtonNext3"
         android:layout_below="@+id/editText_secAns2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="77dp"
-        android:onClick="ButtonNext3" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="Security Question 1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/textview_secQ1"
-        android:layout_alignStart="@+id/textview_secQ1"
-        android:layout_marginBottom="23dp"
-        android:id="@+id/textView3" />
+        android:id="@+id/textView3"
+        android:layout_below="@+id/button_next3"
+        android:layout_alignLeft="@+id/editText_secAns2"
+        android:layout_alignStart="@+id/editText_secAns2"
+        android:layout_marginTop="59dp" />
 
 
 </RelativeLayout>

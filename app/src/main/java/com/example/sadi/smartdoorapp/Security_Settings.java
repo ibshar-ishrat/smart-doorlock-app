@@ -1,7 +1,5 @@
 package com.example.sadi.smartdoorapp;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,7 +19,7 @@ public class Security_Settings extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.security_settings);
+        setContentView(R.layout.header_security_settings);
 
         secQ1=(EditText)findViewById(R.id.editText_secQ1_sec);
         secA1=(EditText)findViewById(R.id.editText_secAns1_sec);

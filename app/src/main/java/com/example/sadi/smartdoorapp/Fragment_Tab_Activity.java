@@ -1,5 +1,7 @@
 package com.example.sadi.smartdoorapp;
 
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.BufferedReader;
@@ -26,13 +29,17 @@ public class Fragment_Tab_Activity extends Fragment implements AdapterView.OnIte
 
     View rootview;
     public static String IP_ADDRESS = Main_ScreenActivity.IP_ADDRESS;
-
-    public static final String GET_IMAGE_URL="http://"+IP_ADDRESS+"/db_Activity_Tab.php";
-
+    public static final String GET_IMAGE_URL="http://"+IP_ADDRESS+"/db_Activity_Tab.php?MAC="+ Utils.getMACAddress("wlan0");
     public static GetImages getImages;
     static String rspStr;
     public static final String BITMAP_ID = "BITMAP_ID";
     private ListView listView;
+    public static String[] imageURLs;
+    public static Bitmap[] bitmaps;
+    public static final String JSON_ARRAY = "result";
+    public static final String IMAGE_URL = "url";
+    private String json;
+    private JSONArray urls;
 
     @Nullable
     @Override
@@ -49,10 +56,12 @@ public class Fragment_Tab_Activity extends Fragment implements AdapterView.OnIte
     {
         class GetURLs extends AsyncTask<String,String,String>
         {
+            ProgressDialog loading;
             @Override
             protected void onPreExecute()
             {
                 super.onPreExecute();
+               // loading = ProgressDialog.show(ImageListView.this,"Loading...","Please Wait...",true,true);
             }
 
             @Override
@@ -88,6 +97,7 @@ public class Fragment_Tab_Activity extends Fragment implements AdapterView.OnIte
             {
                 s = rspStr;
                 super.onPostExecute(s);
+               // loading.dismiss();
                 getImages = new GetImages(s);
                 getImages();
             }
@@ -101,10 +111,12 @@ public class Fragment_Tab_Activity extends Fragment implements AdapterView.OnIte
     {
         class GetImages extends AsyncTask<Void,Void,Void>
         {
+            ProgressDialog loading;
             @Override
             protected void onPreExecute()
             {
                 super.onPreExecute();
+                //loading = ProgressDialog.show(this,"Downloading images...","Please wait...",false,false);
             }
 
             @Override
@@ -124,6 +136,7 @@ public class Fragment_Tab_Activity extends Fragment implements AdapterView.OnIte
             protected void onPostExecute(Void v)
             {
                 super.onPostExecute(v);
+                //loading.dismiss();
                 ActivityList customList = new ActivityList(getActivity(), com.example.sadi.smartdoorapp.GetImages.imageURLs,com.example.sadi.smartdoorapp.GetImages.bitmaps);
                 listView.setAdapter(customList);
             }
